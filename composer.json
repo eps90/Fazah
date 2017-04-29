@@ -1,10 +1,10 @@
 {
-    "name": "kuba/fazah",
+    "name": "eps90/fazah",
     "license": "proprietary",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "Eps\\Fazah\\": "src/"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -13,14 +13,14 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Eps\\Fazag\\Tests\\": "tests/"
         },
         "files": [
             "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
         ]
     },
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
         "doctrine/orm": "^2.5",
@@ -54,7 +54,8 @@
         ]
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "bin-dir": "bin"
     },
     "extra": {
         "symfony-app-dir": "app",
