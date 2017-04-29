@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    build: Docker/php
+    ports:
+      - 8082:80
+    volumes:
+      - .:/var/www/html
+
