@@ -6,6 +6,7 @@ namespace Eps\Fazah\Core\Model;
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
+use Symfony\Bundle\SecurityBundle\Tests\Functional\Bundle\AclBundle\Entity\Car;
 
 class Message
 {
@@ -54,7 +55,7 @@ class Message
         string $translation,
         string $language,
         CatalogueId $catalogueId
-    ): self {
+    ): Message {
         $message = new self();
         $message->messageId = MessageId::generate();
         $message->messageKey = $messageKey;
@@ -63,6 +64,29 @@ class Message
         $message->catalogueId = $catalogueId;
         $message->enabled = true;
         $message->createdAt = Carbon::now();
+
+        return $message;
+    }
+
+    public static function restoreFrom(
+        MessageId $messageId,
+        string $messageKey,
+        string $translatedMessage,
+        string $language,
+        Carbon $creationTime,
+        ?Carbon $updateTime,
+        bool $enabled,
+        CatalogueId $catalogueId
+    ): Message {
+        $message = new self();
+        $message->messageId = $messageId;
+        $message->messageKey = $messageKey;
+        $message->translatedMessage = $translatedMessage;
+        $message->language = $language;
+        $message->createdAt = $creationTime;
+        $message->updatedAt = $updateTime;
+        $message->enabled = $enabled;
+        $message->catalogueId = $catalogueId;
 
         return $message;
     }

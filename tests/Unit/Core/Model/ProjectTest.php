@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Eps\Fazah\Tests\Unit\Core\Model;
 
 use Carbon\Carbon;
+use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use PHPUnit\Framework\TestCase;
 
@@ -84,6 +85,32 @@ class ProjectTest extends TestCase
     public function itShouldHaveInitiallyEmptyUpdateDate(): void
     {
         static::assertNull($this->project->getUpdatedAt());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToRestoreProjectFromGivenValues(): void
+    {
+        $name = 'My project';
+        $projectId = ProjectId::generate();
+        $createdAt = Carbon::instance(new \DateTime('2014-01-15 11:14:00'));
+        $updatedAt = Carbon::instance(new \DateTime('2014-01-16 01:00:00'));
+        $enabled = true;
+
+        $project = Project::restoreFrom(
+            $projectId,
+            $name,
+            $createdAt,
+            $updatedAt,
+            $enabled
+        );
+
+        static::assertEquals($projectId, $project->getProjectId());
+        static::assertEquals($name, $project->getName());
+        static::assertEquals($createdAt, $project->getCreatedAt());
+        static::assertEquals($updatedAt, $project->getUpdatedAt());
+        static::assertEquals($enabled, $project->isEnabled());
     }
 
     private function createNewProject(): Project

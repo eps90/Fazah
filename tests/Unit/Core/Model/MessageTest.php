@@ -5,6 +5,7 @@ namespace Eps\Fazah\Tests\Unit\Core\Model;
 
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
+use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use PHPUnit\Framework\TestCase;
 
@@ -99,6 +100,41 @@ class MessageTest extends TestCase
     public function itShouldHaveAReferenceToCatalogue(): void
     {
         static::assertNotNull($this->newMessage->getCatalogueId());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToRestoreModelFromValues(): void
+    {
+        $messageId = MessageId::generate();
+        $messageKey = 'my.message';
+        $translatedMessage = 'Hello!';
+        $language = 'en';
+        $creationTime = Carbon::instance(new \DateTime('2015-01-01 12:00:00'));
+        $updateTime = Carbon::now();
+        $enabled = true;
+        $catalogueId = CatalogueId::generate();
+
+        $message = Message::restoreFrom(
+            $messageId,
+            $messageKey,
+            $translatedMessage,
+            $language,
+            $creationTime,
+            $updateTime,
+            $enabled,
+            $catalogueId
+        );
+
+        static::assertEquals($messageId, $message->getMessageId());
+        static::assertEquals($messageKey, $message->getMessageKey());
+        static::assertEquals($translatedMessage, $message->getTranslatedMessage());
+        static::assertEquals($language, $message->getLanguage());
+        static::assertEquals($creationTime, $message->getCreatedAt());
+        static::assertEquals($updateTime, $message->getUpdatedAt());
+        static::assertEquals($enabled, $message->isEnabled());
+        static::assertEquals($catalogueId, $message->getCatalogueId());
     }
 
     private function createNewMessage(): Message

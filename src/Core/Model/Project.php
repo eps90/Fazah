@@ -33,13 +33,30 @@ class Project
      */
     private $enabled;
 
-    public static function create(string $name): self
+    public static function create(string $name): Project
     {
         $project = new self();
         $project->projectId = ProjectId::generate();
         $project->name = $name;
         $project->createdAt = Carbon::now();
         $project->enabled = true;
+
+        return $project;
+    }
+
+    public static function restoreFrom(
+        ProjectId $projectId,
+        string $name,
+        Carbon $createdAt,
+        ?Carbon $updatedAt,
+        bool $enabled
+    ): Project {
+        $project = new self();
+        $project->projectId = $projectId;
+        $project->name = $name;
+        $project->createdAt = $createdAt;
+        $project->updatedAt = $updatedAt;
+        $project->enabled = $enabled;
 
         return $project;
     }

@@ -5,6 +5,7 @@ namespace Eps\Fazah\Tests\Unit\Core\Model;
 
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Catalogue;
+use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use PHPUnit\Framework\TestCase;
 
@@ -92,6 +93,35 @@ class CatalogueTest extends TestCase
     public function itShouldHaveAReferenceToProject(): void
     {
         static::assertNotNull($this->newCatalogue->getProjectId());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToRestoreModelFromGivenValues(): void
+    {
+        $name = 'My catalogue';
+        $catalogueId = CatalogueId::generate();
+        $projectId = ProjectId::generate();
+        $createdAt = Carbon::instance(new \DateTime('2016-01-01 15:00:00'));
+        $updatedAt = Carbon::instance(new \DateTime('2016-01-02 12:00:00'));
+        $enabled = true;
+
+        $catalogue = Catalogue::restoreFrom(
+            $catalogueId,
+            $name,
+            $createdAt,
+            $updatedAt,
+            $enabled,
+            $projectId
+        );
+
+        static::assertEquals($catalogueId, $catalogue->getCatalogueId());
+        static::assertEquals($name, $catalogue->getName());
+        static::assertEquals($createdAt, $catalogue->getCreatedAt());
+        static::assertEquals($updatedAt, $catalogue->getUpdatedAt());
+        static::assertEquals($enabled, $catalogue->isEnabled());
+        static::assertEquals($projectId, $catalogue->getProjectId());
     }
 
     private function createNewCatalogue(): Catalogue
