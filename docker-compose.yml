@@ -4,6 +4,17 @@ services:
     build: Docker/php
     ports:
       - 8082:80
+    depends_on:
+      - db
     volumes:
       - .:/var/www/html
 
+  db:
+    image: mysql:5.7.18
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+      MYSQL_USER: 'fazah_user'
+      MYSQL_PASSWORD: 'fazah_pass'
+      MYSQL_DATABASE: 'fazah'
+    ports:
+      - 3307:3306
