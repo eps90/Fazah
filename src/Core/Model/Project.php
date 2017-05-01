@@ -4,13 +4,12 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\Model;
 
 use Carbon\Carbon;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use Eps\Fazah\Core\Model\Identity\ProjectId;
 
 final class Project
 {
     /**
-     * @var UuidInterface
+     * @var ProjectId
      */
     private $projectId;
 
@@ -34,10 +33,10 @@ final class Project
      */
     private $enabled;
 
-    public static function create($name): self
+    public static function create(string $name): self
     {
         $project = new self();
-        $project->projectId = Uuid::uuid4();
+        $project->projectId = ProjectId::generate();
         $project->name = $name;
         $project->createdAt = Carbon::now();
         $project->enabled = true;
@@ -46,9 +45,9 @@ final class Project
     }
 
     /**
-     * @return UuidInterface
+     * @return ProjectId
      */
-    public function getProjectId(): UuidInterface
+    public function getProjectId(): ProjectId
     {
         return $this->projectId;
     }

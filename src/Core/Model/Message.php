@@ -4,13 +4,13 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\Model;
 
 use Carbon\Carbon;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use Eps\Fazah\Core\Model\Identity\CatalogueId;
+use Eps\Fazah\Core\Model\Identity\MessageId;
 
 final class Message
 {
     /**
-     * @var UuidInterface
+     * @var MessageId
      */
     private $messageId;
 
@@ -44,13 +44,23 @@ final class Message
      */
     private $enabled;
 
-    public static function create(string $messageKey, string $translation, string $language): self
-    {
+    /**
+     * @var CatalogueId
+     */
+    private $catalogueId;
+
+    public static function create(
+        string $messageKey,
+        string $translation,
+        string $language,
+        CatalogueId $catalogueId
+    ): self {
         $message = new self();
-        $message->messageId = Uuid::uuid4();
+        $message->messageId = MessageId::generate();
         $message->messageKey = $messageKey;
         $message->translatedMessage = $translation;
         $message->language = $language;
+        $message->catalogueId = $catalogueId;
         $message->enabled = true;
         $message->createdAt = Carbon::now();
 
@@ -58,9 +68,9 @@ final class Message
     }
 
     /**
-     * @return UuidInterface
+     * @return MessageId
      */
-    public function getMessageId(): UuidInterface
+    public function getMessageId(): MessageId
     {
         return $this->messageId;
     }
@@ -111,5 +121,13 @@ final class Message
     public function isEnabled(): bool
     {
         return $this->enabled;
+    }
+
+    /**
+     * @return CatalogueId
+     */
+    public function getCatalogueId(): CatalogueId
+    {
+        return $this->catalogueId;
     }
 }

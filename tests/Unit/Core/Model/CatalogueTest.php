@@ -5,6 +5,7 @@ namespace Eps\Fazah\Tests\Unit\Core\Model;
 
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Catalogue;
+use Eps\Fazah\Core\Model\Identity\ProjectId;
 use PHPUnit\Framework\TestCase;
 
 class CatalogueTest extends TestCase
@@ -85,9 +86,18 @@ class CatalogueTest extends TestCase
         static::assertTrue($this->newCatalogue->isEnabled());
     }
 
+    /**
+     * @test
+     */
+    public function itShouldHaveAReferenceToProject(): void
+    {
+        static::assertNotNull($this->newCatalogue->getProjectId());
+    }
+
     private function createNewCatalogue(): Catalogue
     {
         $catalogueName = 'My translations';
-        return Catalogue::create($catalogueName);
+        $projectId = ProjectId::generate();
+        return Catalogue::create($catalogueName, $projectId);
     }
 }

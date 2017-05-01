@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Eps\Fazah\Tests\Unit\Core\Model;
 
 use Carbon\Carbon;
+use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Message;
 use PHPUnit\Framework\TestCase;
 
@@ -51,8 +52,9 @@ class MessageTest extends TestCase
         $messageKey = 'my.message.to.translate';
         $language = 'fr';
         $translatedMessage = 'Bonjour !';
+        $catalogueId = CatalogueId::generate();
 
-        $message = Message::create($messageKey, $translatedMessage, $language);
+        $message = Message::create($messageKey, $translatedMessage, $language, $catalogueId);
 
         static::assertEquals($messageKey, $message->getMessageKey());
         static::assertEquals($translatedMessage, $message->getTranslatedMessage());
@@ -91,12 +93,21 @@ class MessageTest extends TestCase
         static::assertNull($this->newMessage->getUpdatedAt());
     }
 
+    /**
+     * @test
+     */
+    public function itShouldHaveAReferenceToCatalogue(): void
+    {
+        static::assertNotNull($this->newMessage->getCatalogueId());
+    }
+
     private function createNewMessage(): Message
     {
         $messageKey = 'my.message.to.translate';
         $language = 'fr';
         $translatedMessage = 'Bonjour !';
+        $catalogueId = CatalogueId::generate();
 
-        return Message::create($messageKey, $translatedMessage, $language);
+        return Message::create($messageKey, $translatedMessage, $language, $catalogueId);
     }
 }

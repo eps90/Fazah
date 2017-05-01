@@ -4,13 +4,13 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\Model;
 
 use Carbon\Carbon;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use Eps\Fazah\Core\Model\Identity\CatalogueId;
+use Eps\Fazah\Core\Model\Identity\ProjectId;
 
 final class Catalogue
 {
     /**
-     * @var UuidInterface
+     * @var CatalogueId
      */
     private $catalogueId;
 
@@ -34,21 +34,27 @@ final class Catalogue
      */
     private $enabled;
 
-    public static function create($catalogueName): self
+    /**
+     * @var ProjectId
+     */
+    private $projectId;
+
+    public static function create(string $catalogueName, ProjectId $projectId): self
     {
         $catalogue = new self();
-        $catalogue->catalogueId = Uuid::uuid4();
+        $catalogue->catalogueId = CatalogueId::generate();
         $catalogue->name = $catalogueName;
         $catalogue->createdAt = Carbon::now();
         $catalogue->enabled = true;
+        $catalogue->projectId = $projectId;
 
         return $catalogue;
     }
 
     /**
-     * @return UuidInterface
+     * @return CatalogueId
      */
-    public function getCatalogueId(): UuidInterface
+    public function getCatalogueId(): CatalogueId
     {
         return $this->catalogueId;
     }
@@ -83,5 +89,13 @@ final class Catalogue
     public function isEnabled(): bool
     {
         return $this->enabled;
+    }
+
+    /**
+     * @return ProjectId
+     */
+    public function getProjectId(): ProjectId
+    {
+        return $this->projectId;
     }
 }

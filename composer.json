@@ -13,7 +13,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Eps\\Fazag\\Tests\\": "tests/"
+            "Eps\\Fazah\\Tests\\": "tests/"
         },
         "files": [
             "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
