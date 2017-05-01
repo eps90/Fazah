@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 
-final class Message
+class Message
 {
     /**
      * @var MessageId

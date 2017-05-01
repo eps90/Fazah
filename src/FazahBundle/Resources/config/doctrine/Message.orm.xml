@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Eps\Fazah\Core\Model\Message" table="messages">
+        <id name="messageId" type="message_id" column="id" />
+
+        <field name="messageKey" type="text" column="message_key" nullable="false" />
+        <field name="language" type="string" length="32" nullable="false" />
+        <field name="translatedMessage" type="text" column="translated_message" nullable="true" />
+        <field name="enabled" type="boolean" nullable="false" />
+        <field name="createdAt" type="carbondatetime" nullable="false" column="created_at" />
+        <field name="updatedAt" type="carbondatetime" nullable="true" column="updated_at" />
+        <field name="catalogueId" type="catalogue_id" nullable="false" column="catalogue_id" />
+    </entity>
+</doctrine-mapping>

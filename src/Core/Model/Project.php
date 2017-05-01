@@ -6,7 +6,7 @@ namespace Eps\Fazah\Core\Model;
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 
-final class Project
+class Project
 {
     /**
      * @var ProjectId

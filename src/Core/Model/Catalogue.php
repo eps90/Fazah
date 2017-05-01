@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 
-final class Catalogue
+class Catalogue
 {
     /**
      * @var CatalogueId
