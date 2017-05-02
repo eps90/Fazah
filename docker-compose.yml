@@ -8,6 +8,8 @@ services:
       - db
     volumes:
       - .:/var/www/html
+    environment:
+      PHP_IDE_CONFIG: "${DEBUG_SERVER-serverName=docker}"
 
   db:
     image: mysql:5.7.18
@@ -16,5 +18,7 @@ services:
       MYSQL_USER: 'fazah_user'
       MYSQL_PASSWORD: 'fazah_pass'
       MYSQL_DATABASE: 'fazah'
+    volumes:
+      - ./fazah_db:/var/lib/mysql
     ports:
       - 3307:3306

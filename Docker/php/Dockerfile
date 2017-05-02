@@ -10,6 +10,9 @@ RUN apt-get -y install wget git zlib1g-dev libicu-dev sqlite3 libsqlite3-dev
 # PHP EXTENSIONS
 RUN docker-php-ext-install zip intl pdo_mysql pdo_sqlite
 RUN pecl install apcu-5.1.8
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
+COPY xdebug.ini /usr/local/etc/php/conf.d
 RUN docker-php-ext-enable --ini-name 20-apcu.ini apcu
 RUN docker-php-ext-enable --ini-name 05-opcache.ini opcache
 
