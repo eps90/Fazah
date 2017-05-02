@@ -6,9 +6,8 @@
         <id name="catalogueId" column="id" type="catalogue_id"/>
 
         <field name="name" type="text" nullable="false" />
-        <field name="enabled" type="boolean" nullable="false" />
-        <field name="createdAt" type="carbondatetime" nullable="false" column="created_at" />
-        <field name="updatedAt" type="carbondatetime" nullable="true" column="updated_at" />
         <field name="projectId" type="project_id" nullable="false" column="project_id" />
+
+        <embedded name="metadata" class="Eps\Fazah\Core\Model\ValueObject\Metadata" use-column-prefix="false" />
     </entity>
 </doctrine-mapping>

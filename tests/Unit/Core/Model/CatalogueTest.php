@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use PHPUnit\Framework\TestCase;
 
 class CatalogueTest extends TestCase
@@ -68,7 +69,7 @@ class CatalogueTest extends TestCase
      */
     public function itShouldSetCreationDate(): void
     {
-        static::assertEquals($this->now, $this->newCatalogue->getCreatedAt());
+        static::assertEquals($this->now, $this->newCatalogue->getMetadata()->getCreationTime());
     }
 
     /**
@@ -76,7 +77,7 @@ class CatalogueTest extends TestCase
      */
     public function itShouldHaveInitiallyEmptyUpdateTime(): void
     {
-        static::assertNull($this->newCatalogue->getUpdatedAt());
+        static::assertNull($this->newCatalogue->getMetadata()->getUpdateTime());
     }
 
     /**
@@ -84,7 +85,7 @@ class CatalogueTest extends TestCase
      */
     public function itShouldBeInitiallyEnabled(): void
     {
-        static::assertTrue($this->newCatalogue->isEnabled());
+        static::assertTrue($this->newCatalogue->getMetadata()->isEnabled());
     }
 
     /**
@@ -103,25 +104,23 @@ class CatalogueTest extends TestCase
         $name = 'My catalogue';
         $catalogueId = CatalogueId::generate();
         $projectId = ProjectId::generate();
-        $createdAt = Carbon::instance(new \DateTime('2016-01-01 15:00:00'));
-        $updatedAt = Carbon::instance(new \DateTime('2016-01-02 12:00:00'));
-        $enabled = true;
+        $metadata = Metadata::restoreFrom(
+            Carbon::instance(new \DateTime('2016-01-01 15:00:00')),
+            Carbon::instance(new \DateTime('2016-01-02 12:00:00')),
+            true
+        );
 
         $catalogue = Catalogue::restoreFrom(
             $catalogueId,
             $name,
-            $createdAt,
-            $updatedAt,
-            $enabled,
-            $projectId
+            $projectId,
+            $metadata
         );
 
         static::assertEquals($catalogueId, $catalogue->getCatalogueId());
         static::assertEquals($name, $catalogue->getName());
-        static::assertEquals($createdAt, $catalogue->getCreatedAt());
-        static::assertEquals($updatedAt, $catalogue->getUpdatedAt());
-        static::assertEquals($enabled, $catalogue->isEnabled());
         static::assertEquals($projectId, $catalogue->getProjectId());
+        static::assertEquals($metadata, $catalogue->getMetadata());
     }
 
     private function createNewCatalogue(): Catalogue

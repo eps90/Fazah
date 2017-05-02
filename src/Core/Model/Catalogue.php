@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
 
 class Catalogue
 {
@@ -20,32 +20,21 @@ class Catalogue
     private $name;
 
     /**
-     * @var Carbon
-     */
-    private $createdAt;
-
-    /**
-     * @var Carbon
-     */
-    private $updatedAt;
-
-    /**
-     * @var bool
-     */
-    private $enabled;
-
-    /**
      * @var ProjectId
      */
     private $projectId;
+
+    /**
+     * @var Metadata
+     */
+    private $metadata;
 
     public static function create(string $catalogueName, ProjectId $projectId): Catalogue
     {
         $catalogue = new self();
         $catalogue->catalogueId = CatalogueId::generate();
         $catalogue->name = $catalogueName;
-        $catalogue->createdAt = Carbon::now();
-        $catalogue->enabled = true;
+        $catalogue->metadata = Metadata::initialize();
         $catalogue->projectId = $projectId;
 
         return $catalogue;
@@ -54,18 +43,14 @@ class Catalogue
     public static function restoreFrom(
         CatalogueId $catalogueId,
         string $name,
-        Carbon $createdAt,
-        ?Carbon $updatedAt,
-        bool $enabled,
-        ProjectId $projectId
+        ProjectId $projectId,
+        Metadata $metadata
     ): Catalogue {
         $catalogue = new self();
         $catalogue->catalogueId = $catalogueId;
         $catalogue->name = $name;
-        $catalogue->createdAt = $createdAt;
-        $catalogue->updatedAt = $updatedAt;
-        $catalogue->enabled = $enabled;
         $catalogue->projectId = $projectId;
+        $catalogue->metadata = $metadata;
 
         return $catalogue;
     }
@@ -87,34 +72,18 @@ class Catalogue
     }
 
     /**
-     * @return Carbon
-     */
-    public function getCreatedAt(): Carbon
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @return Carbon
-     */
-    public function getUpdatedAt(): ?Carbon
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isEnabled(): bool
-    {
-        return $this->enabled;
-    }
-
-    /**
      * @return ProjectId
      */
     public function getProjectId(): ProjectId
     {
         return $this->projectId;
+    }
+
+    /**
+     * @return Metadata
+     */
+    public function getMetadata(): Metadata
+    {
+        return $this->metadata;
     }
 }

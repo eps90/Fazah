@@ -6,6 +6,7 @@ namespace Eps\Fazah\Tests\Unit\Core\Model;
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use PHPUnit\Framework\TestCase;
 
 class ProjectTest extends TestCase
@@ -68,7 +69,7 @@ class ProjectTest extends TestCase
      */
     public function itShouldHaveCreationDate(): void
     {
-        static::assertEquals($this->now, $this->project->getCreatedAt());
+        static::assertEquals($this->now, $this->project->getMetadata()->getCreationTime());
     }
 
     /**
@@ -76,7 +77,7 @@ class ProjectTest extends TestCase
      */
     public function itShouldBeInitiallyEnabled(): void
     {
-        static::assertTrue($this->project->isEnabled());
+        static::assertTrue($this->project->getMetadata()->isEnabled());
     }
 
     /**
@@ -84,7 +85,7 @@ class ProjectTest extends TestCase
      */
     public function itShouldHaveInitiallyEmptyUpdateDate(): void
     {
-        static::assertNull($this->project->getUpdatedAt());
+        static::assertNull($this->project->getMetadata()->getUpdateTime());
     }
 
     /**
@@ -94,23 +95,16 @@ class ProjectTest extends TestCase
     {
         $name = 'My project';
         $projectId = ProjectId::generate();
-        $createdAt = Carbon::instance(new \DateTime('2014-01-15 11:14:00'));
-        $updatedAt = Carbon::instance(new \DateTime('2014-01-16 01:00:00'));
-        $enabled = true;
-
-        $project = Project::restoreFrom(
-            $projectId,
-            $name,
-            $createdAt,
-            $updatedAt,
-            $enabled
+        $metadata = Metadata::restoreFrom(
+            Carbon::instance(new \DateTime('2014-01-15 11:14:00')),
+            Carbon::instance(new \DateTime('2014-01-16 01:00:00')),
+            true
         );
+        $project = Project::restoreFrom($projectId, $name, $metadata);
 
         static::assertEquals($projectId, $project->getProjectId());
         static::assertEquals($name, $project->getName());
-        static::assertEquals($createdAt, $project->getCreatedAt());
-        static::assertEquals($updatedAt, $project->getUpdatedAt());
-        static::assertEquals($enabled, $project->isEnabled());
+        static::assertEquals($metadata, $project->getMetadata());
     }
 
     private function createNewProject(): Project

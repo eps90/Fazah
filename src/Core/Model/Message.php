@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
 
 class Message
 {
@@ -30,24 +30,14 @@ class Message
     private $translatedMessage;
 
     /**
-     * @var Carbon
-     */
-    private $createdAt;
-
-    /**
-     * @var Carbon|null
-     */
-    private $updatedAt;
-
-    /**
-     * @var bool
-     */
-    private $enabled;
-
-    /**
      * @var CatalogueId
      */
     private $catalogueId;
+
+    /**
+     * @var Metadata
+     */
+    private $metadata;
 
     public static function create(
         string $messageKey,
@@ -61,8 +51,7 @@ class Message
         $message->translatedMessage = $translation;
         $message->language = $language;
         $message->catalogueId = $catalogueId;
-        $message->enabled = true;
-        $message->createdAt = Carbon::now();
+        $message->metadata = Metadata::initialize();
 
         return $message;
     }
@@ -72,19 +61,15 @@ class Message
         string $messageKey,
         string $translatedMessage,
         string $language,
-        Carbon $creationTime,
-        ?Carbon $updateTime,
-        bool $enabled,
-        CatalogueId $catalogueId
+        CatalogueId $catalogueId,
+        Metadata $metadata
     ): Message {
         $message = new self();
         $message->messageId = $messageId;
         $message->messageKey = $messageKey;
         $message->translatedMessage = $translatedMessage;
         $message->language = $language;
-        $message->createdAt = $creationTime;
-        $message->updatedAt = $updateTime;
-        $message->enabled = $enabled;
+        $message->metadata = $metadata;
         $message->catalogueId = $catalogueId;
 
         return $message;
@@ -123,34 +108,18 @@ class Message
     }
 
     /**
-     * @return Carbon
-     */
-    public function getCreatedAt(): Carbon
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @return Carbon|null
-     */
-    public function getUpdatedAt(): ?Carbon
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isEnabled(): bool
-    {
-        return $this->enabled;
-    }
-
-    /**
      * @return CatalogueId
      */
     public function getCatalogueId(): CatalogueId
     {
         return $this->catalogueId;
+    }
+
+    /**
+     * @return Metadata
+     */
+    public function getMetadata(): Metadata
+    {
+        return $this->metadata;
     }
 }

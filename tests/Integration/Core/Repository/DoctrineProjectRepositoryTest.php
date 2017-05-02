@@ -6,6 +6,7 @@ namespace Eps\Fazah\Tests\Integration\Core\Repository;
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use Eps\Fazah\Core\Repository\DoctrineProjectRepository;
 use Eps\Fazah\Core\Repository\Exception\ProjectRepositoryException;
 use Eps\Fazah\Tests\Resources\Fixtures\AddProjects;
@@ -41,9 +42,11 @@ class DoctrineProjectRepositoryTest extends WebTestCase
         $expectedResult = Project::restoreFrom(
             new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
             'my-awesome-project',
-            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
-            true
+            Metadata::restoreFrom(
+                Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
+                Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                true
+            )
         );
         $actualResult = $this->repository->find($projectId);
 
@@ -98,16 +101,20 @@ class DoctrineProjectRepositoryTest extends WebTestCase
             Project::restoreFrom(
                 new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                 'my-awesome-project',
-                Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
-                true
+                Metadata::restoreFrom(
+                    Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
+                    Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                    true
+                )
             ),
             Project::restoreFrom(
                 new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                 'yet-another-cool-project',
-                Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-                Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
-                true
+                Metadata::restoreFrom(
+                    Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
+                    Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+                    true
+                )
             )
         ];
         $actualResults = $this->repository->findAll();

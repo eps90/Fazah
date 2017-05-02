@@ -6,8 +6,6 @@
         <id name="projectId" column="id" type="project_id" />
 
         <field name="name" type="text" nullable="false" />
-        <field name="enabled" type="boolean" nullable="false" />
-        <field name="createdAt" type="carbondatetime" nullable="false" column="created_at" />
-        <field name="updatedAt" type="carbondatetime" nullable="true" column="updated_at" />
+        <embedded name="metadata" class="Eps\Fazah\Core\Model\ValueObject\Metadata" use-column-prefix="false" />
     </entity>
 </doctrine-mapping>

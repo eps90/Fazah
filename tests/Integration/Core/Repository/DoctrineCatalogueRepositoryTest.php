@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use Eps\Fazah\Core\Repository\DoctrineCatalogueRepository;
 use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
 use Eps\Fazah\Tests\Resources\Fixtures\AddCatalogues;
@@ -46,10 +47,12 @@ class DoctrineCatalogueRepositoryTest extends WebTestCase
         $expectedCatalogue = Catalogue::restoreFrom(
             $catalogueId,
             'second-catalogue',
-            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
-            true,
-            new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260')
+            new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
+            Metadata::restoreFrom(
+                Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
+                Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                true
+            )
         );
         $actualCatalogue = $this->repository->find($catalogueId);
 
@@ -76,10 +79,12 @@ class DoctrineCatalogueRepositoryTest extends WebTestCase
         $newCatalogue = Catalogue::restoreFrom(
             CatalogueId::generate(),
             'second-catalogue',
-            Carbon::instance(new \DateTime('2017-01-01 12:00:01')),
-            Carbon::instance(new \DateTime('2017-01-02 12:00:01')),
-            true,
-            new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260')
+            new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
+            Metadata::restoreFrom(
+                Carbon::instance(new \DateTime('2017-01-01 12:00:01')),
+                Carbon::instance(new \DateTime('2017-01-02 12:00:01')),
+                true
+            )
         );
         $this->repository->save($newCatalogue);
 
@@ -113,26 +118,32 @@ class DoctrineCatalogueRepositoryTest extends WebTestCase
             Catalogue::restoreFrom(
                 new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458'),
                 'third-catalogue',
-                Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-                Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
-                true,
-                $projectId
+                $projectId,
+                Metadata::restoreFrom(
+                    Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
+                    Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+                    true
+                )
             ),
             Catalogue::restoreFrom(
                 new CatalogueId('3df07fa8-80fa-4d5d-a0cb-9bcf3d830425'),
                 'second-catalogue',
-                Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
-                true,
-                $projectId
+                $projectId,
+                Metadata::restoreFrom(
+                    Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
+                    Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                    true
+                )
             ),
             Catalogue::restoreFrom(
                 new CatalogueId('a853f467-403d-416b-8269-36369c34d723'),
                 'first-catalogue',
-                Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-                Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
-                true,
-                $projectId
+                $projectId,
+                Metadata::restoreFrom(
+                    Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
+                    Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+                    true
+                )
             )
         ];
         $actualCatalogues = $this->repository->findByProjectId($projectId);

@@ -10,9 +10,7 @@
         <field name="messageKey" type="text" column="message_key" nullable="false" />
         <field name="language" type="string" length="32" nullable="false" />
         <field name="translatedMessage" type="text" column="translated_message" nullable="true" />
-        <field name="enabled" type="boolean" nullable="false" />
-        <field name="createdAt" type="carbondatetime" nullable="false" column="created_at" />
-        <field name="updatedAt" type="carbondatetime" nullable="true" column="updated_at" />
         <field name="catalogueId" type="catalogue_id" nullable="false" column="catalogue_id" />
+        <embedded name="metadata" class="Eps\Fazah\Core\Model\ValueObject\Metadata" use-column-prefix="false" />
     </entity>
 </doctrine-mapping>

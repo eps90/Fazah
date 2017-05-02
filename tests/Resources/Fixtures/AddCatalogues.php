@@ -10,6 +10,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Project;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
 
 final class AddCatalogues extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -34,13 +35,16 @@ final class AddCatalogues extends AbstractFixture implements OrderedFixtureInter
         ];
 
         foreach ($catalogueNames as $idx => $catalogueName) {
+            $metadata = Metadata::restoreFrom(
+                Carbon::instance(new \DateTime('2015-01-01 12:00:0' . $idx)),
+                Carbon::instance(new \DateTime('2015-01-02 12:00:0' . $idx)),
+                true
+            );
             $catalogue = Catalogue::restoreFrom(
                 new CatalogueId($catalogueUuids[$idx]),
                 $catalogueName,
-                Carbon::instance(new \DateTime('2015-01-01 12:00:0' . $idx)),
-                Carbon::instance(new \DateTime('2015-01-02 12:00:0' . $idx)),
-                true,
-                $projects[$idx]->getProjectId()
+                $projects[$idx]->getProjectId(),
+                $metadata
             );
             $manager->persist($catalogue);
             $this->addReference("catalogue-$idx", $catalogue);

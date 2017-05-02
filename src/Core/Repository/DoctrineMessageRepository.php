@@ -55,7 +55,7 @@ final class DoctrineMessageRepository implements MessageRepository
         return $this->entityManager->createQuery(
                 'SELECT m FROM Fazah:Message m 
                 WHERE m.catalogueId = :catalogueId
-                ORDER BY m.createdAt DESC, m.updatedAt DESC'
+                ORDER BY m.metadata.createdAt DESC, m.metadata.updatedAt DESC'
             )
             ->setParameter('catalogueId', $catalogueId)
             ->getResult();

@@ -54,7 +54,7 @@ final class DoctrineCatalogueRepository implements CatalogueRepository
         return $this->entityManager->createQuery(
             'SELECT cat FROM Fazah:Catalogue cat 
             WHERE cat.projectId = :projectId
-            ORDER BY cat.createdAt DESC, cat.updatedAt DESC'
+            ORDER BY cat.metadata.createdAt DESC, cat.metadata.updatedAt DESC'
         )
             ->setParameter('projectId', $projectId)
             ->getResult();

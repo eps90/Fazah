@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use PHPUnit\Framework\TestCase;
 
 class MessageTest extends TestCase
@@ -75,7 +76,7 @@ class MessageTest extends TestCase
      */
     public function itShouldBeEnabledByDefault(): void
     {
-        static::assertTrue($this->newMessage->isEnabled());
+        static::assertTrue($this->newMessage->getMetadata()->isEnabled());
     }
 
     /**
@@ -83,7 +84,7 @@ class MessageTest extends TestCase
      */
     public function itShouldKeepCreationDateOnCreation(): void
     {
-        static::assertEquals($this->now, $this->newMessage->getCreatedAt());
+        static::assertEquals($this->now, $this->newMessage->getMetadata()->getCreationTime());
     }
 
     /**
@@ -91,7 +92,7 @@ class MessageTest extends TestCase
      */
     public function itShouldHaveInitiallyEmptyUpdateDate(): void
     {
-        static::assertNull($this->newMessage->getUpdatedAt());
+        static::assertNull($this->newMessage->getMetadata()->getUpdateTime());
     }
 
     /**
@@ -111,29 +112,27 @@ class MessageTest extends TestCase
         $messageKey = 'my.message';
         $translatedMessage = 'Hello!';
         $language = 'en';
-        $creationTime = Carbon::instance(new \DateTime('2015-01-01 12:00:00'));
-        $updateTime = Carbon::now();
-        $enabled = true;
         $catalogueId = CatalogueId::generate();
+        $metadata = Metadata::restoreFrom(
+            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
+            Carbon::now(),
+            true
+        );
 
         $message = Message::restoreFrom(
             $messageId,
             $messageKey,
             $translatedMessage,
             $language,
-            $creationTime,
-            $updateTime,
-            $enabled,
-            $catalogueId
+            $catalogueId,
+            $metadata
         );
 
         static::assertEquals($messageId, $message->getMessageId());
         static::assertEquals($messageKey, $message->getMessageKey());
         static::assertEquals($translatedMessage, $message->getTranslatedMessage());
         static::assertEquals($language, $message->getLanguage());
-        static::assertEquals($creationTime, $message->getCreatedAt());
-        static::assertEquals($updateTime, $message->getUpdatedAt());
-        static::assertEquals($enabled, $message->isEnabled());
+        static::assertEquals($metadata, $message->getMetadata());
         static::assertEquals($catalogueId, $message->getCatalogueId());
     }
 

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
 
 class Project
 {
@@ -19,27 +19,16 @@ class Project
     private $name;
 
     /**
-     * @var Carbon
+     * @var Metadata
      */
-    private $createdAt;
-
-    /**
-     * @var Carbon|null
-     */
-    private $updatedAt;
-
-    /**
-     * @var boolean
-     */
-    private $enabled;
+    private $metadata;
 
     public static function create(string $name): Project
     {
         $project = new self();
         $project->projectId = ProjectId::generate();
         $project->name = $name;
-        $project->createdAt = Carbon::now();
-        $project->enabled = true;
+        $project->metadata = Metadata::initialize();
 
         return $project;
     }
@@ -47,16 +36,12 @@ class Project
     public static function restoreFrom(
         ProjectId $projectId,
         string $name,
-        Carbon $createdAt,
-        ?Carbon $updatedAt,
-        bool $enabled
+        Metadata $metadata
     ): Project {
         $project = new self();
         $project->projectId = $projectId;
         $project->name = $name;
-        $project->createdAt = $createdAt;
-        $project->updatedAt = $updatedAt;
-        $project->enabled = $enabled;
+        $project->metadata = $metadata;
 
         return $project;
     }
@@ -78,26 +63,10 @@ class Project
     }
 
     /**
-     * @return Carbon
+     * @return Metadata
      */
-    public function getCreatedAt(): Carbon
+    public function getMetadata(): Metadata
     {
-        return $this->createdAt;
-    }
-
-    /**
-     * @return Carbon|null
-     */
-    public function getUpdatedAt(): ?Carbon
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isEnabled(): bool
-    {
-        return $this->enabled;
+        return $this->metadata;
     }
 }

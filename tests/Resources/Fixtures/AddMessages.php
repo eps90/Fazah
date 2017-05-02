@@ -10,6 +10,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
+use Eps\Fazah\Core\Model\ValueObject\Metadata;
+use Symfony\Component\Translation\MetadataAwareInterface;
 
 final class AddMessages extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -72,11 +74,7 @@ final class AddMessages extends AbstractFixture implements OrderedFixtureInterfa
                 $messageIdx = array_pop($messageUuids);
 
                 $timeSeconds = str_pad((string)count($messageUuids), 2, '0');
-                $message = Message::restoreFrom(
-                    new MessageId($messageIdx),
-                    $messageKey,
-                    $translatedMessage,
-                    $language,
+                $metadata = Metadata::restoreFrom(
                     Carbon::create(
                         2015,
                         01,
@@ -95,8 +93,15 @@ final class AddMessages extends AbstractFixture implements OrderedFixtureInterfa
                         $timeSeconds,
                         new \DateTimeZone('UTC')
                     ),
-                    true,
-                    $catalogue->getCatalogueId()
+                    true
+                );
+                $message = Message::restoreFrom(
+                    new MessageId($messageIdx),
+                    $messageKey,
+                    $translatedMessage,
+                    $language,
+                    $catalogue->getCatalogueId(),
+                    $metadata
                 );
                 $manager->persist($message);
             }
