@@ -86,7 +86,7 @@ class Project
     }
 
     /**
-     * @return Carbon
+     * @return Carbon|null
      */
     public function getUpdatedAt(): ?Carbon
     {

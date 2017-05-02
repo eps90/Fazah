@@ -15,7 +15,7 @@ final class MessageIdType extends IdentityType
         return new MessageId($value);
     }
 
-    public function getName()
+    public function getName(): string
     {
         return self::MESSAGE_ID;
     }

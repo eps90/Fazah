@@ -50,9 +50,9 @@ class CatalogueTest extends TestCase
      */
     public function itShouldCreateCatalogueWithName(): void
     {
-        $expectedCatalogueName = 'My translations';
+        $expectedName = 'My translations';
 
-        static::assertEquals($expectedCatalogueName, $this->newCatalogue->getName());
+        static::assertEquals($expectedName, $this->newCatalogue->getName());
     }
 
     /**

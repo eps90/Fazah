@@ -20,7 +20,7 @@ final class ProjectIdType extends IdentityType
         return ProjectId::class;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return self::PROJECT_ID;
     }

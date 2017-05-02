@@ -1,4 +1,5 @@
 FROM php:7.1.4-apache
+MAINTAINER Jakub Turek <ja@kubaturek.pl>
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 

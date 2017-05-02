@@ -8,13 +8,13 @@ use Doctrine\DBAL\Types\GuidType;
 
 abstract class IdentityType extends GuidType
 {
-    protected abstract function getIdentityType(): string;
+    abstract protected function getIdentityType(): string;
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         $expectedClass = $this->getIdentityType();
         if (!is_a($value, $expectedClass)) {
-            throw new \InvalidArgumentException("Input value must be a type of $expectedClass");
+            throw new \InvalidArgumentException(sprintf('Input value must be a type of %s', $expectedClass));
         }
 
         return $value->getId();

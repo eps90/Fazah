@@ -29,8 +29,8 @@ final class DoctrineMessageRepository implements MessageRepository
         try {
             $this->entityManager->persist($message);
             $this->entityManager->flush();
-        } catch (UniqueConstraintViolationException $constraintViolationException) {
-            throw MessageRepositoryException::alreadyExists($message->getMessageId(), $constraintViolationException);
+        } catch (UniqueConstraintViolationException $exception) {
+            throw MessageRepositoryException::alreadyExists($message->getMessageId(), $exception);
         }
     }
 
