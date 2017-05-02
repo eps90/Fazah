@@ -11,7 +11,7 @@ use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
-use Symfony\Component\Translation\MetadataAwareInterface;
+use Eps\Fazah\Core\Model\ValueObject\Translation;
 
 final class AddMessages extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -97,9 +97,11 @@ final class AddMessages extends AbstractFixture implements OrderedFixtureInterfa
                 );
                 $message = Message::restoreFrom(
                     new MessageId($messageIdx),
-                    $messageKey,
-                    $translatedMessage,
-                    $language,
+                    Translation::create(
+                        $messageKey,
+                        $translatedMessage,
+                        $language
+                    ),
                     $catalogue->getCatalogueId(),
                     $metadata
                 );

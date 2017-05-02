@@ -8,6 +8,7 @@ use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
+use Eps\Fazah\Core\Model\ValueObject\Translation;
 use PHPUnit\Framework\TestCase;
 
 class MessageTest extends TestCase
@@ -51,16 +52,16 @@ class MessageTest extends TestCase
      */
     public function itShouldConstructBasicMessage(): void
     {
-        $messageKey = 'my.message.to.translate';
-        $language = 'fr';
-        $translatedMessage = 'Bonjour !';
+        $translation = Translation::create(
+            'my.message.to.translate',
+            'Bonjour !',
+            'fr'
+        );
         $catalogueId = CatalogueId::generate();
 
-        $message = Message::create($messageKey, $translatedMessage, $language, $catalogueId);
+        $message = Message::create($translation, $catalogueId);
 
-        static::assertEquals($messageKey, $message->getMessageKey());
-        static::assertEquals($translatedMessage, $message->getTranslatedMessage());
-        static::assertEquals($language, $message->getLanguage());
+        static::assertEquals($translation, $message->getTranslation());
     }
 
     /**
@@ -109,9 +110,11 @@ class MessageTest extends TestCase
     public function itShouldBeAbleToRestoreModelFromValues(): void
     {
         $messageId = MessageId::generate();
-        $messageKey = 'my.message';
-        $translatedMessage = 'Hello!';
-        $language = 'en';
+        $translation = Translation::create(
+            'my.message',
+            'Hello!',
+            'en'
+        );
         $catalogueId = CatalogueId::generate();
         $metadata = Metadata::restoreFrom(
             Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
@@ -121,28 +124,26 @@ class MessageTest extends TestCase
 
         $message = Message::restoreFrom(
             $messageId,
-            $messageKey,
-            $translatedMessage,
-            $language,
+            $translation,
             $catalogueId,
             $metadata
         );
 
         static::assertEquals($messageId, $message->getMessageId());
-        static::assertEquals($messageKey, $message->getMessageKey());
-        static::assertEquals($translatedMessage, $message->getTranslatedMessage());
-        static::assertEquals($language, $message->getLanguage());
+        static::assertEquals($translation, $message->getTranslation());
         static::assertEquals($metadata, $message->getMetadata());
         static::assertEquals($catalogueId, $message->getCatalogueId());
     }
 
     private function createNewMessage(): Message
     {
-        $messageKey = 'my.message.to.translate';
-        $language = 'fr';
-        $translatedMessage = 'Bonjour !';
+        $translation = Translation::create(
+            'my.message.to.translate',
+            'Bonjour !',
+            'fr'
+        );
         $catalogueId = CatalogueId::generate();
 
-        return Message::create($messageKey, $translatedMessage, $language, $catalogueId);
+        return Message::create($translation, $catalogueId);
     }
 }

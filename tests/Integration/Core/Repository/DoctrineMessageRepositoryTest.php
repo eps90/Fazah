@@ -8,6 +8,7 @@ use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
+use Eps\Fazah\Core\Model\ValueObject\Translation;
 use Eps\Fazah\Core\Repository\DoctrineMessageRepository;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
 use Eps\Fazah\Tests\Resources\Fixtures\AddCatalogues;
@@ -46,9 +47,11 @@ class DoctrineMessageRepositoryTest extends WebTestCase
 
         $expectedMessage = Message::restoreFrom(
             $messageId,
-            'test.message.6',
-            'Hello from message #6 in language pl!',
-            'pl',
+            Translation::create(
+                'test.message.6',
+                'Hello from message #6 in language pl!',
+                'pl'
+            ),
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458'),
             Metadata::restoreFrom(
                 Carbon::instance(new \DateTime('2015-01-01 12:00:10')),
@@ -82,9 +85,11 @@ class DoctrineMessageRepositoryTest extends WebTestCase
 
         $messageToAdd = Message::restoreFrom(
             $messageId,
-            'my.test.message',
-            'Hello from message !',
-            'pl',
+            Translation::create(
+                'my.test.message',
+                'Hello from message !',
+                'pl'
+            ),
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458'),
             Metadata::restoreFrom(
                 Carbon::instance(new \DateTime('2015-01-01 12:00:10')),
@@ -106,15 +111,19 @@ class DoctrineMessageRepositoryTest extends WebTestCase
     public function itShouldBeAbleToAddMultipleMessages(): void
     {
         $firstMessage = Message::create(
-            'my.message',
-            'My message',
-            'fr',
+            Translation::create(
+                'my.message',
+                'My message',
+                'fr'
+            ),
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
         );
         $secondMessage = Message::create(
-            'my.message',
-            'My message',
-            'fr',
+            Translation::create(
+                'my.message',
+                'My message',
+                'fr'
+            ),
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
         );
 
@@ -134,9 +143,11 @@ class DoctrineMessageRepositoryTest extends WebTestCase
         $expectedMessages = [
             Message::restoreFrom(
                 new MessageId('0ec85c11-5153-4de9-b44c-442cb8f57a88'),
-                'test.message.3',
-                'Hello from message #3 in language fr!',
-                'fr',
+                Translation::create(
+                    'test.message.3',
+                    'Hello from message #3 in language fr!',
+                    'fr'
+                ),
                 $catalogueId,
                 Metadata::restoreFrom(
                     Carbon::instance(new \DateTime('2015-01-01 12:00:20')),
@@ -146,9 +157,11 @@ class DoctrineMessageRepositoryTest extends WebTestCase
             ),
             Message::restoreFrom(
                 new MessageId('a9933d3c-d35f-482e-9b8a-3be629936f36'),
-                'test.message.3',
-                'Hello from message #3 in language pl!',
-                'pl',
+                Translation::create(
+                    'test.message.3',
+                    'Hello from message #3 in language pl!',
+                    'pl'
+                ),
                 $catalogueId,
                 Metadata::restoreFrom(
                     Carbon::instance(new \DateTime('2015-01-01 12:00:19')),
@@ -158,9 +171,11 @@ class DoctrineMessageRepositoryTest extends WebTestCase
             ),
             Message::restoreFrom(
                 new MessageId('01892f4a-e15a-44b6-a3e8-03441d94d902'),
-                'test.message.3',
-                'Hello from message #3 in language en!',
-                'en',
+                Translation::create(
+                    'test.message.3',
+                    'Hello from message #3 in language en!',
+                    'en'
+                ),
                 $catalogueId,
                 Metadata::restoreFrom(
                     Carbon::instance(new \DateTime('2015-01-01 12:00:18')),

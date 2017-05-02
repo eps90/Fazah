@@ -6,6 +6,7 @@ namespace Eps\Fazah\Core\Model;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
+use Eps\Fazah\Core\Model\ValueObject\Translation;
 
 class Message
 {
@@ -15,19 +16,9 @@ class Message
     private $messageId;
 
     /**
-     * @var string
+     * @var Translation
      */
-    private $messageKey;
-
-    /**
-     * @var string
-     */
-    private $language;
-
-    /**
-     * @var string
-     */
-    private $translatedMessage;
+    private $translation;
 
     /**
      * @var CatalogueId
@@ -40,16 +31,12 @@ class Message
     private $metadata;
 
     public static function create(
-        string $messageKey,
-        string $translation,
-        string $language,
+        Translation $translation,
         CatalogueId $catalogueId
     ): Message {
         $message = new self();
         $message->messageId = MessageId::generate();
-        $message->messageKey = $messageKey;
-        $message->translatedMessage = $translation;
-        $message->language = $language;
+        $message->translation = $translation;
         $message->catalogueId = $catalogueId;
         $message->metadata = Metadata::initialize();
 
@@ -58,17 +45,13 @@ class Message
 
     public static function restoreFrom(
         MessageId $messageId,
-        string $messageKey,
-        string $translatedMessage,
-        string $language,
+        Translation $translation,
         CatalogueId $catalogueId,
         Metadata $metadata
     ): Message {
         $message = new self();
         $message->messageId = $messageId;
-        $message->messageKey = $messageKey;
-        $message->translatedMessage = $translatedMessage;
-        $message->language = $language;
+        $message->translation = $translation;
         $message->metadata = $metadata;
         $message->catalogueId = $catalogueId;
 
@@ -84,27 +67,11 @@ class Message
     }
 
     /**
-     * @return string
+     * @return Translation
      */
-    public function getMessageKey(): string
+    public function getTranslation(): Translation
     {
-        return $this->messageKey;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLanguage(): string
-    {
-        return $this->language;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTranslatedMessage(): string
-    {
-        return $this->translatedMessage;
+        return $this->translation;
     }
 
     /**
