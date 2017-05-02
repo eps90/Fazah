@@ -13,7 +13,7 @@ interface CatalogueRepository
     /**
      * @param Catalogue[] ...$catalogues
      */
-    public function add(Catalogue ...$catalogues): void;
+    public function save(Catalogue ...$catalogues): void;
 
     /**
      * @param CatalogueId $catalogueId

@@ -23,7 +23,7 @@ final class DoctrineProjectRepository implements ProjectRepository
     /**
      * {@inheritdoc}
      */
-    public function add(Project ...$projects): void
+    public function save(Project ...$projects): void
     {
         foreach ($projects as $project) {
             $this->entityManager->persist($project);

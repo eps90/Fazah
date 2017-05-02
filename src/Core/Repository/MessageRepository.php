@@ -13,7 +13,7 @@ interface MessageRepository
     /**
      * @param Message[] ...$messages
      */
-    public function add(Message ...$messages): void;
+    public function save(Message ...$messages): void;
 
     /**
      * @param MessageId $messageId

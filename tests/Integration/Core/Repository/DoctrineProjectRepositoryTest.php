@@ -10,7 +10,6 @@ use Eps\Fazah\Core\Repository\DoctrineProjectRepository;
 use Eps\Fazah\Core\Repository\Exception\ProjectRepositoryException;
 use Eps\Fazah\Tests\Resources\Fixtures\AddProjects;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
-use PHPUnit\Framework\TestCase;
 
 class DoctrineProjectRepositoryTest extends WebTestCase
 {
@@ -68,7 +67,7 @@ class DoctrineProjectRepositoryTest extends WebTestCase
     public function itShouldBeAbleToAddNewProject(): void
     {
         $project = Project::create('my-project');
-        $this->repository->add($project);
+        $this->repository->save($project);
 
         $expectedResult = $project;
         $actualResult = $this->repository->find($project->getProjectId());
@@ -84,7 +83,7 @@ class DoctrineProjectRepositoryTest extends WebTestCase
         $projectOne = Project::create('my project');
         $projectTwo = Project::create('another project');
 
-        $this->repository->add($projectOne, $projectTwo);
+        $this->repository->save($projectOne, $projectTwo);
 
         static::assertEquals($projectOne, $this->repository->find($projectOne->getProjectId()));
         static::assertEquals($projectTwo, $this->repository->find($projectTwo->getProjectId()));

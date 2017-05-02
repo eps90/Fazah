@@ -87,7 +87,7 @@ class DoctrineMessageRepositoryTest extends WebTestCase
             true,
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
         );
-        $this->repository->add($messageToAdd);
+        $this->repository->save($messageToAdd);
 
         $expectedMessage = $messageToAdd;
         $actualMessage = $this->repository->find($messageId);
@@ -113,7 +113,7 @@ class DoctrineMessageRepositoryTest extends WebTestCase
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
         );
 
-        $this->repository->add($firstMessage, $secondMessage);
+        $this->repository->save($firstMessage, $secondMessage);
 
         static::assertEquals($firstMessage, $this->repository->find($firstMessage->getMessageId()));
         static::assertEquals($secondMessage, $this->repository->find($secondMessage->getMessageId()));

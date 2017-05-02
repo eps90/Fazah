@@ -12,7 +12,7 @@ interface ProjectRepository
     /**
      * @param Project[] ...$projects
      */
-    public function add(Project ...$projects): void;
+    public function save(Project ...$projects): void;
 
     /**
      * @param ProjectId $projectId

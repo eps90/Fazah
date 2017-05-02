@@ -24,7 +24,7 @@ final class DoctrineCatalogueRepository implements CatalogueRepository
     /**
      * {@inheritdoc}
      */
-    public function add(Catalogue ...$catalogues): void
+    public function save(Catalogue ...$catalogues): void
     {
         foreach ($catalogues as $catalogue) {
             $this->entityManager->persist($catalogue);

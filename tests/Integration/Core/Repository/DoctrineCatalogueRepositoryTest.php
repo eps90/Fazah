@@ -81,7 +81,7 @@ class DoctrineCatalogueRepositoryTest extends WebTestCase
             true,
             new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260')
         );
-        $this->repository->add($newCatalogue);
+        $this->repository->save($newCatalogue);
 
         $expectedCatalogue = $newCatalogue;
         $actualCatalogue = $this->repository->find($newCatalogue->getCatalogueId());
@@ -97,7 +97,7 @@ class DoctrineCatalogueRepositoryTest extends WebTestCase
         $catalogueOne = Catalogue::create('My catalogue', new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'));
         $catalogueTwo = Catalogue::create('Another catalogue', new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'));
 
-        $this->repository->add($catalogueOne, $catalogueTwo);
+        $this->repository->save($catalogueOne, $catalogueTwo);
 
         static::assertEquals($catalogueOne, $this->repository->find($catalogueOne->getCatalogueId()));
         static::assertEquals($catalogueTwo, $this->repository->find($catalogueTwo->getCatalogueId()));

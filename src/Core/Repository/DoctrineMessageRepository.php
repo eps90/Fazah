@@ -24,7 +24,7 @@ final class DoctrineMessageRepository implements MessageRepository
     /**
      * {@inheritdoc}
      */
-    public function add(Message ...$messages): void
+    public function save(Message ...$messages): void
     {
         foreach ($messages as $message) {
             $this->entityManager->persist($message);
