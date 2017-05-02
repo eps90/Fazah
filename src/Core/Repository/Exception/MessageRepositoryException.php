@@ -13,11 +13,4 @@ class MessageRepositoryException extends \LogicException
         $code = 1;
         return new self($message, $code, $previous);
     }
-
-    public static function alreadyExists(MessageId $messageId, \Throwable $previous = null): MessageRepositoryException
-    {
-        $message = sprintf('Message with id %s already exists', $messageId);
-        $code = 1;
-        return new self($message, $code, $previous);
-    }
 }

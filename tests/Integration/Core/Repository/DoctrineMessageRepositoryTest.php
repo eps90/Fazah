@@ -98,23 +98,25 @@ class DoctrineMessageRepositoryTest extends WebTestCase
     /**
      * @test
      */
-    public function itShouldThrowOnDuplicatedMessageId(): void
+    public function itShouldBeAbleToAddMultipleMessages(): void
     {
-        $this->expectException(MessageRepositoryException::class);
-
-        $duplicatedId = new MessageId('09d55f8b-4567-45e8-b9a0-0ce2ad2e7281');
-
-        $messageToAdd = Message::restoreFrom(
-            $duplicatedId,
-            'my.test.message',
-            'Hello from message !',
-            'pl',
-            Carbon::instance(new \DateTime('2015-01-01 12:00:10')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:10')),
-            true,
+        $firstMessage = Message::create(
+            'my.message',
+            'My message',
+            'fr',
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
         );
-        $this->repository->add($messageToAdd);
+        $secondMessage = Message::create(
+            'my.message',
+            'My message',
+            'fr',
+            new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
+        );
+
+        $this->repository->add($firstMessage, $secondMessage);
+
+        static::assertEquals($firstMessage, $this->repository->find($firstMessage->getMessageId()));
+        static::assertEquals($secondMessage, $this->repository->find($secondMessage->getMessageId()));
     }
 
     /**

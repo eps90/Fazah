@@ -79,6 +79,20 @@ class DoctrineProjectRepositoryTest extends WebTestCase
     /**
      * @test
      */
+    public function itShouldBeAbleToAddMultipleProjectsAtOnce(): void
+    {
+        $projectOne = Project::create('my project');
+        $projectTwo = Project::create('another project');
+
+        $this->repository->add($projectOne, $projectTwo);
+
+        static::assertEquals($projectOne, $this->repository->find($projectOne->getProjectId()));
+        static::assertEquals($projectTwo, $this->repository->find($projectTwo->getProjectId()));
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToFetchAllProjects(): void
     {
         $expectedResults = [

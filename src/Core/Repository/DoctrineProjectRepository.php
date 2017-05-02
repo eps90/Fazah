@@ -23,9 +23,12 @@ final class DoctrineProjectRepository implements ProjectRepository
     /**
      * {@inheritdoc}
      */
-    public function add(Project $project): void
+    public function add(Project ...$projects): void
     {
-        $this->entityManager->persist($project);
+        foreach ($projects as $project) {
+            $this->entityManager->persist($project);
+        }
+
         $this->entityManager->flush();
     }
 

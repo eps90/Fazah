@@ -11,10 +11,9 @@ use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
 interface CatalogueRepository
 {
     /**
-     * @param Catalogue $catalogue
-     * @throws CatalogueRepositoryException
+     * @param Catalogue[] ...$catalogues
      */
-    public function add(Catalogue $catalogue): void;
+    public function add(Catalogue ...$catalogues): void;
 
     /**
      * @param CatalogueId $catalogueId

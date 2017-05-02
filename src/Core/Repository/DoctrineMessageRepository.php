@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Repository;
 
-use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
@@ -25,14 +24,13 @@ final class DoctrineMessageRepository implements MessageRepository
     /**
      * {@inheritdoc}
      */
-    public function add(Message $message): void
+    public function add(Message ...$messages): void
     {
-        try {
+        foreach ($messages as $message) {
             $this->entityManager->persist($message);
-            $this->entityManager->flush();
-        } catch (UniqueConstraintViolationException $exception) {
-            throw MessageRepositoryException::alreadyExists($message->getMessageId(), $exception);
         }
+
+        $this->entityManager->flush();
     }
 
     /**

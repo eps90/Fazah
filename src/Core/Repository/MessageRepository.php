@@ -11,10 +11,9 @@ use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
 interface MessageRepository
 {
     /**
-     * @param Message $message
-     * @throws MessageRepositoryException
+     * @param Message[] ...$messages
      */
-    public function add(Message $message): void;
+    public function add(Message ...$messages): void;
 
     /**
      * @param MessageId $messageId

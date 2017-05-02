@@ -92,21 +92,15 @@ class DoctrineCatalogueRepositoryTest extends WebTestCase
     /**
      * @test
      */
-    public function itShouldThrowWhenCatalogueAlreadyExists(): void
+    public function itShouldBeAbleToAddMultipleCataloguesAtOnce(): void
     {
-        $this->expectException(CatalogueRepositoryException::class);
+        $catalogueOne = Catalogue::create('My catalogue', new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'));
+        $catalogueTwo = Catalogue::create('Another catalogue', new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'));
 
-        $duplicatedCatId = new CatalogueId('3df07fa8-80fa-4d5d-a0cb-9bcf3d830425');
-        $duplicatedCatalogue = Catalogue::restoreFrom(
-            $duplicatedCatId,
-            'second-catalogue',
-            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
-            true,
-            new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260')
-        );
+        $this->repository->add($catalogueOne, $catalogueTwo);
 
-        $this->repository->add($duplicatedCatalogue);
+        static::assertEquals($catalogueOne, $this->repository->find($catalogueOne->getCatalogueId()));
+        static::assertEquals($catalogueTwo, $this->repository->find($catalogueTwo->getCatalogueId()));
     }
 
     /**

@@ -5,19 +5,19 @@ namespace Eps\Fazah\Core\Repository;
 
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
+use Eps\Fazah\Core\Repository\Exception\ProjectRepositoryException;
 
 interface ProjectRepository
 {
     /**
-     * @param Project $project
-     * @throws \LogicException
+     * @param Project[] ...$projects
      */
-    public function add(Project $project): void;
+    public function add(Project ...$projects): void;
 
     /**
      * @param ProjectId $projectId
      * @return Project
-     * @throws \LogicException
+     * @throws ProjectRepositoryException
      */
     public function find(ProjectId $projectId): Project;
 

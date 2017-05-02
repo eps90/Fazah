@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Repository;
 
-use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
@@ -25,14 +24,13 @@ final class DoctrineCatalogueRepository implements CatalogueRepository
     /**
      * {@inheritdoc}
      */
-    public function add(Catalogue $catalogue): void
+    public function add(Catalogue ...$catalogues): void
     {
-        try {
+        foreach ($catalogues as $catalogue) {
             $this->entityManager->persist($catalogue);
-            $this->entityManager->flush();
-        } catch (UniqueConstraintViolationException $exception) {
-            throw CatalogueRepositoryException::alreadyExists($catalogue->getCatalogueId());
         }
+
+        $this->entityManager->flush();
     }
 
     /**
