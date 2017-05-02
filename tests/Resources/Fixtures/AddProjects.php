@@ -20,8 +20,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
         $firstProject = Project::restoreFrom(
             new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
             'my-awesome-project',
-            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
+            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
             true
         );
         $manager->persist($firstProject);
@@ -29,8 +29,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
         $secondProject = Project::restoreFrom(
             new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
             'yet-another-cool-project',
-            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+            Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
+            Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
             true
         );
         $manager->persist($secondProject);

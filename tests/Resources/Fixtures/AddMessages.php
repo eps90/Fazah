@@ -71,13 +71,30 @@ final class AddMessages extends AbstractFixture implements OrderedFixtureInterfa
                 $translatedMessage = "Hello from message #$idx in language $language!";
                 $messageIdx = array_pop($messageUuids);
 
+                $timeSeconds = str_pad((string)count($messageUuids), 2, '0');
                 $message = Message::restoreFrom(
                     new MessageId($messageIdx),
                     $messageKey,
                     $translatedMessage,
                     $language,
-                    Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-                    Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+                    Carbon::create(
+                        2015,
+                        01,
+                        01,
+                        12,
+                        00,
+                        $timeSeconds,
+                        new \DateTimeZone('UTC')
+                    ),
+                    Carbon::create(
+                        2015,
+                        01,
+                        02,
+                        12,
+                        00,
+                        $timeSeconds,
+                        new \DateTimeZone('UTC')
+                    ),
                     true,
                     $catalogue->getCatalogueId()
                 );

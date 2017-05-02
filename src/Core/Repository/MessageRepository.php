@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Repository;
 
+use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
@@ -11,7 +12,7 @@ interface MessageRepository
 {
     /**
      * @param Message $message
-     * @throws \LogicException
+     * @throws MessageRepositoryException
      */
     public function add(Message $message): void;
 
@@ -21,4 +22,10 @@ interface MessageRepository
      * @throws MessageRepositoryException
      */
     public function find(MessageId $messageId): Message;
+
+    /**
+     * @param CatalogueId $catalogueId
+     * @return Message[]
+     */
+    public function findByCatalogueId(CatalogueId $catalogueId): array;
 }

@@ -37,8 +37,8 @@ final class AddCatalogues extends AbstractFixture implements OrderedFixtureInter
             $catalogue = Catalogue::restoreFrom(
                 new CatalogueId($catalogueUuids[$idx]),
                 $catalogueName,
-                Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-                Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+                Carbon::instance(new \DateTime('2015-01-01 12:00:0' . $idx)),
+                Carbon::instance(new \DateTime('2015-01-02 12:00:0' . $idx)),
                 true,
                 $projects[$idx]->getProjectId()
             );

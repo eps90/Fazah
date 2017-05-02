@@ -48,8 +48,8 @@ class DoctrineMessageRepositoryTest extends WebTestCase
             'test.message.6',
             'Hello from message #6 in language pl!',
             'pl',
-            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+            Carbon::instance(new \DateTime('2015-01-01 12:00:10')),
+            Carbon::instance(new \DateTime('2015-01-02 12:00:10')),
             true,
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
         );
@@ -82,8 +82,8 @@ class DoctrineMessageRepositoryTest extends WebTestCase
             'my.test.message',
             'Hello from message !',
             'pl',
-            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+            Carbon::instance(new \DateTime('2015-01-01 12:00:10')),
+            Carbon::instance(new \DateTime('2015-01-02 12:00:10')),
             true,
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
         );
@@ -109,11 +109,55 @@ class DoctrineMessageRepositoryTest extends WebTestCase
             'my.test.message',
             'Hello from message !',
             'pl',
-            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+            Carbon::instance(new \DateTime('2015-01-01 12:00:10')),
+            Carbon::instance(new \DateTime('2015-01-02 12:00:10')),
             true,
             new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
         );
         $this->repository->add($messageToAdd);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldFindMessagesByCatalogueId(): void
+    {
+        $catalogueId = new CatalogueId('3df07fa8-80fa-4d5d-a0cb-9bcf3d830425');
+
+        $expectedMessages = [
+            Message::restoreFrom(
+                new MessageId('0ec85c11-5153-4de9-b44c-442cb8f57a88'),
+                'test.message.3',
+                'Hello from message #3 in language fr!',
+                'fr',
+                Carbon::instance(new \DateTime('2015-01-01 12:00:20')),
+                Carbon::instance(new \DateTime('2015-01-02 12:00:20')),
+                true,
+                $catalogueId
+            ),
+            Message::restoreFrom(
+                new MessageId('a9933d3c-d35f-482e-9b8a-3be629936f36'),
+                'test.message.3',
+                'Hello from message #3 in language pl!',
+                'pl',
+                Carbon::instance(new \DateTime('2015-01-01 12:00:19')),
+                Carbon::instance(new \DateTime('2015-01-02 12:00:19')),
+                true,
+                $catalogueId
+            ),
+            Message::restoreFrom(
+                new MessageId('01892f4a-e15a-44b6-a3e8-03441d94d902'),
+                'test.message.3',
+                'Hello from message #3 in language en!',
+                'en',
+                Carbon::instance(new \DateTime('2015-01-01 12:00:18')),
+                Carbon::instance(new \DateTime('2015-01-02 12:00:18')),
+                true,
+                $catalogueId
+            )
+        ];
+        $actualResult = $this->repository->findByCatalogueId($catalogueId);
+
+        static::assertEquals($expectedMessages, $actualResult);
     }
 }

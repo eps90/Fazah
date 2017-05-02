@@ -5,6 +5,7 @@ namespace Eps\Fazah\Core\Repository;
 
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
+use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
@@ -45,5 +46,20 @@ final class DoctrineMessageRepository implements MessageRepository
         }
 
         return $message;
+    }
+
+    /**
+     * @param CatalogueId $catalogueId
+     * @return Message[]
+     */
+    public function findByCatalogueId(CatalogueId $catalogueId): array
+    {
+        return $this->entityManager->createQuery(
+                'SELECT m FROM Fazah:Message m 
+                WHERE m.catalogueId = :catalogueId
+                ORDER BY m.createdAt DESC, m.updatedAt DESC'
+            )
+            ->setParameter('catalogueId', $catalogueId)
+            ->getResult();
     }
 }
