@@ -5,12 +5,20 @@ namespace Eps\Fazah\Core\Repository\Exception;
 
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 
-class CatalogueRepositoryException extends \LogicException
+class CatalogueRepositoryException extends RepositoryException
 {
     public static function notFound(CatalogueId $catalogueId, \Throwable $previous = null): CatalogueRepositoryException
     {
-        $message = sprintf('Catalogue with id %s does not exist', $catalogueId);
-        $code = 2;
-        return new self($message, $code, $previous);
+        return self::generateNotFoundException($catalogueId, $previous);
+    }
+
+    protected static function getModelAlias(): string
+    {
+        return 'Catalogue';
+    }
+
+    protected static function getErrorCode(): int
+    {
+        return 2;
     }
 }

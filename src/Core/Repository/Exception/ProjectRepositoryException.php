@@ -5,12 +5,20 @@ namespace Eps\Fazah\Core\Repository\Exception;
 
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 
-class ProjectRepositoryException extends \LogicException
+class ProjectRepositoryException extends RepositoryException
 {
     public static function notFound(ProjectId $projectId, \Throwable $previous = null): ProjectRepositoryException
     {
-        $message = sprintf('Project with id %s cannot be found', $projectId);
-        $code = 3;
-        return new self($message, $code, $previous);
+        return self::generateNotFoundException($projectId, $previous);
+    }
+
+    static protected function getModelAlias(): string
+    {
+        return 'Project';
+    }
+
+    static protected function getErrorCode(): int
+    {
+        return 3;
     }
 }
