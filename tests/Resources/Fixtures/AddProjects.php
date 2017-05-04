@@ -42,10 +42,23 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
         );
         $manager->persist($secondProject);
 
+        $disabledProjectMeta = Metadata::restoreFrom(
+            Carbon::parse('2015-01-01 12:00:03'),
+            Carbon::parse('2015-01-02 12:00:03'),
+            false
+        );
+        $disabledProject = Project::restoreFrom(
+            new ProjectId('9b669c76-7a80-4d3f-9191-37c1eda80a05'),
+            'disabled-project',
+            $disabledProjectMeta
+        );
+        $manager->persist($disabledProject);
+
         $manager->flush();
 
         $this->addReference('first-project', $firstProject);
         $this->addReference('second-project', $secondProject);
+        $this->addReference('disabled-project', $disabledProject);
     }
 
     /**

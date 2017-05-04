@@ -23,22 +23,37 @@ final class AddCatalogues extends AbstractFixture implements OrderedFixtureInter
             'a853f467-403d-416b-8269-36369c34d723',
             '3df07fa8-80fa-4d5d-a0cb-9bcf3d830425',
             'b21deaae-8078-45e7-a83c-47a72e8d0458',
-            '8094de70-b269-4ea3-a11c-4d43a5218b23'
+            '8094de70-b269-4ea3-a11c-4d43a5218b23',
+            '5a53c071-f518-41af-9b94-71044b1d5a1f'
         ];
-        $catalogueNames = ['first-catalogue', 'second-catalogue', 'third-catalogue', 'forth-catalogue'];
+        $catalogueNames = [
+            'first-catalogue',
+            'second-catalogue',
+            'third-catalogue',
+            'forth-catalogue',
+            'fifth-catalogue'
+        ];
         /** @var Project[] $projects */
         $projects = [
             $this->getReference('first-project'),
             $this->getReference('first-project'),
             $this->getReference('first-project'),
+            $this->getReference('second-project'),
             $this->getReference('second-project')
+        ];
+        $enabled = [
+            true,
+            true,
+            true,
+            true,
+            false
         ];
 
         foreach ($catalogueNames as $idx => $catalogueName) {
             $metadata = Metadata::restoreFrom(
                 Carbon::instance(new \DateTime('2015-01-01 12:00:0' . $idx)),
                 Carbon::instance(new \DateTime('2015-01-02 12:00:0' . $idx)),
-                true
+                $enabled[$idx]
             );
             $catalogue = Catalogue::restoreFrom(
                 new CatalogueId($catalogueUuids[$idx]),
