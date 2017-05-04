@@ -1,13 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Eps\Fazah\Core\Repository;
+namespace Eps\Fazah\Core\Repository\Impl;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
+use Eps\Fazah\Core\Repository\MessageRepository;
 
 final class DoctrineMessageRepository implements MessageRepository
 {

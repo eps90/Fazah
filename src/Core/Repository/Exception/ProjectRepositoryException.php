@@ -12,12 +12,12 @@ class ProjectRepositoryException extends RepositoryException
         return self::generateNotFoundException($projectId, $previous);
     }
 
-    static protected function getModelAlias(): string
+    protected static function getModelAlias(): string
     {
         return 'Project';
     }
 
-    static protected function getErrorCode(): int
+    protected static function getErrorCode(): int
     {
         return 3;
     }

@@ -1,12 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Eps\Fazah\Core\Repository;
+namespace Eps\Fazah\Core\Repository\Impl;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Repository\Exception\ProjectRepositoryException;
+use Eps\Fazah\Core\Repository\ProjectRepository;
 
 final class DoctrineProjectRepository implements ProjectRepository
 {

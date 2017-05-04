@@ -12,12 +12,12 @@ class MessageRepositoryException extends RepositoryException
         return self::generateNotFoundException($messageId, $previous);
     }
 
-    static protected function getModelAlias(): string
+    protected static function getModelAlias(): string
     {
         return 'Message';
     }
 
-    static protected function getErrorCode(): int
+    protected static function getErrorCode(): int
     {
         return 1;
     }

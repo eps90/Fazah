@@ -1,12 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Eps\Fazah\Core\Repository;
+namespace Eps\Fazah\Core\Repository\Impl;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
+use Eps\Fazah\Core\Repository\CatalogueRepository;
 use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
 
 final class DoctrineCatalogueRepository implements CatalogueRepository

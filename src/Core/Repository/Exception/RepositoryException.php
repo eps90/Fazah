@@ -7,9 +7,9 @@ use Eps\Fazah\Core\Model\Identity\Identity;
 
 abstract class RepositoryException extends \LogicException
 {
-    abstract static protected function getModelAlias(): string;
+    abstract protected static function getModelAlias(): string;
 
-    abstract static protected function getErrorCode(): int;
+    abstract protected static function getErrorCode(): int;
 
     protected static function generateNotFoundException(Identity $modelId, \Throwable $previous = null)
     {

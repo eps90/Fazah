@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Eps\Fazah\Tests\Integration\Core\Repository;
+namespace Eps\Fazah\Tests\Integration\Core\Repository\Impl;
 
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
-use Eps\Fazah\Core\Repository\DoctrineCatalogueRepository;
+use Eps\Fazah\Core\Repository\Impl\DoctrineCatalogueRepository;
 use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
 use Eps\Fazah\Tests\Resources\Fixtures\AddCatalogues;
 use Eps\Fazah\Tests\Resources\Fixtures\AddMessages;

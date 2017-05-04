@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Eps\Fazah\Tests\Integration\Core\Repository;
+namespace Eps\Fazah\Tests\Integration\Core\Repository\Impl;
 
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
-use Eps\Fazah\Core\Repository\DoctrineProjectRepository;
+use Eps\Fazah\Core\Repository\Impl\DoctrineProjectRepository;
 use Eps\Fazah\Core\Repository\Exception\ProjectRepositoryException;
 use Eps\Fazah\Tests\Resources\Fixtures\AddProjects;
 use Liip\FunctionalTestBundle\Test\WebTestCase;

@@ -8,7 +8,7 @@
         <id name="messageId" type="message_id" column="id" />
 
         <field name="catalogueId" type="catalogue_id" nullable="false" column="catalogue_id" />
-        <embedded name="translation" class="Eps\Fazah\Core\Model\ValueObject\Translation" />
+        <embedded name="translation" class="Eps\Fazah\Core\Model\ValueObject\Translation" use-column-prefix="false" />
         <embedded name="metadata" class="Eps\Fazah\Core\Model\ValueObject\Metadata" use-column-prefix="false" />
     </entity>
 </doctrine-mapping>
