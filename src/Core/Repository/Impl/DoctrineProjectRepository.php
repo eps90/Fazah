@@ -51,6 +51,12 @@ final class DoctrineProjectRepository implements ProjectRepository
      */
     public function findAll(): array
     {
-        return $this->entityManager->createQuery('SELECT p FROM Fazah:Project p')->getResult();
+        $queryBuilder = $this->entityManager->createQueryBuilder()
+            ->select('p')
+            ->from('Fazah:Project', 'p')
+            ->addOrderBy('p.metadata.createdAt', 'DESC')
+            ->addOrderBy('p.metadata.updatedAt', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }
