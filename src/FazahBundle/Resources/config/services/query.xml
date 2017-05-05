@@ -16,6 +16,12 @@
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
+        <service id="fazah.query.builder.select_catalogue"
+                 class="Eps\Fazah\Core\Repository\Query\Builder\SelectCatalogues"
+                 public="false">
+            <tag name="fazah.condition_builder" priority="255" />
+        </service>
+
         <service id="fazah.query.builder.filter.enabled"
                  class="Eps\Fazah\Core\Repository\Query\Builder\FilterByEnabled"
                  public="false">
@@ -24,6 +30,12 @@
 
         <service id="fazah.query.builder.filter.phrase"
                  class="Eps\Fazah\Core\Repository\Query\Builder\FilterByPhrase"
+                 public="false">
+            <tag name="fazah.condition_builder" priority="255" />
+        </service>
+
+        <service id="fazah.query.builder.filter.project_id"
+                 class="Eps\Fazah\Core\Repository\Query\Builder\FilterByProjectId"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>

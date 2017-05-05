@@ -7,6 +7,7 @@ use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
+use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 
 interface CatalogueRepository
 {
@@ -27,4 +28,10 @@ interface CatalogueRepository
      * @return Catalogue[]
      */
     public function findByProjectId(ProjectId $projectId): array;
+
+    /**
+     * @param QueryCriteria|null $criteria
+     * @return Catalogue[]
+     */
+    public function findAll(QueryCriteria $criteria = null): array;
 }

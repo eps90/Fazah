@@ -9,6 +9,10 @@ use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Repository\CatalogueRepository;
 use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
+use Eps\Fazah\Core\Repository\Query\CriteriaMatcher;
+use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
+use Eps\Fazah\Core\Repository\Query\QueryCriteria;
+use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
 
 final class DoctrineCatalogueRepository implements CatalogueRepository
 {
@@ -17,9 +21,15 @@ final class DoctrineCatalogueRepository implements CatalogueRepository
      */
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    /**
+     * @var CriteriaMatcher
+     */
+    private $matcher;
+
+    public function __construct(EntityManagerInterface $entityManager, CriteriaMatcher $matcher)
     {
         $this->entityManager = $entityManager;
+        $this->matcher = $matcher;
     }
 
     /**
@@ -59,5 +69,17 @@ final class DoctrineCatalogueRepository implements CatalogueRepository
         )
             ->setParameter('projectId', $projectId)
             ->getResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findAll(QueryCriteria $criteria = null): array
+    {
+        if ($criteria === null) {
+            $criteria = new QueryCriteria(Catalogue::class, new FilterSet(), new SortSet());
+        }
+
+        return $this->matcher->match($criteria);
     }
 }
