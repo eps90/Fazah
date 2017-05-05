@@ -6,6 +6,7 @@ namespace Eps\Fazah\Core\Repository;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Repository\Exception\ProjectRepositoryException;
+use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 
 interface ProjectRepository
 {
@@ -22,7 +23,8 @@ interface ProjectRepository
     public function find(ProjectId $projectId): Project;
 
     /**
-     * @return Project[]
+     * @param QueryCriteria|null $criteria
+     * @return array|Project[]
      */
-    public function findAll(): array;
+    public function findAll(QueryCriteria $criteria = null): array;
 }

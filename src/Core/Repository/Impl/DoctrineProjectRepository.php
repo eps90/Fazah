@@ -7,6 +7,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Repository\Exception\ProjectRepositoryException;
+use Eps\Fazah\Core\Repository\Query\CriteriaMatcher;
+use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
+use Eps\Fazah\Core\Repository\Query\QueryCriteria;
+use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
 use Eps\Fazah\Core\Repository\ProjectRepository;
 
 final class DoctrineProjectRepository implements ProjectRepository
@@ -16,9 +20,15 @@ final class DoctrineProjectRepository implements ProjectRepository
      */
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    /**
+     * @var CriteriaMatcher
+     */
+    private $matcher;
+
+    public function __construct(EntityManagerInterface $entityManager, CriteriaMatcher $matcher)
     {
         $this->entityManager = $entityManager;
+        $this->matcher = $matcher;
     }
 
     /**
@@ -49,14 +59,12 @@ final class DoctrineProjectRepository implements ProjectRepository
     /**
      * {@inheritdoc}
      */
-    public function findAll(): array
+    public function findAll(QueryCriteria $criteria = null): array
     {
-        $queryBuilder = $this->entityManager->createQueryBuilder()
-            ->select('p')
-            ->from('Fazah:Project', 'p')
-            ->addOrderBy('p.metadata.createdAt', 'DESC')
-            ->addOrderBy('p.metadata.updatedAt', 'DESC');
+        if ($criteria === null) {
+            $criteria = new QueryCriteria(Project::class, new FilterSet(), new SortSet());
+        }
 
-        return $queryBuilder->getQuery()->getResult();
+        return $this->matcher->match($criteria);
     }
 }
