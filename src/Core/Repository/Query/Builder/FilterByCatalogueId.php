@@ -8,18 +8,17 @@ use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Query\Impl\DoctrineConditionBuilder;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 
-final class FilterByPhrase implements DoctrineConditionBuilder
+final class FilterByCatalogueId implements DoctrineConditionBuilder
 {
-
     public function supports(QueryCriteria $criteria): bool
     {
-        return $criteria->getModelClass() !== Message::class
-            && $criteria->getFilters()->contains('phrase');
+        return $criteria->getModelClass() === Message::class
+            && $criteria->getFilters()->contains('catalogue_id');
     }
 
     public function build(QueryCriteria $criteria, QueryBuilder $queryBuilder): void
     {
-        $queryBuilder->andWhere($queryBuilder->expr()->like('p.name', ':phrase'))
-            ->setParameter('phrase', '%' . $criteria->getFilters()['phrase'] . '%');
+        $queryBuilder->andWhere($queryBuilder->expr()->eq('p.catalogueId', ':catalogueId'))
+            ->setParameter('catalogueId', $criteria->getFilters()['catalogue_id']);
     }
 }

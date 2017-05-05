@@ -9,6 +9,10 @@ use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
 use Eps\Fazah\Core\Repository\MessageRepository;
+use Eps\Fazah\Core\Repository\Query\CriteriaMatcher;
+use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
+use Eps\Fazah\Core\Repository\Query\QueryCriteria;
+use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
 
 final class DoctrineMessageRepository implements MessageRepository
 {
@@ -17,9 +21,15 @@ final class DoctrineMessageRepository implements MessageRepository
      */
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    /**
+     * @var CriteriaMatcher
+     */
+    private $matcher;
+
+    public function __construct(EntityManagerInterface $entityManager, CriteriaMatcher $matcher)
     {
         $this->entityManager = $entityManager;
+        $this->matcher = $matcher;
     }
 
     /**
@@ -60,5 +70,17 @@ final class DoctrineMessageRepository implements MessageRepository
             )
             ->setParameter('catalogueId', $catalogueId)
             ->getResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findAll(QueryCriteria $criteria = null): array
+    {
+        if ($criteria === null) {
+            $criteria = new QueryCriteria(Message::class, new FilterSet(), new SortSet());
+        }
+
+        return $this->matcher->match($criteria);
     }
 }

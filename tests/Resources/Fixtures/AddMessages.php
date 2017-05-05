@@ -21,6 +21,9 @@ final class AddMessages extends AbstractFixture implements OrderedFixtureInterfa
     public function load(ObjectManager $manager)
     {
         $messageUuids = [
+            'b5bce595-58d2-4023-89ab-df08b5c10e95',
+            'ec2adbdd-505d-4055-a081-124d38e8c70d',
+            '6ffa7d14-0b67-4420-9266-6d60228707c6',
             '25cb42c9-74bc-436e-801b-2a40b191a7f2',
             '31902865-518e-4504-95f9-0745738c5c4d',
             '3fda00fd-a1c8-488c-ba3d-f15addd39354',
@@ -63,9 +66,11 @@ final class AddMessages extends AbstractFixture implements OrderedFixtureInterfa
             $this->getReference('catalogue-2'),
             $this->getReference('catalogue-2'),
             $this->getReference('catalogue-3'),
+            $this->getReference('catalogue-3'),
             $this->getReference('catalogue-3')
         ];
         $languages = ['fr', 'pl', 'en'];
+        $enabled = array_merge(array_fill(0, 3, false), array_fill(0, 30, true));
 
         foreach ($catalogues as $idx => $catalogue) {
             $messageKey = "test.message.$idx";
@@ -93,7 +98,7 @@ final class AddMessages extends AbstractFixture implements OrderedFixtureInterfa
                         $timeSeconds,
                         new \DateTimeZone('UTC')
                     ),
-                    true
+                    array_pop($enabled)
                 );
                 $message = Message::restoreFrom(
                     new MessageId($messageIdx),

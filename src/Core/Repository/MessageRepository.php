@@ -7,6 +7,7 @@ use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
+use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 
 interface MessageRepository
 {
@@ -27,4 +28,10 @@ interface MessageRepository
      * @return Message[]
      */
     public function findByCatalogueId(CatalogueId $catalogueId): array;
+
+    /**
+     * @param QueryCriteria|null $criteria
+     * @return array|Message[]
+     */
+    public function findAll(QueryCriteria $criteria = null): array;
 }
