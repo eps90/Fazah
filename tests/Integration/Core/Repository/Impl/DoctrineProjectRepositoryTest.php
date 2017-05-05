@@ -7,13 +7,7 @@ use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
-use Eps\Fazah\Core\Repository\Query\Builder\FilterByEnabled;
-use Eps\Fazah\Core\Repository\Query\Builder\FilterByPhrase;
-use Eps\Fazah\Core\Repository\Query\Builder\SelectProjects;
-use Eps\Fazah\Core\Repository\Query\Builder\SortByDate;
-use Eps\Fazah\Core\Repository\Query\Builder\SortByDefaultDates;
 use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
-use Eps\Fazah\Core\Repository\Query\Impl\DoctrineCriteriaMatcher;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 use Eps\Fazah\Core\Repository\Query\Sorting\Sorting;
 use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
@@ -35,14 +29,9 @@ class DoctrineProjectRepositoryTest extends WebTestCase
 
         $container = $this->getContainer();
         $entityManager = $container->get('doctrine.orm.entity_manager');
-        $builder = new DoctrineCriteriaMatcher($entityManager);
-        $builder->addBuilder(new SelectProjects());
-        $builder->addBuilder(new FilterByEnabled());
-        $builder->addBuilder(new FilterByPhrase());
-        $builder->addBuilder(new SortByDefaultDates());
-        $builder->addBuilder(new SortByDate());
+        $matcher = $container->get('fazah.query.criteria_matcher');
 
-        $this->repository = new DoctrineProjectRepository($entityManager, $builder);
+        $this->repository = new DoctrineProjectRepository($entityManager, $matcher);
 
         $this->loadFixtures([
             AddProjects::class
