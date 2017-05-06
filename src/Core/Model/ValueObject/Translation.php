@@ -31,6 +31,15 @@ final class Translation
         return $translation;
     }
 
+    public static function untranslated(string $messageKey, string $language): Translation
+    {
+        $translation = new self();
+        $translation->messageKey = $messageKey;
+        $translation->language = $language;
+
+        return $translation;
+    }
+
     /**
      * @return string
      */

@@ -36,4 +36,18 @@ class TranslationTest extends TestCase
         $expectedLanguage = 'en';
         static::assertEquals($expectedLanguage, $translation->getLanguage());
     }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToCreateUntranslatedTranslation(): void
+    {
+        $messageKey = 'my_message';
+        $language = 'fr';
+        $emptyTranslation = Translation::untranslated($messageKey, $language);
+
+        static::assertEquals($messageKey, $emptyTranslation->getMessageKey());
+        static::assertEquals($language, $emptyTranslation->getLanguage());
+        static::assertNull($emptyTranslation->getTranslatedMessage());
+    }
 }
