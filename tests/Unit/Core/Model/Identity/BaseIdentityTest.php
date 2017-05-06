@@ -62,6 +62,19 @@ abstract class BaseIdentityTest extends TestCase
         static::assertEquals($expectedResult, $actualResult);
     }
 
+    /**
+     * @test
+     */
+    public function itShouldThrowOnInvalidInputUUID(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $identityClass = $this->getIdentityClass();
+        $invalidUuid = 'this is an invalid UUID';
+
+        new $identityClass($invalidUuid);
+    }
+
     private function callGenerationMethod(): Identity
     {
         $identityClass = $this->getIdentityClass();
