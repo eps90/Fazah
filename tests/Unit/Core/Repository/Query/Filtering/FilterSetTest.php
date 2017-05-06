@@ -25,41 +25,13 @@ class FilterSetTest extends TestCase
     /**
      * @test
      */
-    public function itShouldBeAbleToDeremineWhetherFilterPropertyExists(): void
-    {
-        static::assertTrue(isset($this->filterSet['my_property']));
-        static::assertFalse(isset($this->filterSet['missing_property']));
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldReturnAValueByIndex(): void
+    public function itShouldReturnAValueByPropertyName(): void
     {
         $expectedResult = 'abc';
-        $actualResult = $this->filterSet['my_property'];
+        $actualResult = $this->filterSet->getFilter('my_property');
 
         static::assertEquals($expectedResult, $actualResult);
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldNotModifuyValuesByArrayIndices(): void
-    {
-        $this->filterSet['my_property'] = 'bca';
-
-        static::assertEquals('abc', $this->filterSet['my_property']);
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldNotBeAbleToRemoveValuesWithUnsetFunction(): void
-    {
-        unset($this->filterSet['my_property']);
-
-        static::assertEquals('abc', $this->filterSet['my_property']);
+        static::assertNull($this->filterSet->getFilter('missing_property'));
     }
 
     /**

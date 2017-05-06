@@ -11,12 +11,12 @@ final class FilterByEnabled implements DoctrineConditionBuilder
 {
     public function supports(QueryCriteria $criteria): bool
     {
-        return isset($criteria->getFilters()['enabled']);
+        return $criteria->getFilters()->contains('enabled');
     }
 
     public function build(QueryCriteria $criteria, QueryBuilder $queryBuilder): void
     {
         $queryBuilder->andWhere($queryBuilder->expr()->eq('p.metadata.enabled', ':enabled'))
-            ->setParameter(':enabled', $criteria->getFilters()['enabled']);
+            ->setParameter(':enabled', $criteria->getFilters()->getFilter('enabled'));
     }
 }

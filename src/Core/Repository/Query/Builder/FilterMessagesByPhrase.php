@@ -24,6 +24,6 @@ final class FilterMessagesByPhrase implements DoctrineConditionBuilder
                 $queryBuilder->expr()->like('p.translation.messageKey', ':phrase')
             )
         )
-        ->setParameter('phrase', '%' . $criteria->getFilters()['phrase']  . '%');
+        ->setParameter('phrase', '%' . $criteria->getFilters()->getFilter('phrase')  . '%');
     }
 }

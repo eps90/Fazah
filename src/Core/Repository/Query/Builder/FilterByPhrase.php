@@ -20,6 +20,6 @@ final class FilterByPhrase implements DoctrineConditionBuilder
     public function build(QueryCriteria $criteria, QueryBuilder $queryBuilder): void
     {
         $queryBuilder->andWhere($queryBuilder->expr()->like('p.name', ':phrase'))
-            ->setParameter('phrase', '%' . $criteria->getFilters()['phrase'] . '%');
+            ->setParameter('phrase', '%' . $criteria->getFilters()->getFilter('phrase') . '%');
     }
 }

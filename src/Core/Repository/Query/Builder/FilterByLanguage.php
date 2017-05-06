@@ -19,6 +19,6 @@ final class FilterByLanguage implements DoctrineConditionBuilder
     public function build(QueryCriteria $criteria, QueryBuilder $queryBuilder): void
     {
         $queryBuilder->andWhere($queryBuilder->expr()->eq('p.translation.language', ':language'))
-            ->setParameter('language', $criteria->getFilters()['language']);
+            ->setParameter('language', $criteria->getFilters()->getFilter('language'));
     }
 }

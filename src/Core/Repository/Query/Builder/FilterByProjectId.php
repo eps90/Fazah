@@ -20,6 +20,6 @@ final class FilterByProjectId implements DoctrineConditionBuilder
     public function build(QueryCriteria $criteria, QueryBuilder $queryBuilder): void
     {
         $queryBuilder->andWhere($queryBuilder->expr()->eq('p.projectId', ':projectId'))
-            ->setParameter('projectId', $criteria->getFilters()['project_id']);
+            ->setParameter('projectId', $criteria->getFilters()->getFilter('project_id'));
     }
 }

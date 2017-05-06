@@ -19,6 +19,6 @@ final class FilterByCatalogueId implements DoctrineConditionBuilder
     public function build(QueryCriteria $criteria, QueryBuilder $queryBuilder): void
     {
         $queryBuilder->andWhere($queryBuilder->expr()->eq('p.catalogueId', ':catalogueId'))
-            ->setParameter('catalogueId', $criteria->getFilters()['catalogue_id']);
+            ->setParameter('catalogueId', $criteria->getFilters()->getFilter('catalogue_id'));
     }
 }
