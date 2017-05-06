@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Integration\Core\Repository\Impl;
 
-use Eps\Fazah\Core\Repository\Impl\DoctrineMessageRepository;
 use Eps\Fazah\Tests\Integration\Core\Repository\Impl\DataProvider\MessageRepositoryDataProvider;
 use Eps\Fazah\Tests\Resources\Fixtures\AddCatalogues;
 use Eps\Fazah\Tests\Resources\Fixtures\AddMessages;
@@ -15,11 +14,7 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
 
     public function getRepositoryInstance()
     {
-        $container = $this->getContainer();
-        $entityManager = $container->get('doctrine.orm.entity_manager');
-        $matcher = $container->get('fazah.query.criteria_matcher');
-
-        return new DoctrineMessageRepository($entityManager, $matcher);
+        return $this->getContainer()->get('fazah.repository.message');
     }
 
     public function getRepositoryFixtures(): array

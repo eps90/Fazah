@@ -21,5 +21,6 @@ class FazahExtension extends Extension
             new FileLocator(__DIR__ . '/../Resources/config/services')
         );
         $loader->load('query.xml');
+        $loader->load('repositories.xml');
     }
 }
