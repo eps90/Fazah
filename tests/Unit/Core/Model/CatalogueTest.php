@@ -123,6 +123,20 @@ class CatalogueTest extends TestCase
         static::assertEquals($metadata, $catalogue->getMetadata());
     }
 
+    /**
+     * @test
+     */
+    public function itShouldHaveDefaultAlias(): void
+    {
+        $catalogueName = 'This is my catalogue éáąć';
+        $catalogue = Catalogue::create($catalogueName, ProjectId::generate());
+
+        $expectedAlias = 'this_is_my_catalogue_eaac';
+        $actualAlias = $catalogue->getAlias();
+
+        static::assertEquals($expectedAlias, $actualAlias);
+    }
+
     private function createNewCatalogue(): Catalogue
     {
         $catalogueName = 'My translations';

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model;
 
+use Cocur\Slugify\Slugify;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
@@ -69,6 +70,15 @@ class Catalogue
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlias(): string
+    {
+        $slugifier = new Slugify();
+        return $slugifier->slugify($this->name, '_');
     }
 
     /**
