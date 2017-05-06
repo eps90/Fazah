@@ -6,7 +6,6 @@ namespace Eps\Fazah\Core\Repository\Impl;
 use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
-use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Repository\CatalogueRepository;
 use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
 use Eps\Fazah\Core\Repository\Query\CriteriaMatcher;
@@ -55,20 +54,6 @@ final class DoctrineCatalogueRepository implements CatalogueRepository
         }
 
         return $catalogue;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function findByProjectId(ProjectId $projectId): array
-    {
-        return $this->entityManager->createQuery(
-            'SELECT cat FROM Fazah:Catalogue cat 
-            WHERE cat.projectId = :projectId
-            ORDER BY cat.metadata.createdAt DESC, cat.metadata.updatedAt DESC'
-        )
-            ->setParameter('projectId', $projectId)
-            ->getResult();
     }
 
     /**
