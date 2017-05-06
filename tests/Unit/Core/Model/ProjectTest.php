@@ -107,6 +107,36 @@ class ProjectTest extends TestCase
         static::assertEquals($metadata, $project->getMetadata());
     }
 
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToDisableAProject(): void
+    {
+        $project = Project::create('my project');
+        $project->disable();
+
+        static::assertFalse($project->getMetadata()->isEnabled());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToEnableAProject(): void
+    {
+        $project = Project::restoreFrom(
+            ProjectId::generate(),
+            'my project',
+            Metadata::restoreFrom(
+                Carbon::now(),
+                Carbon::now(),
+                false
+            )
+        );
+        $project->enable();
+
+        static::assertTrue($project->getMetadata()->isEnabled());
+    }
+
     private function createNewProject(): Project
     {
         $projectName = 'Fazah';

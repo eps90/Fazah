@@ -69,4 +69,14 @@ class Project
     {
         return $this->metadata;
     }
+
+    public function disable(): void
+    {
+        $this->metadata = $this->metadata->markAsDisabled();
+    }
+
+    public function enable(): void
+    {
+        $this->metadata = $this->metadata->markAsEnabled();
+    }
 }

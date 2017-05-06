@@ -135,6 +135,48 @@ class MessageTest extends TestCase
         static::assertEquals($catalogueId, $message->getCatalogueId());
     }
 
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToDisableAMessage(): void
+    {
+        $message = Message::create(
+            Translation::create(
+                'my.message',
+                null,
+                'en'
+            ),
+            CatalogueId::generate()
+        );
+        $message->disable();
+
+        static::assertFalse($message->getMetadata()->isEnabled());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToEnabledAMessage(): void
+    {
+        $message = Message::restoreFrom(
+            MessageId::generate(),
+            Translation::create(
+                'my.message',
+                null,
+                'en'
+            ),
+            CatalogueId::generate(),
+            Metadata::restoreFrom(
+                Carbon::now(),
+                Carbon::now(),
+                false
+            )
+        );
+        $message->enable();
+
+        static::assertTrue($message->getMetadata()->isEnabled());
+    }
+
     private function createNewMessage(): Message
     {
         $translation = Translation::create(

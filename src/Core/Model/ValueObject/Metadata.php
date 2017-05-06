@@ -65,4 +65,20 @@ final class Metadata
     {
         return $this->enabled;
     }
+
+    public function markAsDisabled(): Metadata
+    {
+        $newMetadata = clone $this;
+        $newMetadata->enabled = false;
+
+        return $newMetadata;
+    }
+
+    public function markAsEnabled(): Metadata
+    {
+        $newMetadata = clone $this;
+        $newMetadata->enabled = true;
+
+        return $newMetadata;
+    }
 }

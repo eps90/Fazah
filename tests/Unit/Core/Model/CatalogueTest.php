@@ -137,6 +137,37 @@ class CatalogueTest extends TestCase
         static::assertEquals($expectedAlias, $actualAlias);
     }
 
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToDisableACatalogue(): void
+    {
+        $catalogue = Catalogue::create('My Catalogue', ProjectId::generate());
+        $catalogue->disable();
+
+        static::assertFalse($catalogue->getMetadata()->isEnabled());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToEnableACatalogue(): void
+    {
+        $catalogue = Catalogue::restoreFrom(
+            CatalogueId::generate(),
+            'My disabled catalogue',
+            ProjectId::generate(),
+            Metadata::restoreFrom(
+                Carbon::now(),
+                Carbon::now(),
+                false
+            )
+        );
+        $catalogue->enable();
+
+        static::assertTrue($catalogue->getMetadata()->isEnabled());
+    }
+
     private function createNewCatalogue(): Catalogue
     {
         $catalogueName = 'My translations';
