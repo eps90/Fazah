@@ -6,72 +6,72 @@
 
     <services>
         <service id="fazah.query.criteria_matcher"
-                 class="Eps\Fazah\Core\Repository\Query\Impl\DoctrineCriteriaMatcher">
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\DoctrineCriteriaMatcher">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 
         <service id="fazah.query.builder.select_project"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\SelectProjects"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\SelectProjects"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.select_messages"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\SelectMessages"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\SelectMessages"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.select_catalogue"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\SelectCatalogues"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\SelectCatalogues"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.filter.enabled"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\FilterByEnabled"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterByEnabled"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.filter.phrase"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\FilterByPhrase"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterByPhrase"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.filter.project_id"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\FilterByProjectId"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterByProjectId"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.filter.catalogue_id"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\FilterByCatalogueId"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterByCatalogueId"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.filter.message_phrase"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\FilterMessagesByPhrase"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterMessagesByPhrase"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.filter.language"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\FilterByLanguage"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterByLanguage"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.sort.date_default"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\SortByDefaultDates"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\SortByDefaultDates"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.sort.date"
-                 class="Eps\Fazah\Core\Repository\Query\Builder\SortByDate"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\SortByDate"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>

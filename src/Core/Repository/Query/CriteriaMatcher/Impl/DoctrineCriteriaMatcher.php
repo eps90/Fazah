@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Eps\Fazah\Core\Repository\Query\Impl;
+namespace Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
-use Eps\Fazah\Core\Repository\Query\CriteriaMatcher;
+use Eps\Fazah\Core\Repository\Query\CriteriaMatcher\CriteriaMatcher;
 
 final class DoctrineCriteriaMatcher implements CriteriaMatcher
 {

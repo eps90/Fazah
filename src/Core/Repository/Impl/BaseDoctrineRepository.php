@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\Repository\Impl;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Eps\Fazah\Core\Repository\Query\CriteriaMatcher;
+use Eps\Fazah\Core\Repository\Query\CriteriaMatcher\CriteriaMatcher;
 use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
