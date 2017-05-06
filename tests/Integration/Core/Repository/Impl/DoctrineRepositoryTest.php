@@ -16,6 +16,7 @@ abstract class DoctrineRepositoryTest extends WebTestCase
     abstract public function saveProvider(): array;
     abstract public function missingModelProvider(): array;
     abstract public function findAllProvider(): array;
+    abstract public function updateProvider(): array;
 
     protected function setUp()
     {
@@ -73,5 +74,24 @@ abstract class DoctrineRepositoryTest extends WebTestCase
         $repository = $this->getRepositoryInstance();
         $actualModels = $repository->findAll($criteria);
         static::assertEquals($expected, $actualModels);
+    }
+
+    /**
+     * @test
+     * @dataProvider updateProvider
+     */
+    public function itShouldUpdateModelChanges($inputModel, callable $changeFunc, string $idMethod, callable $expect): void
+    {
+        $repository = $this->getRepositoryInstance();
+        $repository->save($inputModel);
+
+        $savedInstance = $repository->find($inputModel->$idMethod());
+
+        $changeFunc($savedInstance);
+        $repository->save($savedInstance);
+
+        $actualModel = $repository->find($inputModel->$idMethod());
+
+        static::assertTrue($expect($actualModel));
     }
 }

@@ -317,4 +317,23 @@ trait MessageRepositoryDataProvider
             ]
         ];
     }
+
+    public function updateProvider(): array
+    {
+        return [
+            'disable' => [
+                'input' => Message::create(
+                    Translation::create('key', null, 'fr'),
+                    CatalogueId::generate()
+                ),
+                'process' => function (Message $message) {
+                    $message->disable();
+                },
+                'idMethod' => 'getMessageId',
+                'expect' => function (Message $message) {
+                    return $message->getMetadata()->isEnabled() === false;
+                }
+            ]
+        ];
+    }
 }

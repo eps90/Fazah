@@ -325,4 +325,23 @@ trait CatalogueRepositoryDataProvider
             ]
         ];
     }
+
+    public function updateProvider(): array
+    {
+        return [
+            'disable' => [
+                'input' => Catalogue::create(
+                    'catalogue name',
+                    ProjectId::generate()
+                ),
+                'process' => function (Catalogue $catalogue) {
+                    $catalogue->disable();
+                },
+                'idMethod' => 'getCatalogueId',
+                'expect' => function (Catalogue $catalogue) {
+                    return $catalogue->getMetadata()->isEnabled() === false;
+                }
+            ]
+        ];
+    }
 }

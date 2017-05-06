@@ -200,4 +200,20 @@ trait ProjectRepositoryDataProvider
             ]
         ];
     }
+
+    public function updateProvider(): array
+    {
+        return [
+            'disable' => [
+                'input' => Project::create('my_project'),
+                'process' => function (Project $project) {
+                    $project->disable();
+                },
+                'idMethod' => 'getProjectId',
+                'expected' => function (Project $project) {
+                    return $project->getMetadata()->isEnabled() === false;
+                }
+            ]
+        ];
+    }
 }
