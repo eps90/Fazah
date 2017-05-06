@@ -80,8 +80,12 @@ abstract class DoctrineRepositoryTest extends WebTestCase
      * @test
      * @dataProvider updateProvider
      */
-    public function itShouldUpdateModelChanges($inputModel, callable $changeFunc, string $idMethod, callable $expect): void
-    {
+    public function itShouldUpdateModelChanges(
+        $inputModel,
+        callable $changeFunc,
+        string $idMethod,
+        callable $expect
+    ): void {
         $repository = $this->getRepositoryInstance();
         $repository->save($inputModel);
 
