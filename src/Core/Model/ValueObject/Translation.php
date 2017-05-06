@@ -26,7 +26,7 @@ final class Translation
 
         $translation->messageKey = $messageKey;
         $translation->translatedMessage = $translatedMessage;
-        $translation->language = $language;
+        $translation->language = strtolower($language);
 
         return $translation;
     }
