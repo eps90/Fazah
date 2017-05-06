@@ -26,8 +26,8 @@ trait CatalogueRepositoryDataProvider
                     'second-catalogue',
                     new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                     Metadata::restoreFrom(
-                        Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                        Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                        Carbon::parse('2015-01-01 12:00:01'),
+                        Carbon::parse('2015-01-02 12:00:01'),
                         true
                     )
                 )
@@ -55,8 +55,8 @@ trait CatalogueRepositoryDataProvider
                         'second-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2017-01-01 12:00:01')),
-                            Carbon::instance(new \DateTime('2017-01-02 12:00:01')),
+                            Carbon::parse('2017-01-01 12:00:01'),
+                            Carbon::parse('2017-01-02 12:00:01'),
                             true
                         )
                     )
@@ -84,8 +84,8 @@ trait CatalogueRepositoryDataProvider
                         'fifth-catalogue',
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:04')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:04')),
+                            Carbon::parse('2015-01-01 12:00:04'),
+                            Carbon::parse('2015-01-02 12:00:04'),
                             false
                         )
                     ),
@@ -94,8 +94,8 @@ trait CatalogueRepositoryDataProvider
                         'forth-catalogue',
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:03')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:03')),
+                            Carbon::parse('2015-01-01 12:00:03'),
+                            Carbon::parse('2015-01-02 12:00:03'),
                             true
                         )
                     ),
@@ -104,8 +104,8 @@ trait CatalogueRepositoryDataProvider
                         'third-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+                            Carbon::parse('2015-01-01 12:00:02'),
+                            Carbon::parse('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -114,8 +114,8 @@ trait CatalogueRepositoryDataProvider
                         'second-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                            Carbon::parse('2015-01-01 12:00:01'),
+                            Carbon::parse('2015-01-02 12:00:01'),
                             true
                         )
                     ),
@@ -124,8 +124,8 @@ trait CatalogueRepositoryDataProvider
                         'first-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+                            Carbon::parse('2015-01-01 12:00:00'),
+                            Carbon::parse('2015-01-02 12:00:00'),
                             true
                         )
                     )
@@ -146,8 +146,8 @@ trait CatalogueRepositoryDataProvider
                         'third-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+                            Carbon::parse('2015-01-01 12:00:02'),
+                            Carbon::parse('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -156,8 +156,8 @@ trait CatalogueRepositoryDataProvider
                         'second-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                            Carbon::parse('2015-01-01 12:00:01'),
+                            Carbon::parse('2015-01-02 12:00:01'),
                             true
                         )
                     ),
@@ -166,8 +166,8 @@ trait CatalogueRepositoryDataProvider
                         'first-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+                            Carbon::parse('2015-01-01 12:00:00'),
+                            Carbon::parse('2015-01-02 12:00:00'),
                             true
                         )
                     )
@@ -186,8 +186,8 @@ trait CatalogueRepositoryDataProvider
                         'fifth-catalogue',
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:04')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:04')),
+                            Carbon::parse('2015-01-01 12:00:04'),
+                            Carbon::parse('2015-01-02 12:00:04'),
                             false
                         )
                     )
@@ -206,8 +206,8 @@ trait CatalogueRepositoryDataProvider
                         'forth-catalogue',
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:03')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:03')),
+                            Carbon::parse('2015-01-01 12:00:03'),
+                            Carbon::parse('2015-01-02 12:00:03'),
                             true
                         )
                     )
@@ -226,8 +226,8 @@ trait CatalogueRepositoryDataProvider
                         'first-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+                            Carbon::parse('2015-01-01 12:00:00'),
+                            Carbon::parse('2015-01-02 12:00:00'),
                             true
                         )
                     ),
@@ -236,8 +236,8 @@ trait CatalogueRepositoryDataProvider
                         'second-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                            Carbon::parse('2015-01-01 12:00:01'),
+                            Carbon::parse('2015-01-02 12:00:01'),
                             true
                         )
                     ),
@@ -246,8 +246,8 @@ trait CatalogueRepositoryDataProvider
                         'third-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+                            Carbon::parse('2015-01-01 12:00:02'),
+                            Carbon::parse('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -256,8 +256,8 @@ trait CatalogueRepositoryDataProvider
                         'forth-catalogue',
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:03')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:03')),
+                            Carbon::parse('2015-01-01 12:00:03'),
+                            Carbon::parse('2015-01-02 12:00:03'),
                             true
                         )
                     ),
@@ -266,8 +266,8 @@ trait CatalogueRepositoryDataProvider
                         'fifth-catalogue',
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:04')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:04')),
+                            Carbon::parse('2015-01-01 12:00:04'),
+                            Carbon::parse('2015-01-02 12:00:04'),
                             false
                         )
                     )
@@ -286,8 +286,8 @@ trait CatalogueRepositoryDataProvider
                         'first-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+                            Carbon::parse('2015-01-01 12:00:00'),
+                            Carbon::parse('2015-01-02 12:00:00'),
                             true
                         )
                     ),
@@ -296,8 +296,8 @@ trait CatalogueRepositoryDataProvider
                         'second-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                            Carbon::parse('2015-01-01 12:00:01'),
+                            Carbon::parse('2015-01-02 12:00:01'),
                             true
                         )
                     ),
@@ -306,8 +306,8 @@ trait CatalogueRepositoryDataProvider
                         'third-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+                            Carbon::parse('2015-01-01 12:00:02'),
+                            Carbon::parse('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -316,8 +316,8 @@ trait CatalogueRepositoryDataProvider
                         'forth-catalogue',
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:03')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:03')),
+                            Carbon::parse('2015-01-01 12:00:03'),
+                            Carbon::parse('2015-01-02 12:00:03'),
                             true
                         )
                     )

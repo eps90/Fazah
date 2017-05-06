@@ -117,7 +117,7 @@ class MessageTest extends TestCase
         );
         $catalogueId = CatalogueId::generate();
         $metadata = Metadata::restoreFrom(
-            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
+            Carbon::parse('2015-01-01 12:00:00'),
             Carbon::now(),
             true
         );

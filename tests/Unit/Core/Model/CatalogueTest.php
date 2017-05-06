@@ -105,8 +105,8 @@ class CatalogueTest extends TestCase
         $catalogueId = CatalogueId::generate();
         $projectId = ProjectId::generate();
         $metadata = Metadata::restoreFrom(
-            Carbon::instance(new \DateTime('2016-01-01 15:00:00')),
-            Carbon::instance(new \DateTime('2016-01-02 12:00:00')),
+            Carbon::parse('2016-01-01 15:00:00'),
+            Carbon::parse('2016-01-02 12:00:00'),
             true
         );
 

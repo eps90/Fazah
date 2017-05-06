@@ -19,8 +19,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
     public function load(ObjectManager $manager)
     {
         $firstProjectMeta = Metadata::restoreFrom(
-            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+            Carbon::parse('2015-01-01 12:00:01'),
+            Carbon::parse('2015-01-02 12:00:01'),
             true
         );
         $firstProject = Project::restoreFrom(
@@ -31,8 +31,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
         $manager->persist($firstProject);
 
         $secondProjectMeta = Metadata::restoreFrom(
-            Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-            Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+            Carbon::parse('2015-01-01 12:00:02'),
+            Carbon::parse('2015-01-02 12:00:02'),
             true
         );
         $secondProject = Project::restoreFrom(

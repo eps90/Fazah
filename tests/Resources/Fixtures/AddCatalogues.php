@@ -51,8 +51,8 @@ final class AddCatalogues extends AbstractFixture implements OrderedFixtureInter
 
         foreach ($catalogueNames as $idx => $catalogueName) {
             $metadata = Metadata::restoreFrom(
-                Carbon::instance(new \DateTime('2015-01-01 12:00:0' . $idx)),
-                Carbon::instance(new \DateTime('2015-01-02 12:00:0' . $idx)),
+                Carbon::parse('2015-01-01 12:00:0' . $idx),
+                Carbon::parse('2015-01-02 12:00:0' . $idx),
                 $enabled[$idx]
             );
             $catalogue = Catalogue::restoreFrom(

@@ -24,8 +24,8 @@ trait ProjectRepositoryDataProvider
                     new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                     'my-awesome-project',
                     Metadata::restoreFrom(
-                        Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                        Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                        Carbon::parse('2015-01-01 12:00:01'),
+                        Carbon::parse('2015-01-02 12:00:01'),
                         true
                     )
                 )
@@ -79,8 +79,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         'yet-another-cool-project',
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+                            Carbon::parse('2015-01-01 12:00:02'),
+                            Carbon::parse('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -88,8 +88,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         'my-awesome-project',
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                            Carbon::parse('2015-01-01 12:00:01'),
+                            Carbon::parse('2015-01-02 12:00:01'),
                             true
                         )
                     )
@@ -126,8 +126,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         'my-awesome-project',
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                            Carbon::parse('2015-01-01 12:00:01'),
+                            Carbon::parse('2015-01-02 12:00:01'),
                             true
                         )
                     )
@@ -145,8 +145,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         'my-awesome-project',
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                            Carbon::parse('2015-01-01 12:00:01'),
+                            Carbon::parse('2015-01-02 12:00:01'),
                             true
                         )
                     ),
@@ -154,8 +154,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         'yet-another-cool-project',
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+                            Carbon::parse('2015-01-01 12:00:02'),
+                            Carbon::parse('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -181,8 +181,8 @@ trait ProjectRepositoryDataProvider
                             new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                             'my-awesome-project',
                             Metadata::restoreFrom(
-                                Carbon::instance(new \DateTime('2015-01-01 12:00:01')),
-                                Carbon::instance(new \DateTime('2015-01-02 12:00:01')),
+                                Carbon::parse('2015-01-01 12:00:01'),
+                                Carbon::parse('2015-01-02 12:00:01'),
                                 true
                             )
                         ),
@@ -190,8 +190,8 @@ trait ProjectRepositoryDataProvider
                             new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                             'yet-another-cool-project',
                             Metadata::restoreFrom(
-                                Carbon::instance(new \DateTime('2015-01-01 12:00:02')),
-                                Carbon::instance(new \DateTime('2015-01-02 12:00:02')),
+                                Carbon::parse('2015-01-01 12:00:02'),
+                                Carbon::parse('2015-01-02 12:00:02'),
                                 true
                             )
                         )

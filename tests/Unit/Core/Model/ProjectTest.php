@@ -96,8 +96,8 @@ class ProjectTest extends TestCase
         $name = 'My project';
         $projectId = ProjectId::generate();
         $metadata = Metadata::restoreFrom(
-            Carbon::instance(new \DateTime('2014-01-15 11:14:00')),
-            Carbon::instance(new \DateTime('2014-01-16 01:00:00')),
+            Carbon::parse('2014-01-15 11:14:00'),
+            Carbon::parse('2014-01-16 01:00:00'),
             true
         );
         $project = Project::restoreFrom($projectId, $name, $metadata);

@@ -30,8 +30,8 @@ trait MessageRepositoryDataProvider
                     ),
                     new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458'),
                     Metadata::restoreFrom(
-                        Carbon::instance(new \DateTime('2015-01-01 12:00:13')),
-                        Carbon::instance(new \DateTime('2015-01-02 12:00:13')),
+                        Carbon::parse('2015-01-01 12:00:13'),
+                        Carbon::parse('2015-01-02 12:00:13'),
                         true
                     )
                 )
@@ -100,8 +100,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('3df07fa8-80fa-4d5d-a0cb-9bcf3d830425'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:23')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:23')),
+                            Carbon::parse('2015-01-01 12:00:23'),
+                            Carbon::parse('2015-01-02 12:00:23'),
                             true
                         )
                     ),
@@ -114,8 +114,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('3df07fa8-80fa-4d5d-a0cb-9bcf3d830425'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:22')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:22')),
+                            Carbon::parse('2015-01-01 12:00:22'),
+                            Carbon::parse('2015-01-02 12:00:22'),
                             true
                         )
                     ),
@@ -128,8 +128,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('3df07fa8-80fa-4d5d-a0cb-9bcf3d830425'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:21')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:21')),
+                            Carbon::parse('2015-01-01 12:00:21'),
+                            Carbon::parse('2015-01-02 12:00:21'),
                             true
                         )
                     )
@@ -152,8 +152,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('8094de70-b269-4ea3-a11c-4d43a5218b23'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:20')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:20')),
+                            Carbon::parse('2015-01-01 12:00:20'),
+                            Carbon::parse('2015-01-02 12:00:20'),
                             false
                         )
                     ),
@@ -166,8 +166,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('8094de70-b269-4ea3-a11c-4d43a5218b23'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:10')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:10')),
+                            Carbon::parse('2015-01-01 12:00:10'),
+                            Carbon::parse('2015-01-02 12:00:10'),
                             false
                         )
                     ),
@@ -180,8 +180,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('8094de70-b269-4ea3-a11c-4d43a5218b23'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:00')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:00')),
+                            Carbon::parse('2015-01-01 12:00:00'),
+                            Carbon::parse('2015-01-02 12:00:00'),
                             false
                         )
                     )
@@ -204,8 +204,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('a853f467-403d-416b-8269-36369c34d723'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:26')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:26')),
+                            Carbon::parse('2015-01-01 12:00:26'),
+                            Carbon::parse('2015-01-02 12:00:26'),
                             true
                         )
                     ),
@@ -218,8 +218,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('a853f467-403d-416b-8269-36369c34d723'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:25')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:25')),
+                            Carbon::parse('2015-01-01 12:00:25'),
+                            Carbon::parse('2015-01-02 12:00:25'),
                             true
                         )
                     ),
@@ -232,8 +232,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('a853f467-403d-416b-8269-36369c34d723'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:24')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:24')),
+                            Carbon::parse('2015-01-01 12:00:24'),
+                            Carbon::parse('2015-01-02 12:00:24'),
                             true
                         )
                     )
@@ -256,8 +256,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('a853f467-403d-416b-8269-36369c34d723'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:26')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:26')),
+                            Carbon::parse('2015-01-01 12:00:26'),
+                            Carbon::parse('2015-01-02 12:00:26'),
                             true
                         )
                     ),
@@ -270,8 +270,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('a853f467-403d-416b-8269-36369c34d723'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:25')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:25')),
+                            Carbon::parse('2015-01-01 12:00:25'),
+                            Carbon::parse('2015-01-02 12:00:25'),
                             true
                         )
                     ),
@@ -284,8 +284,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('a853f467-403d-416b-8269-36369c34d723'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:24')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:24')),
+                            Carbon::parse('2015-01-01 12:00:24'),
+                            Carbon::parse('2015-01-02 12:00:24'),
                             true
                         )
                     )
@@ -308,8 +308,8 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('a853f467-403d-416b-8269-36369c34d723'),
                         Metadata::restoreFrom(
-                            Carbon::instance(new \DateTime('2015-01-01 12:00:25')),
-                            Carbon::instance(new \DateTime('2015-01-02 12:00:25')),
+                            Carbon::parse('2015-01-01 12:00:25'),
+                            Carbon::parse('2015-01-02 12:00:25'),
                             true
                         )
                     )
