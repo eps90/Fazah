@@ -60,15 +60,13 @@ trait CatalogueRepositoryDataProvider
                             true
                         )
                     )
-                ],
-                'id_method' => 'getCatalogueId'
+                ]
             ],
             [
                 'catalogues' => [
                     Catalogue::create('My catalogue', new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260')),
                     Catalogue::create('Another catalogue', new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'))
-                ],
-                'id_method' => 'getCatalogueId'
+                ]
             ]
         ];
     }
@@ -337,7 +335,6 @@ trait CatalogueRepositoryDataProvider
                 'process' => function (Catalogue $catalogue) {
                     $catalogue->disable();
                 },
-                'idMethod' => 'getCatalogueId',
                 'expect' => function (Catalogue $catalogue) {
                     return $catalogue->getMetadata()->isEnabled() === false;
                 }

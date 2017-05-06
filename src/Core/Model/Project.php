@@ -11,7 +11,7 @@ class Project
     /**
      * @var ProjectId
      */
-    private $projectId;
+    private $id;
 
     /**
      * @var string
@@ -26,7 +26,7 @@ class Project
     public static function create(string $name): Project
     {
         $project = new self();
-        $project->projectId = ProjectId::generate();
+        $project->id = ProjectId::generate();
         $project->name = $name;
         $project->metadata = Metadata::initialize();
 
@@ -39,7 +39,7 @@ class Project
         Metadata $metadata
     ): Project {
         $project = new self();
-        $project->projectId = $projectId;
+        $project->id = $projectId;
         $project->name = $name;
         $project->metadata = $metadata;
 
@@ -49,9 +49,9 @@ class Project
     /**
      * @return ProjectId
      */
-    public function getProjectId(): ProjectId
+    public function getId(): ProjectId
     {
-        return $this->projectId;
+        return $this->id;
     }
 
     /**

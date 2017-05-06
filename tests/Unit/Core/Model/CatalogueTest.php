@@ -61,7 +61,7 @@ class CatalogueTest extends TestCase
      */
     public function itShouldHaveInitiallySetId(): void
     {
-        static::assertNotNull($this->newCatalogue->getCatalogueId());
+        static::assertNotNull($this->newCatalogue->getId());
     }
 
     /**
@@ -117,7 +117,7 @@ class CatalogueTest extends TestCase
             $metadata
         );
 
-        static::assertEquals($catalogueId, $catalogue->getCatalogueId());
+        static::assertEquals($catalogueId, $catalogue->getId());
         static::assertEquals($name, $catalogue->getName());
         static::assertEquals($projectId, $catalogue->getProjectId());
         static::assertEquals($metadata, $catalogue->getMetadata());

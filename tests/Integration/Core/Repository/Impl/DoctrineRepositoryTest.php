@@ -53,13 +53,13 @@ abstract class DoctrineRepositoryTest extends WebTestCase
      * @test
      * @dataProvider saveProvider
      */
-    public function itShouldSaveNewModelInstance(array $models, string $getIdMethod): void
+    public function itShouldSaveNewModelInstance(array $models): void
     {
         $repository = $this->getRepositoryInstance();
         $repository->save(...$models);
 
         foreach ($models as $model) {
-            $actualModel = $repository->find($model->$getIdMethod());
+            $actualModel = $repository->find($model->getId());
 
             static::assertEquals($model, $actualModel);
         }
@@ -83,18 +83,17 @@ abstract class DoctrineRepositoryTest extends WebTestCase
     public function itShouldUpdateModelChanges(
         $inputModel,
         callable $changeFunc,
-        string $idMethod,
         callable $expect
     ): void {
         $repository = $this->getRepositoryInstance();
         $repository->save($inputModel);
 
-        $savedInstance = $repository->find($inputModel->$idMethod());
+        $savedInstance = $repository->find($inputModel->getId());
 
         $changeFunc($savedInstance);
         $repository->save($savedInstance);
 
-        $actualModel = $repository->find($inputModel->$idMethod());
+        $actualModel = $repository->find($inputModel->getId());
 
         static::assertTrue($expect($actualModel));
     }

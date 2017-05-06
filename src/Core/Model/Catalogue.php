@@ -13,7 +13,7 @@ class Catalogue
     /**
      * @var CatalogueId
      */
-    private $catalogueId;
+    private $id;
 
     /**
      * @var string
@@ -33,7 +33,7 @@ class Catalogue
     public static function create(string $catalogueName, ProjectId $projectId): Catalogue
     {
         $catalogue = new self();
-        $catalogue->catalogueId = CatalogueId::generate();
+        $catalogue->id = CatalogueId::generate();
         $catalogue->name = $catalogueName;
         $catalogue->metadata = Metadata::initialize();
         $catalogue->projectId = $projectId;
@@ -48,7 +48,7 @@ class Catalogue
         Metadata $metadata
     ): Catalogue {
         $catalogue = new self();
-        $catalogue->catalogueId = $catalogueId;
+        $catalogue->id = $catalogueId;
         $catalogue->name = $name;
         $catalogue->projectId = $projectId;
         $catalogue->metadata = $metadata;
@@ -59,9 +59,9 @@ class Catalogue
     /**
      * @return CatalogueId
      */
-    public function getCatalogueId(): CatalogueId
+    public function getId(): CatalogueId
     {
-        return $this->catalogueId;
+        return $this->id;
     }
 
     /**

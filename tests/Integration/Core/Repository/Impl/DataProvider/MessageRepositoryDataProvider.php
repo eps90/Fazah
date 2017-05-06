@@ -62,8 +62,7 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
                     )
-                ],
-                'id_method' => 'getMessageId'
+                ]
             ],
             [
                 'messages' => [
@@ -75,8 +74,7 @@ trait MessageRepositoryDataProvider
                         ),
                         new CatalogueId('b21deaae-8078-45e7-a83c-47a72e8d0458')
                     )
-                ],
-                'id_method' => 'getMessageId'
+                ]
             ]
         ];
     }
@@ -329,7 +327,6 @@ trait MessageRepositoryDataProvider
                 'process' => function (Message $message) {
                     $message->disable();
                 },
-                'idMethod' => 'getMessageId',
                 'expect' => function (Message $message) {
                     return $message->getMetadata()->isEnabled() === false;
                 }

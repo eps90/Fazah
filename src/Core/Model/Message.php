@@ -13,7 +13,7 @@ class Message
     /**
      * @var MessageId
      */
-    private $messageId;
+    private $id;
 
     /**
      * @var Translation
@@ -35,7 +35,7 @@ class Message
         CatalogueId $catalogueId
     ): Message {
         $message = new self();
-        $message->messageId = MessageId::generate();
+        $message->id = MessageId::generate();
         $message->translation = $translation;
         $message->catalogueId = $catalogueId;
         $message->metadata = Metadata::initialize();
@@ -50,7 +50,7 @@ class Message
         Metadata $metadata
     ): Message {
         $message = new self();
-        $message->messageId = $messageId;
+        $message->id = $messageId;
         $message->translation = $translation;
         $message->metadata = $metadata;
         $message->catalogueId = $catalogueId;
@@ -61,9 +61,9 @@ class Message
     /**
      * @return MessageId
      */
-    public function getMessageId(): MessageId
+    public function getId(): MessageId
     {
-        return $this->messageId;
+        return $this->id;
     }
 
     /**

@@ -107,7 +107,7 @@ final class AddMessages extends AbstractFixture implements OrderedFixtureInterfa
                         $translatedMessage,
                         $language
                     ),
-                    $catalogue->getCatalogueId(),
+                    $catalogue->getId(),
                     $metadata
                 );
                 $manager->persist($message);

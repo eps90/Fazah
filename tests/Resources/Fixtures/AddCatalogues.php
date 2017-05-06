@@ -58,7 +58,7 @@ final class AddCatalogues extends AbstractFixture implements OrderedFixtureInter
             $catalogue = Catalogue::restoreFrom(
                 new CatalogueId($catalogueUuids[$idx]),
                 $catalogueName,
-                $projects[$idx]->getProjectId(),
+                $projects[$idx]->getId(),
                 $metadata
             );
             $manager->persist($catalogue);

@@ -47,15 +47,13 @@ trait ProjectRepositoryDataProvider
     {
         return [
             [
-                'projects' => [Project::create('my_project')],
-                'id_method' => 'getProjectId'
+                'projects' => [Project::create('my_project')]
             ],
             [
                 'projects' => [
                     Project::create('my_project'),
                     Project::create('another_project')
-                ],
-                'id_method' => 'getProjectId'
+                ]
             ]
         ];
     }
@@ -209,7 +207,6 @@ trait ProjectRepositoryDataProvider
                 'process' => function (Project $project) {
                     $project->disable();
                 },
-                'idMethod' => 'getProjectId',
                 'expected' => function (Project $project) {
                     return $project->getMetadata()->isEnabled() === false;
                 }

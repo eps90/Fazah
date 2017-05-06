@@ -69,7 +69,7 @@ class MessageTest extends TestCase
      */
     public function itShouldGenerateMessageId(): void
     {
-        static::assertNotNull($this->newMessage->getMessageId());
+        static::assertNotNull($this->newMessage->getId());
     }
 
     /**
@@ -129,7 +129,7 @@ class MessageTest extends TestCase
             $metadata
         );
 
-        static::assertEquals($messageId, $message->getMessageId());
+        static::assertEquals($messageId, $message->getId());
         static::assertEquals($translation, $message->getTranslation());
         static::assertEquals($metadata, $message->getMetadata());
         static::assertEquals($catalogueId, $message->getCatalogueId());

@@ -3,7 +3,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
     <entity name="Eps\Fazah\Core\Model\Project" table="projects">
-        <id name="projectId" column="id" type="project_id" />
+        <id name="id" column="id" type="project_id" />
 
         <field name="name" type="text" nullable="false" />
         <embedded name="metadata" class="Eps\Fazah\Core\Model\ValueObject\Metadata" use-column-prefix="false" />

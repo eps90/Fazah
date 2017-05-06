@@ -61,7 +61,7 @@ class ProjectTest extends TestCase
      */
     public function itShouldInitiallyHaveAnId(): void
     {
-        static::assertNotNull($this->project->getProjectId());
+        static::assertNotNull($this->project->getId());
     }
 
     /**
@@ -102,7 +102,7 @@ class ProjectTest extends TestCase
         );
         $project = Project::restoreFrom($projectId, $name, $metadata);
 
-        static::assertEquals($projectId, $project->getProjectId());
+        static::assertEquals($projectId, $project->getId());
         static::assertEquals($name, $project->getName());
         static::assertEquals($metadata, $project->getMetadata());
     }

@@ -3,7 +3,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
     <entity name="Eps\Fazah\Core\Model\Catalogue" table="catalogues">
-        <id name="catalogueId" column="id" type="catalogue_id"/>
+        <id name="id" column="id" type="catalogue_id"/>
 
         <field name="name" type="text" nullable="false" />
         <field name="projectId" type="project_id" nullable="false" column="project_id" />
