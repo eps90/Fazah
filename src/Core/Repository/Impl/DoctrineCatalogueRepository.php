@@ -3,44 +3,19 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Repository\Impl;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Repository\CatalogueRepository;
 use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
-use Eps\Fazah\Core\Repository\Query\CriteriaMatcher;
-use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
-use Eps\Fazah\Core\Repository\Query\QueryCriteria;
-use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
 
-final class DoctrineCatalogueRepository implements CatalogueRepository
+final class DoctrineCatalogueRepository extends BaseDoctrineRepository implements CatalogueRepository
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    /**
-     * @var CriteriaMatcher
-     */
-    private $matcher;
-
-    public function __construct(EntityManagerInterface $entityManager, CriteriaMatcher $matcher)
-    {
-        $this->entityManager = $entityManager;
-        $this->matcher = $matcher;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function save(Catalogue ...$catalogues): void
     {
-        foreach ($catalogues as $catalogue) {
-            $this->entityManager->persist($catalogue);
-        }
-
-        $this->entityManager->flush();
+        $this->saveAll($catalogues);
     }
 
     /**
@@ -56,15 +31,8 @@ final class DoctrineCatalogueRepository implements CatalogueRepository
         return $catalogue;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function findAll(QueryCriteria $criteria = null): array
+    protected function getModelClass(): string
     {
-        if ($criteria === null) {
-            $criteria = new QueryCriteria(Catalogue::class, new FilterSet(), new SortSet());
-        }
-
-        return $this->matcher->match($criteria);
+        return Catalogue::class;
     }
 }

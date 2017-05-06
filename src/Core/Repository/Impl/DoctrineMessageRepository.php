@@ -3,44 +3,19 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Repository\Impl;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
 use Eps\Fazah\Core\Repository\MessageRepository;
-use Eps\Fazah\Core\Repository\Query\CriteriaMatcher;
-use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
-use Eps\Fazah\Core\Repository\Query\QueryCriteria;
-use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
 
-final class DoctrineMessageRepository implements MessageRepository
+final class DoctrineMessageRepository extends BaseDoctrineRepository implements MessageRepository
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    /**
-     * @var CriteriaMatcher
-     */
-    private $matcher;
-
-    public function __construct(EntityManagerInterface $entityManager, CriteriaMatcher $matcher)
-    {
-        $this->entityManager = $entityManager;
-        $this->matcher = $matcher;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function save(Message ...$messages): void
     {
-        foreach ($messages as $message) {
-            $this->entityManager->persist($message);
-        }
-
-        $this->entityManager->flush();
+        $this->saveAll($messages);
     }
 
     /**
@@ -56,15 +31,8 @@ final class DoctrineMessageRepository implements MessageRepository
         return $message;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function findAll(QueryCriteria $criteria = null): array
+    protected function getModelClass(): string
     {
-        if ($criteria === null) {
-            $criteria = new QueryCriteria(Message::class, new FilterSet(), new SortSet());
-        }
-
-        return $this->matcher->match($criteria);
+        return Message::class;
     }
 }
