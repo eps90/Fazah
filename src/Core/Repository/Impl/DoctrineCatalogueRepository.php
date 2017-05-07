@@ -8,7 +8,7 @@ use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Repository\CatalogueRepository;
 use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
 
-final class DoctrineCatalogueRepository extends BaseDoctrineRepository implements CatalogueRepository
+class DoctrineCatalogueRepository extends BaseDoctrineRepository implements CatalogueRepository
 {
     /**
      * {@inheritdoc}

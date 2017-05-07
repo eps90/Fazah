@@ -6,7 +6,7 @@ namespace Eps\Fazah\Core\UseCase\Command\Handler;
 use Eps\Fazah\Core\Repository\CatalogueRepository;
 use Eps\Fazah\Core\UseCase\Command\ChangeCatalogueState;
 
-final class ChangeCatalogueStateHandler
+class ChangeCatalogueStateHandler
 {
     /**
      * @var CatalogueRepository

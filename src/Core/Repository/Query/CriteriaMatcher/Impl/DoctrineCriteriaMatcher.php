@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 use Eps\Fazah\Core\Repository\Query\CriteriaMatcher\CriteriaMatcher;
 
-final class DoctrineCriteriaMatcher implements CriteriaMatcher
+class DoctrineCriteriaMatcher implements CriteriaMatcher
 {
     /**
      * @var DoctrineConditionBuilder[]

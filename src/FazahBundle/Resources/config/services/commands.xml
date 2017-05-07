@@ -6,33 +6,36 @@
 
     <services>
         <service id="fazah.command.create_project"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\CreateProjectHandler">
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\CreateProjectHandler"
+                 lazy="true">
             <argument type="service" id="fazah.repository.project"/>
-
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\CreateProject" />
         </service>
 
         <service id="fazah.command.create_catalogue"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\CreateCatalogueHandler">
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\CreateCatalogueHandler"
+                 lazy="true">
             <argument type="service" id="fazah.repository.catalogue" />
-
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\CreateCatalogue" />
         </service>
 
         <service id="fazah.command.change_project_state"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeProjectStateHandler">
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeProjectStateHandler"
+                 lazy="true">
             <argument type="service" id="fazah.repository.project" />
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeProjectState" />
         </service>
 
         <service id="fazah.command.change_catalogue_state"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeCatalogueStateHandler">
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeCatalogueStateHandler"
+                 lazy="true">
             <argument type="service" id="fazah.repository.catalogue"/>
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeCatalogueState" />
         </service>
 
         <service id="fazah.command.change_message_state"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeMessageStateHandler">
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeMessageStateHandler"
+                 lazy="true">
             <argument type="service" id="fazah.repository.message" />
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeMessageState" />
         </service>

@@ -6,7 +6,7 @@ namespace Eps\Fazah\Core\UseCase\Command\Handler;
 use Eps\Fazah\Core\Repository\ProjectRepository;
 use Eps\Fazah\Core\UseCase\Command\ChangeProjectState;
 
-final class ChangeProjectStateHandler
+class ChangeProjectStateHandler
 {
     /**
      * @var ProjectRepository

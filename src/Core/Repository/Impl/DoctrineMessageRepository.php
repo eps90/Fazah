@@ -8,7 +8,7 @@ use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
 use Eps\Fazah\Core\Repository\MessageRepository;
 
-final class DoctrineMessageRepository extends BaseDoctrineRepository implements MessageRepository
+class DoctrineMessageRepository extends BaseDoctrineRepository implements MessageRepository
 {
     /**
      * {@inheritdoc}

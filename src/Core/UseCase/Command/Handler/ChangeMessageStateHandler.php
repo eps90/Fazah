@@ -6,7 +6,7 @@ namespace Eps\Fazah\Core\UseCase\Command\Handler;
 use Eps\Fazah\Core\Repository\MessageRepository;
 use Eps\Fazah\Core\UseCase\Command\ChangeMessageState;
 
-final class ChangeMessageStateHandler
+class ChangeMessageStateHandler
 {
     /**
      * @var MessageRepository

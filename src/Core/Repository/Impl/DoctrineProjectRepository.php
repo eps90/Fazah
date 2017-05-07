@@ -8,7 +8,7 @@ use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Repository\Exception\ProjectRepositoryException;
 use Eps\Fazah\Core\Repository\ProjectRepository;
 
-final class DoctrineProjectRepository extends BaseDoctrineRepository implements ProjectRepository
+class DoctrineProjectRepository extends BaseDoctrineRepository implements ProjectRepository
 {
     /**
      * {@inheritdoc}

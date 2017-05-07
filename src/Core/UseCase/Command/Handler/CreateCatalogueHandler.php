@@ -7,7 +7,7 @@ use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Repository\CatalogueRepository;
 use Eps\Fazah\Core\UseCase\Command\CreateCatalogue;
 
-final class CreateCatalogueHandler
+class CreateCatalogueHandler
 {
     /**
      * @var CatalogueRepository

@@ -6,7 +6,8 @@
 
     <services>
         <service id="fazah.query.criteria_matcher"
-                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\DoctrineCriteriaMatcher">
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\DoctrineCriteriaMatcher"
+                 lazy="true">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 

@@ -7,7 +7,7 @@ use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Repository\ProjectRepository;
 use Eps\Fazah\Core\UseCase\Command\CreateProject;
 
-final class CreateProjectHandler
+class CreateProjectHandler
 {
     /**
      * @var ProjectRepository
