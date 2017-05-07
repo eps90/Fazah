@@ -11,5 +11,12 @@
 
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\CreateProject" />
         </service>
+
+        <service id="fazah.command.create_catalogue"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\CreateCatalogueHandler">
+            <argument type="service" id="fazah.repository.catalogue" />
+
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\CreateCatalogue" />
+        </service>
     </services>
 </container>
