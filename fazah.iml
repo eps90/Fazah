@@ -24,6 +24,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/guzzle/guzzle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/incenteev/composer-parameter-handler" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/tactician" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/tactician-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/liip/functional-test-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasnoback/symfony-config-test" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/matthiasnoback/symfony-dependency-injection-test" />
@@ -101,6 +103,8 @@
           <root url="file://$MODULE_DIR$/vendor/guzzle/guzzle" />
           <root url="file://$MODULE_DIR$/vendor/incenteev/composer-parameter-handler" />
           <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
+          <root url="file://$MODULE_DIR$/vendor/league/tactician" />
+          <root url="file://$MODULE_DIR$/vendor/league/tactician-bundle" />
           <root url="file://$MODULE_DIR$/vendor/liip/functional-test-bundle" />
           <root url="file://$MODULE_DIR$/vendor/matthiasnoback/symfony-config-test" />
           <root url="file://$MODULE_DIR$/vendor/matthiasnoback/symfony-dependency-injection-test" />
@@ -175,6 +179,8 @@
           <root url="file://$MODULE_DIR$/vendor/guzzle/guzzle" />
           <root url="file://$MODULE_DIR$/vendor/incenteev/composer-parameter-handler" />
           <root url="file://$MODULE_DIR$/vendor/jdorn/sql-formatter" />
+          <root url="file://$MODULE_DIR$/vendor/league/tactician" />
+          <root url="file://$MODULE_DIR$/vendor/league/tactician-bundle" />
           <root url="file://$MODULE_DIR$/vendor/liip/functional-test-bundle" />
           <root url="file://$MODULE_DIR$/vendor/matthiasnoback/symfony-config-test" />
           <root url="file://$MODULE_DIR$/vendor/matthiasnoback/symfony-dependency-injection-test" />
