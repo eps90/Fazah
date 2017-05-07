@@ -22,5 +22,6 @@ class FazahExtension extends Extension
         );
         $loader->load('query.xml');
         $loader->load('repositories.xml');
+        $loader->load('commands.xml');
     }
 }

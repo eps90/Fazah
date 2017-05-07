@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="fazah.command.create_project"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\CreateProjectHandler">
+            <argument type="service" id="fazah.repository.project"/>
+
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\CreateProject" />
+        </service>
+    </services>
+</container>
