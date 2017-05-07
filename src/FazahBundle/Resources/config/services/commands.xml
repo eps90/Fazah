@@ -30,5 +30,11 @@
             <argument type="service" id="fazah.repository.catalogue"/>
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeCatalogueState" />
         </service>
+
+        <service id="fazah.command.change_message_state"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeMessageStateHandler">
+            <argument type="service" id="fazah.repository.message" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeMessageState" />
+        </service>
     </services>
 </container>
