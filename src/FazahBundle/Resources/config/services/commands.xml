@@ -19,10 +19,16 @@
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\CreateCatalogue" />
         </service>
 
-        <service id="fazah.command.change_catalogue_state"
+        <service id="fazah.command.change_project_state"
                  class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeProjectStateHandler">
             <argument type="service" id="fazah.repository.project" />
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeProjectState" />
+        </service>
+
+        <service id="fazah.command.change_catalogue_state"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeCatalogueStateHandler">
+            <argument type="service" id="fazah.repository.catalogue"/>
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeCatalogueState" />
         </service>
     </services>
 </container>
