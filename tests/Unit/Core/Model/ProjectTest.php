@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
+use Eps\Fazah\Core\Model\ValueObject\ProjectConfiguration;
 use PHPUnit\Framework\TestCase;
 
 class ProjectTest extends TestCase
@@ -91,6 +92,15 @@ class ProjectTest extends TestCase
     /**
      * @test
      */
+    public function itShouldHaveInitiallyEmptyConfiguration(): void
+    {
+        $expectedConfig = ProjectConfiguration::restoreFrom([]);
+        static::assertEquals($expectedConfig, $this->project->getConfig());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToRestoreProjectFromGivenValues(): void
     {
         $name = 'My project';
@@ -100,11 +110,13 @@ class ProjectTest extends TestCase
             Carbon::parse('2014-01-16 01:00:00'),
             true
         );
-        $project = Project::restoreFrom($projectId, $name, $metadata);
+        $configuration = ProjectConfiguration::restoreFrom(['fr', 'en']);
+        $project = Project::restoreFrom($projectId, $name, $metadata, $configuration);
 
         static::assertEquals($projectId, $project->getId());
         static::assertEquals($name, $project->getName());
         static::assertEquals($metadata, $project->getMetadata());
+        static::assertEquals($configuration, $project->getConfig());
     }
 
     /**
@@ -130,7 +142,8 @@ class ProjectTest extends TestCase
                 Carbon::now(),
                 Carbon::now(),
                 false
-            )
+            ),
+            ProjectConfiguration::restoreFrom(['fr', 'en', 'pl'])
         );
         $project->enable();
 

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
+use Eps\Fazah\Core\Model\ValueObject\ProjectConfiguration;
 use Eps\Fazah\Core\Repository\ProjectRepository;
 use Eps\Fazah\Core\UseCase\Command\ChangeProjectState;
 use Eps\Fazah\Core\UseCase\Command\Handler\ChangeProjectStateHandler;
@@ -76,7 +77,8 @@ class ChangeProjectStateHandlerTest extends TestCase
                 Carbon::now(),
                 Carbon::now(),
                 false
-            )
+            ),
+            ProjectConfiguration::restoreFrom(['en'])
         );
         $this->projectRepo->expects($this->once())
             ->method('find')

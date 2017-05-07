@@ -10,6 +10,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
+use Eps\Fazah\Core\Model\ValueObject\ProjectConfiguration;
 
 final class AddProjects extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -26,7 +27,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
         $firstProject = Project::restoreFrom(
             new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
             'my-awesome-project',
-            $firstProjectMeta
+            $firstProjectMeta,
+            ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
         );
         $manager->persist($firstProject);
 
@@ -38,7 +40,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
         $secondProject = Project::restoreFrom(
             new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
             'yet-another-cool-project',
-            $secondProjectMeta
+            $secondProjectMeta,
+            ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
         );
         $manager->persist($secondProject);
 
@@ -50,7 +53,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
         $disabledProject = Project::restoreFrom(
             new ProjectId('9b669c76-7a80-4d3f-9191-37c1eda80a05'),
             'disabled-project',
-            $disabledProjectMeta
+            $disabledProjectMeta,
+            ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
         );
         $manager->persist($disabledProject);
 

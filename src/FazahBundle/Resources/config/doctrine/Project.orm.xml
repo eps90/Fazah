@@ -7,5 +7,6 @@
 
         <field name="name" type="text" nullable="false" />
         <embedded name="metadata" class="Eps\Fazah\Core\Model\ValueObject\Metadata" use-column-prefix="false" />
+        <embedded name="config" class="\Eps\Fazah\Core\Model\ValueObject\ProjectConfiguration" use-column-prefix="false" />
     </entity>
 </doctrine-mapping>
