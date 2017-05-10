@@ -21,11 +21,7 @@ class ChangeCatalogueStateHandler
     public function handle(ChangeCatalogueState $command): void
     {
         $catalogue = $this->catalogueRepo->find($command->getCatalogueId());
-        if ($command->shouldBeEnabled()) {
-            $catalogue->enable();
-        } else {
-            $catalogue->disable();
-        }
+        $command->shouldBeEnabled() ? $catalogue->enable() : $catalogue->disable();
 
         $this->catalogueRepo->save($catalogue);
     }

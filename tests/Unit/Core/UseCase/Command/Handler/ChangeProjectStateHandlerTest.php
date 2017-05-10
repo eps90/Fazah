@@ -28,7 +28,7 @@ class ChangeProjectStateHandlerTest extends TestCase
     protected function setUp()
     {
         parent::setUp();
-        
+
         $this->projectRepo = $this->createMock(ProjectRepository::class);
         $this->handler = new ChangeProjectStateHandler($this->projectRepo);
     }

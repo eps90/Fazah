@@ -21,11 +21,8 @@ class ChangeMessageStateHandler
     public function handle(ChangeMessageState $command): void
     {
         $message = $this->messageRepo->find($command->getMessageId());
-        if ($command->shouldBeEnabled()) {
-            $message->enable();
-        } else {
-            $message->disable();
-        }
+        $command->shouldBeEnabled() ? $message->enable() : $message->disable();
+
         $this->messageRepo->save($message);
     }
 }

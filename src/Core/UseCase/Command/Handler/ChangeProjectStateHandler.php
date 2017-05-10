@@ -21,11 +21,7 @@ class ChangeProjectStateHandler
     public function handle(ChangeProjectState $command): void
     {
         $project = $this->projectRepo->find($command->getProjectId());
-        if ($command->shouldBeEnabled()) {
-            $project->enable();
-        } else {
-            $project->disable();
-        }
+        $command->shouldBeEnabled() ? $project->enable() : $project->disable();
 
         $this->projectRepo->save($project);
     }

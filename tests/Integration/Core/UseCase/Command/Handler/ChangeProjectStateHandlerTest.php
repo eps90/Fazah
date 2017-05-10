@@ -19,13 +19,13 @@ class ChangeProjectStateHandlerTest extends WebTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->commandBus = $this->getContainer()->get('tactician.commandbus');
         $this->loadFixtures([
             AddProjects::class
         ]);
     }
-    
+
     /**
      * @test
      */
