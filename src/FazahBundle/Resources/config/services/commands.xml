@@ -39,5 +39,14 @@
             <argument type="service" id="fazah.repository.message" />
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeMessageState" />
         </service>
+
+        <service id="fazah.command.add_message"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\AddMessageHandler"
+                 lazy="true">
+            <argument type="service" id="fazah.repository.message"/>
+            <argument type="service" id="fazah.repository.catalogue"/>
+            <argument type="service" id="fazah.repository.project"/>
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\AddMessage" />
+        </service>
     </services>
 </container>
