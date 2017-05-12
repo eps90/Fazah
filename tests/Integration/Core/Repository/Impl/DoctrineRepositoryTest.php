@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Integration\Core\Repository\Impl;
 
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Eps\Fazah\Core\Model\Identity\Identity;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
@@ -17,6 +18,7 @@ abstract class DoctrineRepositoryTest extends WebTestCase
     abstract public function missingModelProvider(): array;
     abstract public function findAllProvider(): array;
     abstract public function updateProvider(): array;
+    abstract public function uniqueModelProvider(): array;
 
     protected function setUp()
     {
@@ -24,7 +26,6 @@ abstract class DoctrineRepositoryTest extends WebTestCase
 
         $this->loadFixtures($this->getRepositoryFixtures());
     }
-
 
     /**
      * @test
@@ -96,5 +97,15 @@ abstract class DoctrineRepositoryTest extends WebTestCase
         $actualModel = $repository->find($inputModel->getId());
 
         static::assertTrue($expect($actualModel));
+    }
+
+    /**
+     * @test
+     * @dataProvider uniqueModelProvider
+     */
+    public function itShouldntBeAbleToAddDuplicatedModel(array $instances): void
+    {
+        $this->expectException(UniqueConstraintViolationException::class);
+        $this->getRepositoryInstance()->save(...$instances);
     }
 }

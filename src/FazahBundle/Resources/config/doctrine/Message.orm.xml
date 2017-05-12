@@ -5,6 +5,10 @@
                                       http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
     <entity name="Eps\Fazah\Core\Model\Message" table="messages">
+        <unique-constraints>
+            <unique-constraint columns="catalogue_id,message_key,language"/>
+        </unique-constraints>
+
         <id name="id" type="message_id" column="id" />
 
         <field name="catalogueId" type="catalogue_id" nullable="false" column="catalogue_id" />

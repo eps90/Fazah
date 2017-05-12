@@ -225,4 +225,16 @@ trait ProjectRepositoryDataProvider
             ]
         ];
     }
+
+    public function uniqueModelProvider(): array
+    {
+        return [
+            [
+                'models' => [
+                    Project::create('project'),
+                    Project::create('project')
+                ]
+            ]
+        ];
+    }
 }

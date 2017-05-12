@@ -52,7 +52,7 @@ trait CatalogueRepositoryDataProvider
                 'catalogues' => [
                     Catalogue::restoreFrom(
                         CatalogueId::generate(),
-                        'second-catalogue',
+                        'my-saved-catalogue',
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         Metadata::restoreFrom(
                             Carbon::parse('2017-01-01 12:00:01'),
@@ -338,6 +338,18 @@ trait CatalogueRepositoryDataProvider
                 'expect' => function (Catalogue $catalogue) {
                     return $catalogue->getMetadata()->isEnabled() === false;
                 }
+            ]
+        ];
+    }
+
+    public function uniqueModelProvider(): array
+    {
+        return [
+            [
+                'models' => [
+                    Catalogue::create('my.catalogue', new ProjectId('29e80c6e-dd58-40b1-9cdf-f70be9776cec')),
+                    Catalogue::create('my.catalogue', new ProjectId('29e80c6e-dd58-40b1-9cdf-f70be9776cec')),
+                ]
             ]
         ];
     }

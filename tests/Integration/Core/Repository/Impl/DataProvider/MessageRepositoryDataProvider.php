@@ -333,4 +333,34 @@ trait MessageRepositoryDataProvider
             ]
         ];
     }
+
+    public function uniqueModelProvider(): array
+    {
+        return [
+            'same_message' => [
+                'models' => [
+                    Message::create(
+                        Translation::create('m', 'M', 'fr'),
+                        new CatalogueId('eb1042e8-cc92-4d09-9181-1c79b3648533')
+                    ),
+                    Message::create(
+                        Translation::create('m', 'M', 'fr'),
+                        new CatalogueId('eb1042e8-cc92-4d09-9181-1c79b3648533')
+                    )
+                ]
+            ],
+            'different_translations' => [
+                'models' => [
+                    Message::create(
+                        Translation::create('m', 'aaaa', 'fr'),
+                        new CatalogueId('eb1042e8-cc92-4d09-9181-1c79b3648533')
+                    ),
+                    Message::create(
+                        Translation::create('m', 'bbbb', 'fr'),
+                        new CatalogueId('eb1042e8-cc92-4d09-9181-1c79b3648533')
+                    )
+                ]
+            ]
+        ];
+    }
 }

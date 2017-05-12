@@ -5,7 +5,7 @@
     <entity name="Eps\Fazah\Core\Model\Project" table="projects">
         <id name="id" column="id" type="project_id" />
 
-        <field name="name" type="text" nullable="false" />
+        <field name="name" type="string" length="255" nullable="false" unique="true" />
         <embedded name="metadata" class="Eps\Fazah\Core\Model\ValueObject\Metadata" use-column-prefix="false" />
         <embedded name="config" class="\Eps\Fazah\Core\Model\ValueObject\ProjectConfiguration" use-column-prefix="false" />
     </entity>
