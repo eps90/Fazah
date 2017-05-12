@@ -68,6 +68,7 @@ class AddMessageHandlerTest extends TestCase
             $catalogueId,
             'my catalogue',
             $projectId,
+            null,
             Metadata::initialize()
         );
         $this->catalogueRepository->expects($this->once())

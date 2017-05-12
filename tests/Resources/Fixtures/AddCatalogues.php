@@ -59,6 +59,7 @@ final class AddCatalogues extends AbstractFixture implements OrderedFixtureInter
                 new CatalogueId($catalogueUuids[$idx]),
                 $catalogueName,
                 $projects[$idx]->getId(),
+                null,
                 $metadata
             );
             $manager->persist($catalogue);

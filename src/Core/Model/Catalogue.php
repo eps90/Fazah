@@ -26,17 +26,26 @@ class Catalogue
     private $projectId;
 
     /**
+     * @var CatalogueId
+     */
+    private $parentCatalogueId;
+
+    /**
      * @var Metadata
      */
     private $metadata;
 
-    public static function create(string $catalogueName, ProjectId $projectId): Catalogue
-    {
+    public static function create(
+        string $catalogueName,
+        ProjectId $projectId,
+        CatalogueId $parentCatalogueId = null
+    ): Catalogue {
         $catalogue = new self();
         $catalogue->id = CatalogueId::generate();
         $catalogue->name = $catalogueName;
         $catalogue->metadata = Metadata::initialize();
         $catalogue->projectId = $projectId;
+        $catalogue->parentCatalogueId = $parentCatalogueId;
 
         return $catalogue;
     }
@@ -45,12 +54,14 @@ class Catalogue
         CatalogueId $catalogueId,
         string $name,
         ProjectId $projectId,
+        ?CatalogueId $parentCatalogueId,
         Metadata $metadata
     ): Catalogue {
         $catalogue = new self();
         $catalogue->id = $catalogueId;
         $catalogue->name = $name;
         $catalogue->projectId = $projectId;
+        $catalogue->parentCatalogueId = $parentCatalogueId;
         $catalogue->metadata = $metadata;
 
         return $catalogue;
@@ -87,6 +98,14 @@ class Catalogue
     public function getProjectId(): ProjectId
     {
         return $this->projectId;
+    }
+
+    /**
+     * @return CatalogueId
+     */
+    public function getParentCatalogueId(): ?CatalogueId
+    {
+        return $this->parentCatalogueId;
     }
 
     /**

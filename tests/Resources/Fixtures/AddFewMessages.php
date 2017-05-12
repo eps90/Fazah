@@ -26,6 +26,7 @@ final class AddFewMessages extends AbstractFixture
             $catalogueId,
             'Lonely catalogue',
             new ProjectId('ff054881-6ddb-4f78-bdfb-681068b610ee'),
+            null,
             Metadata::restoreFrom(
                 Carbon::parse('2016-03-01 12:00:00'),
                 Carbon::parse('2016-03-02 12:00:00'),

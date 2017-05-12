@@ -11,6 +11,7 @@
 
         <field name="name" type="string" length="255" nullable="false" />
         <field name="projectId" type="project_id" nullable="false" column="project_id" />
+        <field name="parentCatalogueId" type="catalogue_id" nullable="true" column="parent_catalogue_id" />
 
         <embedded name="metadata" class="Eps\Fazah\Core\Model\ValueObject\Metadata" use-column-prefix="false" />
     </entity>

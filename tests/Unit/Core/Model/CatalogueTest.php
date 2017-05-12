@@ -99,11 +99,36 @@ class CatalogueTest extends TestCase
     /**
      * @test
      */
+    public function itShouldHaveInitiallyEmptyCatalogueId(): void
+    {
+        $catalogue = Catalogue::create('my catalogue', ProjectId::generate());
+        static::assertNull($catalogue->getParentCatalogueId());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToCreateCatalogueWithParentReference(): void
+    {
+        $parentCatalogueId = CatalogueId::generate();
+        $catalogue = Catalogue::create(
+            'My catalogue',
+            ProjectId::generate(),
+            $parentCatalogueId
+        );
+
+        static::assertEquals($parentCatalogueId, $catalogue->getParentCatalogueId());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToRestoreModelFromGivenValues(): void
     {
         $name = 'My catalogue';
         $catalogueId = CatalogueId::generate();
         $projectId = ProjectId::generate();
+        $parentCatalogueId = CatalogueId::generate();
         $metadata = Metadata::restoreFrom(
             Carbon::parse('2016-01-01 15:00:00'),
             Carbon::parse('2016-01-02 12:00:00'),
@@ -114,12 +139,14 @@ class CatalogueTest extends TestCase
             $catalogueId,
             $name,
             $projectId,
+            $parentCatalogueId,
             $metadata
         );
 
         static::assertEquals($catalogueId, $catalogue->getId());
         static::assertEquals($name, $catalogue->getName());
         static::assertEquals($projectId, $catalogue->getProjectId());
+        static::assertEquals($parentCatalogueId, $catalogue->getParentCatalogueId());
         static::assertEquals($metadata, $catalogue->getMetadata());
     }
 
@@ -157,6 +184,7 @@ class CatalogueTest extends TestCase
             CatalogueId::generate(),
             'My disabled catalogue',
             ProjectId::generate(),
+            null,
             Metadata::restoreFrom(
                 Carbon::now(),
                 Carbon::now(),

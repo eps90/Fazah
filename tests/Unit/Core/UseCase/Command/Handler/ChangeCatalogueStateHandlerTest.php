@@ -46,6 +46,7 @@ class ChangeCatalogueStateHandlerTest extends TestCase
             $catalogueId,
             'My catalogue',
             ProjectId::generate(),
+            null,
             Metadata::restoreFrom(
                 Carbon::now(),
                 Carbon::now(),
@@ -83,6 +84,7 @@ class ChangeCatalogueStateHandlerTest extends TestCase
             $catalogueId,
             'My catalogue',
             ProjectId::generate(),
+            null,
             Metadata::restoreFrom(
                 Carbon::now(),
                 Carbon::now(),
