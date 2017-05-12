@@ -10,6 +10,19 @@ use PHPUnit\Framework\TestCase;
 class MetadataTest extends TestCase
 {
     /**
+     * @var Carbon
+     */
+    private $now;
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->now = Carbon::parse('2015-01-01 12:00:00');
+        Carbon::setTestNow($this->now);
+    }
+
+    /**
      * @test
      */
     public function itShouldBeAbleToSetDisabledState(): void

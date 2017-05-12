@@ -70,6 +70,7 @@ final class Metadata
     {
         $newMetadata = clone $this;
         $newMetadata->enabled = false;
+        $newMetadata->updatedAt = Carbon::now();
 
         return $newMetadata;
     }
@@ -78,6 +79,7 @@ final class Metadata
     {
         $newMetadata = clone $this;
         $newMetadata->enabled = true;
+        $newMetadata->updatedAt = Carbon::now();
 
         return $newMetadata;
     }
