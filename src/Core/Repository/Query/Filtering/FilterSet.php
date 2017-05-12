@@ -15,6 +15,11 @@ final class FilterSet
         $this->filters = $conditions;
     }
 
+    public static function none(): FilterSet
+    {
+        return new self([]);
+    }
+
     public function contains(string $filterName): bool
     {
         return array_key_exists($filterName, $this->filters);
@@ -23,5 +28,10 @@ final class FilterSet
     public function getFilter(string $propertyName)
     {
         return $this->filters[$propertyName] ?? null;
+    }
+
+    public function isEmpty(): bool
+    {
+        return empty($this->filters);
     }
 }

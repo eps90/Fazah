@@ -25,6 +25,16 @@ class FilterSetTest extends TestCase
     /**
      * @test
      */
+    public function itShouldCreateEmptySet(): void
+    {
+        $filterSet = FilterSet::none();
+
+        static::assertTrue($filterSet->isEmpty());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldReturnAValueByPropertyName(): void
     {
         $expectedResult = 'abc';
@@ -41,5 +51,17 @@ class FilterSetTest extends TestCase
     {
         static::assertTrue($this->filterSet->contains('my_property'));
         static::assertFalse($this->filterSet->contains('missing_filter'));
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldDefineWhetherItIsEmpty(): void
+    {
+        $nonEmptySet = new FilterSet(['aaa' => 'bbb']);
+        $emptySet = new FilterSet();
+
+        static::assertFalse($nonEmptySet->isEmpty());
+        static::assertTrue($emptySet->isEmpty());
     }
 }

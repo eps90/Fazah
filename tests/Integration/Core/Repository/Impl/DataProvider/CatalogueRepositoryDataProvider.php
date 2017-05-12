@@ -135,8 +135,7 @@ trait CatalogueRepositoryDataProvider
                     Catalogue::class,
                     new FilterSet([
                         'project_id' => new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260')
-                    ]),
-                    new SortSet()
+                    ])
                 ),
                 'expected' => [
                     Catalogue::restoreFrom(
@@ -175,8 +174,7 @@ trait CatalogueRepositoryDataProvider
             'by_enabled' => [
                 'criteria' => new QueryCriteria(
                     Catalogue::class,
-                    new FilterSet(['enabled' => false]),
-                    new SortSet()
+                    new FilterSet(['enabled' => false])
                 ),
                 'expected' => [
                     Catalogue::restoreFrom(
@@ -195,8 +193,7 @@ trait CatalogueRepositoryDataProvider
             'by_phrase' => [
                 'criteria' => new QueryCriteria(
                     Catalogue::class,
-                    new FilterSet(['phrase' => 'forth']),
-                    new SortSet()
+                    new FilterSet(['phrase' => 'forth'])
                 ),
                 'expected' => [
                     Catalogue::restoreFrom(
@@ -215,7 +212,7 @@ trait CatalogueRepositoryDataProvider
             'sort_by_updated' => [
                 'criteria' => new QueryCriteria(
                     Catalogue::class,
-                    new FilterSet(),
+                    null,
                     new SortSet(...[Sorting::asc('updated_at')])
                 ),
                 'expected' => [

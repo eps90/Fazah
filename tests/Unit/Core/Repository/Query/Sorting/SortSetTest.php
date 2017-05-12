@@ -29,6 +29,16 @@ class SortSetTest extends TestCase
     /**
      * @test
      */
+    public function itShouldCreateEmptySortSet(): void
+    {
+        $sortSet = SortSet::none();
+
+        static::assertTrue($sortSet->isEmpty());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldThrowWhenInputObjectIsNotSortingObject(): void
     {
         $this->expectException(\Error::class);

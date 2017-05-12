@@ -29,11 +29,11 @@ final class QueryCriteria
      * @param FilterSet $filterSet
      * @param SortSet $sortSet
      */
-    public function __construct(string $modelClass, FilterSet $filterSet, SortSet $sortSet)
+    public function __construct(string $modelClass, FilterSet $filterSet = null, SortSet $sortSet = null)
     {
         $this->modelClass = $modelClass;
-        $this->filters = $filterSet;
-        $this->sorting = $sortSet;
+        $this->filters = $filterSet ?? FilterSet::none();
+        $this->sorting = $sortSet ?? SortSet::none();
     }
 
     /**

@@ -15,6 +15,11 @@ final class SortSet
         $this->sorting = $sorting;
     }
 
+    public static function none(): SortSet
+    {
+        return new self();
+    }
+
     /**
      * @return Sorting[]
      */

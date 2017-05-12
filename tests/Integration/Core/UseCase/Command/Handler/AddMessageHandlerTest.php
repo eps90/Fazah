@@ -8,7 +8,6 @@ use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
-use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
 use Eps\Fazah\Core\UseCase\Command\AddMessage;
 use Eps\Fazah\Tests\Resources\Fixtures\AddCatalogues;
 use Eps\Fazah\Tests\Resources\Fixtures\AddProjects;
@@ -59,7 +58,7 @@ class AddMessageHandlerTest extends WebTestCase
         $this->commandBus->handle($command);
 
         $messagesRepo = $this->getContainer()->get('fazah.repository.message');
-        $criteria = new QueryCriteria(Message::class, new FilterSet(['phrase' => $messageKey]), new SortSet());
+        $criteria = new QueryCriteria(Message::class, new FilterSet(['phrase' => $messageKey]));
         $messages = $messagesRepo->findAll($criteria);
 
         $expectedResult = [null, null, null];
@@ -82,7 +81,7 @@ class AddMessageHandlerTest extends WebTestCase
         $this->commandBus->handle($command);
 
         $messagesRepo = $this->getContainer()->get('fazah.repository.message');
-        $criteria = new QueryCriteria(Message::class, new FilterSet(['phrase' => $messageKey]), new SortSet());
+        $criteria = new QueryCriteria(Message::class, new FilterSet(['phrase' => $messageKey]));
         $messages = $messagesRepo->findAll($criteria);
         $expectedLanguages = ['en', 'fr', 'pl'];
         $actualLanguages = array_map(function (Message $message) {

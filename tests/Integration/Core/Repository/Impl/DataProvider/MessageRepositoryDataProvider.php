@@ -12,7 +12,6 @@ use Eps\Fazah\Core\Model\ValueObject\Translation;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
 use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
-use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
 
 trait MessageRepositoryDataProvider
 {
@@ -85,8 +84,7 @@ trait MessageRepositoryDataProvider
             'by_catalogue_id' => [
                 'criteria' => new QueryCriteria(
                     Message::class,
-                    new FilterSet(['catalogue_id' => new CatalogueId('3df07fa8-80fa-4d5d-a0cb-9bcf3d830425')]),
-                    new SortSet()
+                    new FilterSet(['catalogue_id' => new CatalogueId('3df07fa8-80fa-4d5d-a0cb-9bcf3d830425')])
                 ),
                 'expected' => [
                     Message::restoreFrom(
@@ -137,8 +135,7 @@ trait MessageRepositoryDataProvider
             'disabled' => [
                 'criteria' => new QueryCriteria(
                     Message::class,
-                    new FilterSet(['enabled' => false]),
-                    new SortSet()
+                    new FilterSet(['enabled' => false])
                 ),
                 'expected' => [
                     Message::restoreFrom(
@@ -189,8 +186,7 @@ trait MessageRepositoryDataProvider
             'by_phrase_in_translation' => [
                 'criteria' => new QueryCriteria(
                     Message::class,
-                    new FilterSet(['phrase' => 'message #2']),
-                    new SortSet()
+                    new FilterSet(['phrase' => 'message #2'])
                 ),
                 'expected' => [
                     Message::restoreFrom(
@@ -241,8 +237,7 @@ trait MessageRepositoryDataProvider
             'by_phrase_in_message_key' => [
                 'criteria' => new QueryCriteria(
                     Message::class,
-                    new FilterSet(['phrase' => 'message.2']),
-                    new SortSet()
+                    new FilterSet(['phrase' => 'message.2'])
                 ),
                 'expected' => [
                     Message::restoreFrom(
@@ -293,8 +288,7 @@ trait MessageRepositoryDataProvider
             'by_language' => [
                 'criteria' => new QueryCriteria(
                     Message::class,
-                    new FilterSet(['language' => 'pl', 'phrase' => 'message.2']),
-                    new SortSet()
+                    new FilterSet(['language' => 'pl', 'phrase' => 'message.2'])
                 ),
                 'expected' => [
                     Message::restoreFrom(

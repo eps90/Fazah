@@ -102,8 +102,7 @@ trait ProjectRepositoryDataProvider
             'enabled_only' => [
                 'criteria' => new QueryCriteria(
                     Project::class,
-                    new FilterSet(['enabled' => false]),
-                    new SortSet()
+                    new FilterSet(['enabled' => false])
                 ),
                 'expected' => [
                     Project::restoreFrom(
@@ -122,8 +121,7 @@ trait ProjectRepositoryDataProvider
             'by_phrase' => [
                 'criteria' => new QueryCriteria(
                     Project::class,
-                    new FilterSet(['phrase' => 'awesome']),
-                    new SortSet()
+                    new FilterSet(['phrase' => 'awesome'])
                 ),
                 'expected' => [
                     Project::restoreFrom(
@@ -142,7 +140,7 @@ trait ProjectRepositoryDataProvider
             'sort_by_updated_asc' => [
                 'criteria' => new QueryCriteria(
                     Project::class,
-                    new FilterSet(),
+                    null,
                     new SortSet(...[Sorting::asc('updated_at')])
                 ),
                 'expected' => [
