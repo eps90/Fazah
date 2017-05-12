@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Eps\Fazah\Tests\Unit\Core\UseCase\Command\Handler;
 
 use Eps\Fazah\Core\Model\Catalogue;
+use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Repository\CatalogueRepository;
 use Eps\Fazah\Core\UseCase\Command\CreateCatalogue;
@@ -37,7 +38,7 @@ class CreateCatalogueHandlerTest extends TestCase
     {
         $catalogueName = 'New catalogue';
         $projectId = ProjectId::generate();
-        $command = new CreateCatalogue($catalogueName, $projectId);
+        $command = new CreateCatalogue($catalogueName, $projectId, null);
 
         $this->catalogueRepo->expects($this->once())
             ->method('save')
@@ -46,6 +47,31 @@ class CreateCatalogueHandlerTest extends TestCase
                     function (Catalogue $catalogue) use ($catalogueName, $projectId) {
                         return $catalogue->getName() === $catalogueName
                             && $catalogue->getProjectId() === $projectId;
+                    }
+                )
+            );
+
+        $this->handler->handle($command);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldAttachParentCatalogueToNewCatalogue(): void
+    {
+        $catalogueName = 'New catalogue';
+        $projectId = ProjectId::generate();
+        $parentCatalogueId = CatalogueId::generate();
+        $command = new CreateCatalogue($catalogueName, $projectId, $parentCatalogueId);
+
+        $this->catalogueRepo->expects($this->once())
+            ->method('save')
+            ->with(
+                $this->callback(
+                    function (Catalogue $catalogue) use ($catalogueName, $projectId, $parentCatalogueId) {
+                        return $catalogue->getName() === $catalogueName
+                            && $catalogue->getProjectId() === $projectId
+                            && $catalogue->getParentCatalogueId() === $parentCatalogueId;
                     }
                 )
             );

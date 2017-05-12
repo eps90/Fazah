@@ -21,7 +21,7 @@ class CreateCatalogueHandler
 
     public function handle(CreateCatalogue $command): void
     {
-        $catalogue = Catalogue::create($command->getName(), $command->getProjectId());
+        $catalogue = Catalogue::create($command->getName(), $command->getProjectId(), $command->getParentCatalogueId());
         $this->catalogueRepo->save($catalogue);
     }
 }

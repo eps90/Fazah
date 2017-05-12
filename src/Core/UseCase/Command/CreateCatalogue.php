@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\UseCase\Command;
 
+use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 
 final class CreateCatalogue
@@ -17,10 +18,16 @@ final class CreateCatalogue
      */
     private $projectId;
 
-    public function __construct(string $name, ProjectId $projectId)
+    /**
+     * @var CatalogueId|null
+     */
+    private $parentCatalogueId;
+
+    public function __construct(string $name, ProjectId $projectId, ?CatalogueId $parentCatalogueId)
     {
         $this->name = $name;
         $this->projectId = $projectId;
+        $this->parentCatalogueId = $parentCatalogueId;
     }
 
     /**
@@ -37,5 +44,13 @@ final class CreateCatalogue
     public function getProjectId(): ProjectId
     {
         return $this->projectId;
+    }
+
+    /**
+     * @return CatalogueId|null
+     */
+    public function getParentCatalogueId(): ?CatalogueId
+    {
+        return $this->parentCatalogueId;
     }
 }
