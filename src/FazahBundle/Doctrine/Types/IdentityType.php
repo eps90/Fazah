@@ -10,13 +10,18 @@ abstract class IdentityType extends GuidType
 {
     abstract protected function getIdentityType(): string;
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
-        $expectedClass = $this->getIdentityType();
-        if (!is_a($value, $expectedClass)) {
-            throw new \InvalidArgumentException(sprintf('Input value must be a type of %s', $expectedClass));
+        $result = null;
+        if ($value !== null) {
+            $expectedClass = $this->getIdentityType();
+            if (!is_a($value, $expectedClass)) {
+                throw new \InvalidArgumentException(sprintf('Input value must be a type of %s', $expectedClass));
+            }
+
+            $result = $value->getId();
         }
 
-        return $value->getId();
+        return $result;
     }
 }

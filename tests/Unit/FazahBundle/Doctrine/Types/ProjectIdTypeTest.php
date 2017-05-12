@@ -55,6 +55,17 @@ class ProjectIdTypeTest extends TestCase
     /**
      * @test
      */
+    public function itShouldConvertToDatabaseNullWhenValueIsNull(): void
+    {
+        $projectId = null;
+        $actualResult = $this->type->convertToDatabaseValue($projectId, $this->platform);
+
+        static::assertEquals($projectId, $actualResult);
+    }
+
+    /**
+     * @test
+     */
     public function itShouldThrowWhenInputIsNotAProjectId(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -74,6 +85,17 @@ class ProjectIdTypeTest extends TestCase
         $actualResult = $this->type->convertToPHPValue($plainProjectId, $this->platform);
 
         static::assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldConvertDatabaseNullToNullIdentity(): void
+    {
+        $nullId = null;
+        $actualResult = $this->type->convertToPHPValue($nullId, $this->platform);
+
+        self::assertNull($nullId, $actualResult);
     }
 
     /**

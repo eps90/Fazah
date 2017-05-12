@@ -10,9 +10,15 @@ final class ProjectIdType extends IdentityType
 {
     const PROJECT_ID = 'project_id';
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): ProjectId
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?ProjectId
     {
-        return new ProjectId($value);
+        $result = null;
+
+        if ($value !== null) {
+            $result = new ProjectId($value);
+        }
+
+        return $result;
     }
 
     protected function getIdentityType(): string

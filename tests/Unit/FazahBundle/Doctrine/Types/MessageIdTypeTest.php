@@ -56,6 +56,17 @@ class MessageIdTypeTest extends TestCase
     /**
      * @test
      */
+    public function itShouldConvertToDatabaseNullWhenValueIsNull(): void
+    {
+        $messageId = null;
+        $actualResult = $this->type->convertToDatabaseValue($messageId, $this->platform);
+
+        static::assertEquals($messageId, $actualResult);
+    }
+
+    /**
+     * @test
+     */
     public function itShouldThrowWhenInputValueIsNotAMessgeId(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -75,6 +86,17 @@ class MessageIdTypeTest extends TestCase
         $actualResult = $this->type->convertToPHPValue($someUuid, $this->platform);
 
         static::assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldConvertDatabaseNullToNullIdentity(): void
+    {
+        $nullId = null;
+        $actualResult = $this->type->convertToPHPValue($nullId, $this->platform);
+
+        self::assertNull($nullId, $actualResult);
     }
 
     /**

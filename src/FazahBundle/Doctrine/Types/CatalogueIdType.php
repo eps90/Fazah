@@ -10,9 +10,15 @@ final class CatalogueIdType extends IdentityType
 {
     const CATALOGUE_ID = 'catalogue_id';
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): CatalogueId
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?CatalogueId
     {
-        return new CatalogueId($value);
+        $result = null;
+
+        if ($value !== null) {
+            $result = new CatalogueId($value);
+        }
+
+        return $result;
     }
 
     public function getName(): string

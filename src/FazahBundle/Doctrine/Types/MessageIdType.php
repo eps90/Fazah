@@ -10,9 +10,15 @@ final class MessageIdType extends IdentityType
 {
     const MESSAGE_ID = 'message_id';
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): MessageId
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?MessageId
     {
-        return new MessageId($value);
+        $result = null;
+
+        if ($value !== null) {
+            $result = new MessageId($value);
+        }
+
+        return $result;
     }
 
     public function getName(): string

@@ -5,7 +5,6 @@ namespace Eps\Fazah\Tests\Unit\FazahBundle\Doctrine\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
-use DoctrineExtensions\Query\Mysql\Acos;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\FazahBundle\Doctrine\Types\CatalogueIdType;
 use PHPUnit\Framework\TestCase;
@@ -23,7 +22,7 @@ class CatalogueIdTypeTest extends TestCase
      */
     private $platform;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
 
@@ -31,7 +30,6 @@ class CatalogueIdTypeTest extends TestCase
             Type::addType(CatalogueIdType::CATALOGUE_ID, CatalogueIdType::class);
         }
     }
-
 
     protected function setUp()
     {
@@ -57,6 +55,17 @@ class CatalogueIdTypeTest extends TestCase
     /**
      * @test
      */
+    public function itShouldConvertToDatabaseNullWhenValueIsNull(): void
+    {
+        $catalogueId = null;
+        $actualResult = $this->type->convertToDatabaseValue($catalogueId, $this->platform);
+
+        static::assertEquals($catalogueId, $actualResult);
+    }
+
+    /**
+     * @test
+     */
     public function itShouldThrowWhenInputIsNotACatalogueId(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -76,6 +85,17 @@ class CatalogueIdTypeTest extends TestCase
         $actualResult = $this->type->convertToPHPValue($plainUuid, $this->platform);
 
         static::assertEquals($expectedResult, $actualResult);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldConvertDatabaseNullToNullIdentity(): void
+    {
+        $nullId = null;
+        $actualResult = $this->type->convertToPHPValue($nullId, $this->platform);
+
+        self::assertNull($nullId, $actualResult);
     }
 
     /**
