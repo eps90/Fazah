@@ -32,8 +32,10 @@ class EditProjectHandlerTest extends WebTestCase
     public function itShouldEditProject(): void
     {
         $newName = 'updated_project';
+        $newLanguages = ['en', 'pl', 'fr', 'de'];
         $updateMap = [
-            'name' => $newName
+            'name' => $newName,
+            'available_languages' => $newLanguages
         ];
         $projectId = new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260');
         $command = new EditProject($projectId, $updateMap);
@@ -44,6 +46,7 @@ class EditProjectHandlerTest extends WebTestCase
         $project = $projectRepo->find($projectId);
 
         static::assertEquals($newName, $project->getName());
+        static::assertEquals($newLanguages, $project->getConfig()->getAvailableLanguages());
     }
 
 }

@@ -15,7 +15,8 @@ class EditProjectTest extends TestCase
     public function itShouldAssignProjectDataToProperty(): void
     {
         $projectData = [
-            'name' => 'This name will change'
+            'name' => 'This name will change',
+            'available_languages' => ['en', 'fr', 'pl']
         ];
         $command = new EditProject(ProjectId::generate(), $projectData);
 

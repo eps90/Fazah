@@ -43,7 +43,7 @@ final class EditProject
     private function resolveOptions(array $properties): array
     {
         $resolver = new OptionsResolver();
-        $resolver->setDefined(['name']);
+        $resolver->setDefined(['name', 'available_languages']);
 
         return $resolver->resolve($properties);
     }
