@@ -6,68 +6,68 @@
 
     <services>
         <service id="fazah.command.create_project"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\CreateProjectHandler"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Project\CreateProjectHandler"
                  lazy="true">
             <argument type="service" id="fazah.repository.project"/>
-            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\CreateProject" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Project\CreateProject" />
         </service>
 
         <service id="fazah.command.create_catalogue"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\CreateCatalogueHandler"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Catalogue\CreateCatalogueHandler"
                  lazy="true">
             <argument type="service" id="fazah.repository.catalogue" />
-            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\CreateCatalogue" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Catalogue\CreateCatalogue" />
         </service>
 
         <service id="fazah.command.change_project_state"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeProjectStateHandler"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Project\ChangeProjectStateHandler"
                  lazy="true">
             <argument type="service" id="fazah.repository.project" />
-            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeProjectState" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Project\ChangeProjectState" />
         </service>
 
         <service id="fazah.command.change_catalogue_state"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeCatalogueStateHandler"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Catalogue\ChangeCatalogueStateHandler"
                  lazy="true">
             <argument type="service" id="fazah.repository.catalogue"/>
-            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeCatalogueState" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Catalogue\ChangeCatalogueState" />
         </service>
 
         <service id="fazah.command.change_message_state"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\ChangeMessageStateHandler"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Message\ChangeMessageStateHandler"
                  lazy="true">
             <argument type="service" id="fazah.repository.message" />
-            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\ChangeMessageState" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Message\ChangeMessageState" />
         </service>
 
         <service id="fazah.command.add_message"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\AddMessageHandler"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Message\AddMessageHandler"
                  lazy="true">
             <argument type="service" id="fazah.repository.message"/>
             <argument type="service" id="fazah.repository.catalogue"/>
             <argument type="service" id="fazah.repository.project"/>
-            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\AddMessage" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Message\AddMessage" />
         </service>
 
         <service id="fazah.command.edit_project"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\EditProjectHandler"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Project\EditProjectHandler"
                  lazy="true">
             <argument type="service" id="fazah.repository.project"/>
-            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\EditProject" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Project\EditProject" />
         </service>
 
         <service id="fazah.command.edit_catalogue"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\EditCatalogueHandler"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Catalogue\EditCatalogueHandler"
                  lazy="true">
             <argument type="service" id="fazah.repository.catalogue" />
-            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\EditCatalogue" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Catalogue\EditCatalogue" />
         </service>
 
         <service id="fazah.command.edit_message"
-                 class="Eps\Fazah\Core\UseCase\Command\Handler\EditMessageHandler"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Message\EditMessageHandler"
                  lazy="true">
             <argument type="service" id="fazah.repository.message" />
-            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\EditMessage" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Message\EditMessage" />
         </service>
     </services>
 </container>
