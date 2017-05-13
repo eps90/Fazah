@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Unit\Core\Model;
 
+use Assert\AssertionFailedException;
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
@@ -148,6 +149,43 @@ class ProjectTest extends TestCase
         $project->enable();
 
         static::assertTrue($project->getMetadata()->isEnabled());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToRenameTheProject(): void
+    {
+        $newProjectName = 'new project';
+        $this->project->rename($newProjectName);
+
+        static::assertEquals($newProjectName, $this->project->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldNotUpdateProjectNameWithEmptyString(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageRegExp('/Project name cannot be blank/');
+
+        $invalidProjectName = '';
+        $this->project->rename($invalidProjectName);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToUpdateProjectFromArray(): void
+    {
+        $newProjectName = 'new project';
+        $updateMap = [
+            'name' => $newProjectName
+        ];
+        $this->project->updateFromArray($updateMap);
+
+        static::assertEquals($newProjectName, $this->project->getName());
     }
 
     private function createNewProject(): Project

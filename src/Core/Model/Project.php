@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model;
 
+use Assert\Assertion;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use Eps\Fazah\Core\Model\ValueObject\ProjectConfiguration;
@@ -95,5 +96,18 @@ class Project
     public function enable(): void
     {
         $this->metadata = $this->metadata->markAsEnabled();
+    }
+
+    public function rename(string $newName): void
+    {
+        Assertion::notBlank($newName, 'Project name cannot be blank');
+        $this->name = $newName;
+    }
+
+    public function updateFromArray(array $updateMap): void
+    {
+        if (array_key_exists('name', $updateMap)) {
+            $this->rename($updateMap['name']);
+        }
     }
 }
