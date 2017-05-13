@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model\ValueObject;
 
+use Assert\Assertion;
+
 final class ProjectConfiguration
 {
     /**
@@ -32,5 +34,19 @@ final class ProjectConfiguration
     public function getAvailableLanguages(): array
     {
         return $this->availableLanguages;
+    }
+
+    /**
+     * @param string[] $newLanguages
+     * @return ProjectConfiguration
+     */
+    public function changeAvailableLanguages(array $newLanguages): ProjectConfiguration
+    {
+        Assertion::allString($newLanguages, 'Available languages must be a list of strings');
+
+        $newConfig = clone $this;
+        $newConfig->availableLanguages = array_values(array_unique($newLanguages));
+
+        return $newConfig;
     }
 }

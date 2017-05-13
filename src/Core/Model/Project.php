@@ -105,10 +105,20 @@ class Project
         $this->metadata = $this->metadata->markAsUpdated();
     }
 
+    public function changeAvailableLanguages(array $newLanguages): void
+    {
+        $this->config = $this->config->changeAvailableLanguages($newLanguages);
+        $this->metadata = $this->metadata->markAsUpdated();
+    }
+
     public function updateFromArray(array $updateMap): void
     {
         if (array_key_exists('name', $updateMap)) {
             $this->rename($updateMap['name']);
+        }
+
+        if (array_key_exists('available_languages', $updateMap)) {
+            $this->changeAvailableLanguages($updateMap['available_languages']);
         }
     }
 }

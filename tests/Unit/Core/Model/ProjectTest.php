@@ -187,15 +187,40 @@ class ProjectTest extends TestCase
     /**
      * @test
      */
+    public function itShouldBeAbleToUpdateAvailableLanguages(): void
+    {
+        $newLanguages = ['en', 'es', 'fr', 'pl', 'ru'];
+        $this->project->changeAvailableLanguages($newLanguages);
+
+        static::assertEquals($newLanguages, $this->project->getConfig()->getAvailableLanguages());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldChangeUpdateTimeWhenAvailableLanguagesChange(): void
+    {
+        $newLanguages = ['en', 'es', 'fr', 'pl', 'ru'];
+        $this->project->changeAvailableLanguages($newLanguages);
+
+        static::assertEquals($this->now,$this->project->getMetadata()->getUpdateTime());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToUpdateProjectFromArray(): void
     {
         $newProjectName = 'new project';
+        $newLanguages = ['en', 'fr', 'pl'];
         $updateMap = [
-            'name' => $newProjectName
+            'name' => $newProjectName,
+            'available_languages' => $newLanguages
         ];
         $this->project->updateFromArray($updateMap);
 
         static::assertEquals($newProjectName, $this->project->getName());
+        static::assertEquals($newLanguages, $this->project->getConfig()->getAvailableLanguages());
     }
 
     /**
