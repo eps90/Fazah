@@ -177,6 +177,46 @@ class MessageTest extends TestCase
         static::assertTrue($message->getMetadata()->isEnabled());
     }
 
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToChangeMessageKey(): void
+    {
+        $newMessageKey = 'my.new.message.key';
+        $this->newMessage->changeMessageKey($newMessageKey);
+
+        static::assertEquals($newMessageKey, $this->newMessage->getTranslation()->getMessageKey());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToChangeTranslatedMessage(): void
+    {
+        $newTranslation = 'Salut !';
+        $this->newMessage->changeTranslatedMessage($newTranslation);
+
+        static::assertEquals($newTranslation, $this->newMessage->getTranslation()->getTranslatedMessage());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToUpdateMessageFromArray(): void
+    {
+        $messageKey = 'new.message_key';
+        $translatedMessage = 'Ça va?';
+        $updateMap = [
+            'message_key' => $messageKey,
+            'translated_message' => $translatedMessage
+        ];
+
+        $this->newMessage->updateFromArray($updateMap);
+
+        static::assertEquals($messageKey, $this->newMessage->getTranslation()->getMessageKey());
+        static::assertEquals($translatedMessage, $this->newMessage->getTranslation()->getTranslatedMessage());
+    }
+
     private function createNewMessage(): Message
     {
         $translation = Translation::create(

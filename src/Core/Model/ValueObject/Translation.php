@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model\ValueObject;
 
+use Assert\Assertion;
+
 final class Translation
 {
     /**
@@ -62,5 +64,21 @@ final class Translation
     public function getLanguage(): string
     {
         return $this->language;
+    }
+
+    public function translateTo(string $translatedMessage): Translation
+    {
+        $translation = clone $this;
+        $translation->translatedMessage = $translatedMessage;
+        return $translation;
+    }
+
+    public function changeMessageKey(string $newMessageKey): Translation
+    {
+        Assertion::notBlank($newMessageKey, 'Message key cannot be blank');
+
+        $translation = clone $this;
+        $translation->messageKey = $newMessageKey;
+        return $translation;
     }
 }

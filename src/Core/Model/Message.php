@@ -99,4 +99,25 @@ class Message
     {
         $this->metadata = $this->metadata->markAsEnabled();
     }
+
+    public function changeMessageKey(string $newMessageKey): void
+    {
+        $this->translation = $this->translation->changeMessageKey($newMessageKey);
+    }
+
+    public function changeTranslatedMessage(string $newTranslation): void
+    {
+        $this->translation = $this->translation->translateTo($newTranslation);
+    }
+
+    public function updateFromArray(array $updateMap): void
+    {
+        if (array_key_exists('message_key', $updateMap)) {
+            $this->translation = $this->translation->changeMessageKey($updateMap['message_key']);
+        }
+
+        if (array_key_exists('translated_message', $updateMap)) {
+            $this->translation = $this->translation->translateTo($updateMap['translated_message']);
+        }
+    }
 }
