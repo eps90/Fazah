@@ -226,6 +226,15 @@ class CatalogueTest extends TestCase
     /**
      * @test
      */
+    public function itShouldSetUpdateTimeWhenNameChanges(): void
+    {
+        $this->newCatalogue->rename('some name');
+        static::assertEquals($this->now, $this->newCatalogue->getMetadata()->getUpdateTime());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToChangeCatalogueAlias(): void
     {
         $newAlias = 'fancy-alias';
@@ -261,6 +270,15 @@ class CatalogueTest extends TestCase
     /**
      * @test
      */
+    public function itShouldChangeUpdateTimeWhenNewAliasHasBeenSet(): void
+    {
+        $this->newCatalogue->changeAlias('new.alias');
+        static::assertEquals($this->now, $this->newCatalogue->getMetadata()->getUpdateTime());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToUpdateCatalogueFromArray(): void
     {
         $newCatalogueName = 'new catalogue';
@@ -274,6 +292,34 @@ class CatalogueTest extends TestCase
 
         static::assertEquals($newCatalogueName, $this->newCatalogue->getName());
         static::assertEquals($newAlias, $this->newCatalogue->getAlias());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldChangeUpdateTimeWhenUpdatedFromArray(): void
+    {
+        $newCatalogueName = 'new catalogue';
+        $newAlias = 'new-alias-for-this';
+        $updateMap = [
+            'name' => $newCatalogueName,
+            'alias' => $newAlias
+        ];
+
+        $this->newCatalogue->updateFromArray($updateMap);
+
+        static::assertEquals($this->now, $this->newCatalogue->getMetadata()->getUpdateTime());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldNotChangeUpdateTimeWhenNothingChanges(): void
+    {
+        $updateMap = [];
+        $this->newCatalogue->updateFromArray($updateMap);
+
+        static::assertNull($this->newCatalogue->getMetadata()->getUpdateTime());
     }
 
     private function createNewCatalogue(): Catalogue

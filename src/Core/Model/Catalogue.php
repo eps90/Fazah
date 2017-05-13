@@ -143,7 +143,9 @@ class Catalogue
     public function rename(string $newName): void
     {
         Assertion::notBlank($newName, 'Catalogue name cannot be blank');
+
         $this->name = $newName;
+        $this->metadata = $this->metadata->markAsUpdated();
     }
 
     public function changeAlias(string $newAlias): void
@@ -153,6 +155,7 @@ class Catalogue
             ->regex('/^[\S]+$/', 'Catalogue alias must not contain whitespaces');
 
         $this->alias = $newAlias;
+        $this->metadata = $this->metadata->markAsUpdated();
     }
 
     public function updateFromArray(array $updateMap): void

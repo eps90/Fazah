@@ -191,12 +191,30 @@ class MessageTest extends TestCase
     /**
      * @test
      */
+    public function itShouldChangeUpdateTimeWhenMessageKeyChanges(): void
+    {
+        $this->newMessage->changeMessageKey('some.message');
+        static::assertEquals($this->now, $this->newMessage->getMetadata()->getUpdateTime());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToChangeTranslatedMessage(): void
     {
         $newTranslation = 'Salut !';
         $this->newMessage->changeTranslatedMessage($newTranslation);
 
         static::assertEquals($newTranslation, $this->newMessage->getTranslation()->getTranslatedMessage());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldChangeUpdateTimeWhenTranslatedMessageChanges(): void
+    {
+        $this->newMessage->changeTranslatedMessage('My new translation');
+        static::assertEquals($this->now, $this->newMessage->getMetadata()->getUpdateTime());
     }
 
     /**
@@ -215,6 +233,34 @@ class MessageTest extends TestCase
 
         static::assertEquals($messageKey, $this->newMessage->getTranslation()->getMessageKey());
         static::assertEquals($translatedMessage, $this->newMessage->getTranslation()->getTranslatedMessage());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldChangeUpdateTimeWhenUpdatingFromArray(): void
+    {
+        $messageKey = 'new.message_key';
+        $translatedMessage = 'Ça va?';
+        $updateMap = [
+            'message_key' => $messageKey,
+            'translated_message' => $translatedMessage
+        ];
+
+        $this->newMessage->updateFromArray($updateMap);
+
+        static::assertEquals($this->now, $this->newMessage->getMetadata()->getUpdateTime());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldNotChangeUpdateTimeWhenNothingChanges(): void
+    {
+        $updateMap = [];
+        $this->newMessage->updateFromArray($updateMap);
+
+        static::assertNull($this->newMessage->getMetadata()->getUpdateTime());
     }
 
     private function createNewMessage(): Message

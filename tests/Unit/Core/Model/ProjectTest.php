@@ -177,6 +177,16 @@ class ProjectTest extends TestCase
     /**
      * @test
      */
+    public function itShouldSetNewUpdateTimeWhenUpdatingName(): void
+    {
+        $this->project->rename('new project');
+
+        static::assertEquals($this->now, $this->project->getMetadata()->getUpdateTime());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToUpdateProjectFromArray(): void
     {
         $newProjectName = 'new project';
@@ -186,6 +196,31 @@ class ProjectTest extends TestCase
         $this->project->updateFromArray($updateMap);
 
         static::assertEquals($newProjectName, $this->project->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldChangeUpdateTimeWhenUpdatedFromArray(): void
+    {
+        $newProjectName = 'new project';
+        $updateMap = [
+            'name' => $newProjectName
+        ];
+        $this->project->updateFromArray($updateMap);
+
+        static::assertEquals($this->now, $this->project->getMetadata()->getUpdateTime());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldNotChangeUpdateTimeWhenNothingIsUpdated(): void
+    {
+        $updateMap = [];
+        $this->project->updateFromArray($updateMap);
+
+        static::assertNull($this->project->getMetadata()->getUpdateTime());
     }
 
     private function createNewProject(): Project

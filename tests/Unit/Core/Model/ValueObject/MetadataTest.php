@@ -84,4 +84,19 @@ class MetadataTest extends TestCase
 
         static::assertEquals($this->now, $newMetadata->getUpdateTime());
     }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToMarkAsUpdated(): void
+    {
+        $metadata = Metadata::restoreFrom(
+            Carbon::parse('2011-11-12 12:00:00'),
+            Carbon::parse('2011-11-12 12:00:00'),
+            true
+        );
+        $newMetadata = $metadata->markAsUpdated();
+
+        static::assertEquals($this->now, $newMetadata->getUpdateTime());
+    }
 }

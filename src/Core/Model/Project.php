@@ -102,6 +102,7 @@ class Project
     {
         Assertion::notBlank($newName, 'Project name cannot be blank');
         $this->name = $newName;
+        $this->metadata = $this->metadata->markAsUpdated();
     }
 
     public function updateFromArray(array $updateMap): void
