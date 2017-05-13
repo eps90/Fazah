@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model;
 
+use Assert\Assert;
 use Assert\Assertion;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
@@ -49,9 +50,10 @@ class Project
     ): Project {
         $project = new self();
         $project->id = $projectId;
-        $project->name = $name;
-        $project->metadata = $metadata;
         $project->config = $config;
+        $project->setName($name);
+
+        $project->metadata = $metadata;
 
         return $project;
     }
@@ -100,8 +102,7 @@ class Project
 
     public function rename(string $newName): void
     {
-        Assertion::notBlank($newName, 'Project name cannot be blank');
-        $this->name = $newName;
+        $this->setName($newName);
         $this->metadata = $this->metadata->markAsUpdated();
     }
 
@@ -120,5 +121,14 @@ class Project
         if (array_key_exists('available_languages', $updateMap)) {
             $this->changeAvailableLanguages($updateMap['available_languages']);
         }
+    }
+
+    private function setName(string $projectName): void
+    {
+        Assert::that($projectName)
+            ->notBlank('Project name cannot be blank')
+            ->maxLength(255, 'Project name must not be longer than 255 characters');
+
+        $this->name = $projectName;
     }
 }

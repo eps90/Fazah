@@ -60,6 +60,30 @@ class CatalogueTest extends TestCase
     /**
      * @test
      */
+    public function itShouldThrowWhenCataloguenameIsLongerThan255Characters(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageRegExp('/Catalogue name must not be longer than 255 characters/');
+
+        $invalidName = str_repeat('a', 300);
+        Catalogue::create($invalidName, ProjectId::generate());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldThrowWhenCatalogueNameIsBlank(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageRegExp('/Catalogue name cannot be blank/');
+
+        $invalidName = '';
+        Catalogue::create($invalidName, ProjectId::generate());
+    }
+
+    /**
+     * @test
+     */
     public function itShouldHaveInitiallySetId(): void
     {
         static::assertNotNull($this->newCatalogue->getId());
@@ -157,6 +181,41 @@ class CatalogueTest extends TestCase
     /**
      * @test
      */
+    public function itShouldThrowWhenRestoredCatalogueNameIsTooLong(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+
+        $invalidName = str_repeat('a', 400);
+        Catalogue::restoreFrom(
+            CatalogueId::generate(),
+            $invalidName,
+            ProjectId::generate(),
+            CatalogueId::generate(),
+            Metadata::initialize()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldThrowWhenRestoredCatalogueAliasIsInvalid(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+
+        $invalidAlias = 'my alias';
+        Catalogue::restoreFrom(
+            CatalogueId::generate(),
+            'valid.name',
+            ProjectId::generate(),
+            CatalogueId::generate(),
+            Metadata::initialize(),
+            $invalidAlias
+        );
+    }
+
+    /**
+     * @test
+     */
     public function itShouldHaveDefaultAlias(): void
     {
         $catalogueName = 'This is my catalogue éáąć';
@@ -220,6 +279,18 @@ class CatalogueTest extends TestCase
         $this->expectExceptionMessageRegExp('/Catalogue name cannot be blank/');
 
         $invalidName = '';
+        $this->newCatalogue->rename($invalidName);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldThrowWhenNewCatalogueNameIsLongerThan255Chars(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageRegExp('/Catalogue name must not be longer than 255 characters/');
+
+        $invalidName = str_repeat('x', 256);
         $this->newCatalogue->rename($invalidName);
     }
 

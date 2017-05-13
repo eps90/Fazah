@@ -123,6 +123,23 @@ class ProjectTest extends TestCase
     /**
      * @test
      */
+    public function itShouldThrowWhenRestoredProjectNameIsTooLong(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageRegExp('/Project name must not be longer than 255 characters/');
+
+        $invalidName = str_repeat('x', 300);
+        Project::restoreFrom(
+            ProjectId::generate(),
+            $invalidName,
+            Metadata::initialize(),
+            ProjectConfiguration::initialize()
+        );
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToDisableAProject(): void
     {
         $project = Project::create('my project');
@@ -171,6 +188,18 @@ class ProjectTest extends TestCase
         $this->expectExceptionMessageRegExp('/Project name cannot be blank/');
 
         $invalidProjectName = '';
+        $this->project->rename($invalidProjectName);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldThrowWhenNewNameIsLongerThan255Chars(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageRegExp('/Project name must not be longer than 255 characters/');
+
+        $invalidProjectName = str_repeat('x', 400);
         $this->project->rename($invalidProjectName);
     }
 

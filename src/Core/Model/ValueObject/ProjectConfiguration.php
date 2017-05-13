@@ -23,7 +23,7 @@ final class ProjectConfiguration
     public static function restoreFrom(array $availableLanguages): ProjectConfiguration
     {
         $instance = new self();
-        $instance->availableLanguages = $availableLanguages;
+        $instance = $instance->changeAvailableLanguages($availableLanguages);
 
         return $instance;
     }

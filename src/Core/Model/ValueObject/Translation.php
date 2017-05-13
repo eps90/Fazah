@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model\ValueObject;
 
-use Assert\Assertion;
+use Assert\Assert;
 
 final class Translation
 {
@@ -26,9 +26,9 @@ final class Translation
     {
         $translation = new self();
 
-        $translation->messageKey = $messageKey;
+        $translation->setMessageKey($messageKey);
+        $translation->setLanguage($language);
         $translation->translatedMessage = $translatedMessage;
-        $translation->language = strtolower($language);
 
         return $translation;
     }
@@ -36,8 +36,8 @@ final class Translation
     public static function untranslated(string $messageKey, string $language): Translation
     {
         $translation = new self();
-        $translation->messageKey = $messageKey;
-        $translation->language = $language;
+        $translation->setMessageKey($messageKey);
+        $translation->setLanguage($language);
 
         return $translation;
     }
@@ -75,10 +75,26 @@ final class Translation
 
     public function changeMessageKey(string $newMessageKey): Translation
     {
-        Assertion::notBlank($newMessageKey, 'Message key cannot be blank');
-
         $translation = clone $this;
-        $translation->messageKey = $newMessageKey;
+        $translation->setMessageKey($newMessageKey);
         return $translation;
+    }
+
+    private function setMessageKey(string $messageKey): void
+    {
+        Assert::that($messageKey)
+            ->notBlank('Message key cannot be blank')
+            ->maxLength(255, 'Message key cannot be longer than 255 characters');
+
+        $this->messageKey = $messageKey;
+    }
+
+    private function setLanguage(string $language): void
+    {
+        Assert::that($language)
+            ->notBlank('Language code cannot be blank')
+            ->maxLength(32, 'Language code cannot be longer than 32 characters');
+
+        $this->language = strtolower($language);
     }
 }

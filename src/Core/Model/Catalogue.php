@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\Model;
 
 use Assert\Assert;
-use Assert\Assertion;
 use Cocur\Slugify\Slugify;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
@@ -49,7 +48,7 @@ class Catalogue
     ): Catalogue {
         $catalogue = new self();
         $catalogue->id = CatalogueId::generate();
-        $catalogue->name = $catalogueName;
+        $catalogue->setName($catalogueName);
         $catalogue->metadata = Metadata::initialize();
         $catalogue->projectId = $projectId;
         $catalogue->parentCatalogueId = $parentCatalogueId;
@@ -67,11 +66,14 @@ class Catalogue
     ): Catalogue {
         $catalogue = new self();
         $catalogue->id = $catalogueId;
-        $catalogue->name = $name;
         $catalogue->projectId = $projectId;
         $catalogue->parentCatalogueId = $parentCatalogueId;
         $catalogue->metadata = $metadata;
-        $catalogue->alias = $alias;
+
+        $catalogue->setName($name);
+        if ($alias !== null) {
+            $catalogue->setAlias($alias);
+        }
 
         return $catalogue;
     }
@@ -142,19 +144,13 @@ class Catalogue
 
     public function rename(string $newName): void
     {
-        Assertion::notBlank($newName, 'Catalogue name cannot be blank');
-
-        $this->name = $newName;
+        $this->setName($newName);
         $this->metadata = $this->metadata->markAsUpdated();
     }
 
     public function changeAlias(string $newAlias): void
     {
-        Assert::that($newAlias)
-            ->notBlank('Catalogue alias cannot be blank')
-            ->regex('/^[\S]+$/', 'Catalogue alias must not contain whitespaces');
-
-        $this->alias = $newAlias;
+        $this->setAlias($newAlias);
         $this->metadata = $this->metadata->markAsUpdated();
     }
 
@@ -167,5 +163,23 @@ class Catalogue
         if (array_key_exists('alias', $updateMap)) {
             $this->changeAlias($updateMap['alias']);
         }
+    }
+
+    private function setName(string $catalogueName): void
+    {
+        Assert::that($catalogueName)
+            ->notBlank('Catalogue name cannot be blank')
+            ->maxLength(255, 'Catalogue name must not be longer than 255 characters');
+
+        $this->name = $catalogueName;
+    }
+
+    private function setAlias(string $newAlias): void
+    {
+        Assert::that($newAlias)
+            ->notBlank('Catalogue alias cannot be blank')
+            ->regex('/^[\S]+$/', 'Catalogue alias must not contain whitespaces');
+
+        $this->alias = $newAlias;
     }
 }
