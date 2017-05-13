@@ -41,6 +41,10 @@ class Catalogue
      */
     private $alias;
 
+    private function __construct()
+    {
+    }
+
     public static function create(
         string $catalogueName,
         ProjectId $projectId,

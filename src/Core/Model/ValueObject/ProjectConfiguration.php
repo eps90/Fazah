@@ -12,6 +12,10 @@ final class ProjectConfiguration
      */
     private $availableLanguages;
 
+    private function __construct()
+    {
+    }
+
     public static function initialize(): ProjectConfiguration
     {
         $instance = new self();

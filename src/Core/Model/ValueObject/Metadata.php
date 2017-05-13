@@ -22,6 +22,10 @@ final class Metadata
      */
     private $enabled;
 
+    private function __construct()
+    {
+    }
+
     public static function initialize(): Metadata
     {
         $metadata = new self();

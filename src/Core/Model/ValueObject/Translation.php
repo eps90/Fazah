@@ -22,6 +22,10 @@ final class Translation
      */
     private $language;
 
+    private function __construct()
+    {
+    }
+
     public static function create(string $messageKey, ?string $translatedMessage, string $language): Translation
     {
         $translation = new self();

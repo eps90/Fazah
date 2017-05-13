@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\Model;
 
 use Assert\Assert;
-use Assert\Assertion;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use Eps\Fazah\Core\Model\ValueObject\ProjectConfiguration;
@@ -30,6 +29,10 @@ class Project
      * @var ProjectConfiguration
      */
     private $config;
+
+    private function __construct()
+    {
+    }
 
     public static function create(string $name): Project
     {

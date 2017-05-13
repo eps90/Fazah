@@ -30,6 +30,10 @@ class Message
      */
     private $metadata;
 
+    private function __construct()
+    {
+    }
+
     public static function create(
         Translation $translation,
         CatalogueId $catalogueId
