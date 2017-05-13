@@ -22,6 +22,13 @@ class MetadataTest extends TestCase
         Carbon::setTestNow($this->now);
     }
 
+    protected function tearDown()
+    {
+        parent::tearDown();
+
+        Carbon::setTestNow();
+    }
+
     /**
      * @test
      */
@@ -31,6 +38,21 @@ class MetadataTest extends TestCase
         $newMetadata = $metadata->markAsDisabled();
 
         static::assertFalse($newMetadata->isEnabled());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldChangeUpdateTimeOnStateChangeToDisabled(): void
+    {
+        $metadata = Metadata::restoreFrom(
+            Carbon::now(),
+            null,
+            false
+        );
+        $newMetadata = $metadata->markAsDisabled();
+
+        static::assertEquals($this->now, $newMetadata->getUpdateTime());
     }
 
     /**
@@ -46,5 +68,20 @@ class MetadataTest extends TestCase
         $newMetadata = $metadata->markAsEnabled();
 
         static::assertTrue($newMetadata->isEnabled());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldChangeUpdateTimeOnStateChangeToEnabled(): void
+    {
+        $metadata = Metadata::restoreFrom(
+            Carbon::now(),
+            null,
+            false
+        );
+        $newMetadata = $metadata->markAsEnabled();
+
+        static::assertEquals($this->now, $newMetadata->getUpdateTime());
     }
 }
