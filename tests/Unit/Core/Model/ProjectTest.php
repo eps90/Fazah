@@ -232,7 +232,7 @@ class ProjectTest extends TestCase
         $newLanguages = ['en', 'es', 'fr', 'pl', 'ru'];
         $this->project->changeAvailableLanguages($newLanguages);
 
-        static::assertEquals($this->now,$this->project->getMetadata()->getUpdateTime());
+        static::assertEquals($this->now, $this->project->getMetadata()->getUpdateTime());
     }
 
     /**
