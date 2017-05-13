@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Unit\Core\Model;
 
+use Assert\AssertionFailedException;
 use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
@@ -134,13 +135,15 @@ class CatalogueTest extends TestCase
             Carbon::parse('2016-01-02 12:00:00'),
             true
         );
+        $alias = 'my-custom-alias';
 
         $catalogue = Catalogue::restoreFrom(
             $catalogueId,
             $name,
             $projectId,
             $parentCatalogueId,
-            $metadata
+            $metadata,
+            $alias
         );
 
         static::assertEquals($catalogueId, $catalogue->getId());
@@ -148,6 +151,7 @@ class CatalogueTest extends TestCase
         static::assertEquals($projectId, $catalogue->getProjectId());
         static::assertEquals($parentCatalogueId, $catalogue->getParentCatalogueId());
         static::assertEquals($metadata, $catalogue->getMetadata());
+        static::assertEquals($alias, $catalogue->getAlias());
     }
 
     /**
@@ -194,6 +198,82 @@ class CatalogueTest extends TestCase
         $catalogue->enable();
 
         static::assertTrue($catalogue->getMetadata()->isEnabled());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToRenameCatalogue(): void
+    {
+        $newCatalogueName = 'new catalogue';
+        $this->newCatalogue->rename($newCatalogueName);
+
+        static::assertEquals($newCatalogueName, $this->newCatalogue->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldThrowWhenEmptyCatalogueNameProvided(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageRegExp('/Catalogue name cannot be blank/');
+
+        $invalidName = '';
+        $this->newCatalogue->rename($invalidName);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToChangeCatalogueAlias(): void
+    {
+        $newAlias = 'fancy-alias';
+        $this->newCatalogue->changeAlias($newAlias);
+
+        static::assertEquals($newAlias, $this->newCatalogue->getAlias());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldThrowWhenTryingToSetEmptyAlias(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageRegExp('/Catalogue alias cannot be blank/');
+
+        $invalidAlias = '';
+        $this->newCatalogue->changeAlias($invalidAlias);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldThrowWhenAliasHasWhiteSpaces(): void
+    {
+        $this->expectException(AssertionFailedException::class);
+        $this->expectExceptionMessageRegExp('/Catalogue alias must not contain whitespaces/');
+
+        $invalidAlias = 'my alias bla bla bla';
+        $this->newCatalogue->changeAlias($invalidAlias);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToUpdateCatalogueFromArray(): void
+    {
+        $newCatalogueName = 'new catalogue';
+        $newAlias = 'new-alias-for-this';
+        $updateMap = [
+            'name' => $newCatalogueName,
+            'alias' => $newAlias
+        ];
+
+        $this->newCatalogue->updateFromArray($updateMap);
+
+        static::assertEquals($newCatalogueName, $this->newCatalogue->getName());
+        static::assertEquals($newAlias, $this->newCatalogue->getAlias());
     }
 
     private function createNewCatalogue(): Catalogue
