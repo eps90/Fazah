@@ -62,5 +62,12 @@
             <argument type="service" id="fazah.repository.catalogue" />
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\EditCatalogue" />
         </service>
+
+        <service id="fazah.command.edit_message"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\EditMessageHandler"
+                 lazy="true">
+            <argument type="service" id="fazah.repository.message" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\EditMessage" />
+        </service>
     </services>
 </container>
