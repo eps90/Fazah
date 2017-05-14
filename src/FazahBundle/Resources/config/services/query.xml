@@ -12,19 +12,19 @@
         </service>
 
         <service id="fazah.query.builder.select_project"
-                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\SelectProjects"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\Project\SelectProjects"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.select_messages"
-                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\SelectMessages"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\Message\SelectMessages"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.select_catalogue"
-                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\SelectCatalogues"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\Catalogue\SelectCatalogues"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
@@ -42,25 +42,25 @@
         </service>
 
         <service id="fazah.query.builder.filter.project_id"
-                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterByProjectId"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\Catalogue\FilterByProjectId"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.filter.catalogue_id"
-                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterByCatalogueId"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\Message\FilterByCatalogueId"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.filter.message_phrase"
-                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterMessagesByPhrase"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\Message\FilterMessagesByPhrase"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>
 
         <service id="fazah.query.builder.filter.language"
-                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\FilterByLanguage"
+                 class="Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\Message\FilterByLanguage"
                  public="false">
             <tag name="fazah.condition_builder" priority="255" />
         </service>

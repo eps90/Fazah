@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder;
+namespace Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\Catalogue;
 
 use Doctrine\ORM\QueryBuilder;
-use Eps\Fazah\Core\Model\Message;
+use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\DoctrineConditionBuilder;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 
-final class SelectMessages implements DoctrineConditionBuilder
+final class SelectCatalogues implements DoctrineConditionBuilder
 {
 
     public function supports(QueryCriteria $criteria): bool
     {
-        return $criteria->getModelClass() === Message::class;
+        return $criteria->getModelClass() === Catalogue::class;
     }
 
     public function build(QueryCriteria $criteria, QueryBuilder $queryBuilder): void
     {
-        $queryBuilder->select('p');
-        $queryBuilder->from('Fazah:Message', 'p');
+        $queryBuilder->select('p')
+            ->from('Fazah:Catalogue', 'p');
     }
 }

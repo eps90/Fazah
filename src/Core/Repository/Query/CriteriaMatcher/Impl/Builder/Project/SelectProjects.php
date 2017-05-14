@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder;
+namespace Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl\Builder\Project;
 
 use Doctrine\ORM\QueryBuilder;
 use Eps\Fazah\Core\Model\Project;
