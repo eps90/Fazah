@@ -22,6 +22,7 @@
     },
     "require": {
         "php": ">=7.1",
+        "api-platform/core": "^2.0",
         "beberlei/DoctrineExtensions": "^1.0",
         "beberlei/assert": "^2.7",
         "cocur/slugify": "^2.5",
