@@ -101,4 +101,19 @@ class SortSetTest extends TestCase
         $sortSet = new SortSet();
         static::assertNull($sortSet->findField('missing_property'));
     }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToAddNewSorting(): void
+    {
+        $sortSet = new SortSet();
+        $sortingToAdd = Sorting::asc('aaaa');
+
+        $newSet = $sortSet->addSorting($sortingToAdd);
+
+        $expectedSorting = new SortSet(...[$sortingToAdd]);
+
+        static::assertEquals($expectedSorting, $newSet);
+    }
 }

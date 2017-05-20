@@ -57,4 +57,32 @@ class QueryCriteriaTest extends TestCase
 
         static::assertEquals($expectedCriteria, $actualCriteria);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToAddFilter(): void
+    {
+        $filterToAdd = ['my_property' => 'my_value'];
+        $initialCriteria = new QueryCriteria(Message::class);
+        $initialCriteria->addFilter($filterToAdd);
+
+        $expectedCriteria = new QueryCriteria(Message::class, new FilterSet($filterToAdd));
+
+        static::assertEquals($expectedCriteria, $initialCriteria);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToAddSorting(): void
+    {
+        $sortingToAdd = Sorting::asc('bacecadada');
+        $initialCriteria = new QueryCriteria(Message::class);
+        $initialCriteria->addSorting($sortingToAdd);
+
+        $expectedCriteria = new QueryCriteria(Message::class, null, new SortSet($sortingToAdd));
+
+        static::assertEquals($expectedCriteria, $initialCriteria);
+    }
 }

@@ -64,4 +64,19 @@ class FilterSetTest extends TestCase
         static::assertFalse($nonEmptySet->isEmpty());
         static::assertTrue($emptySet->isEmpty());
     }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToAddAFilter(): void
+    {
+        $filterToAdd = ['my_property' => 'my_value'];
+
+        $emptySet = new FilterSet();
+        $newFilterSet = $emptySet->addFilter($filterToAdd);
+
+        $expectedSet = new FilterSet($filterToAdd);
+
+        static::assertEquals($expectedSet, $newFilterSet);
+    }
 }

@@ -34,4 +34,10 @@ final class FilterSet
     {
         return empty($this->filters);
     }
+
+    public function addFilter(array $filterToAdd): FilterSet
+    {
+        $filters = array_merge_recursive($this->filters, $filterToAdd);
+        return new self($filters);
+    }
 }

@@ -54,4 +54,10 @@ final class SortSet
 
         return null;
     }
+
+    public function addSorting(Sorting $sorting): SortSet
+    {
+        $newSorting = array_merge($this->sorting, [$sorting]);
+        return new self(...$newSorting);
+    }
 }
