@@ -2,5 +2,9 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="https://api-platform.com/schema/metadata
            https://api-platform.com/schema/metadata/metadata-2.0.xsd">
-    <resource class="Eps\Fazah\Core\Model\Message" />
+    <resource class="Eps\Fazah\Core\Model\Message">
+        <attribute name="filters">
+            <attribute>message_filter</attribute>
+        </attribute>
+    </resource>
 </resources>
