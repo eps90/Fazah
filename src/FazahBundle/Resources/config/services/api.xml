@@ -8,5 +8,65 @@
         <service id="fazah.api.name_converter"
                  class="Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter"
                  public="false" />
+
+        <service id="fazah.api.extensions" class="Doctrine\Common\Collections\ArrayCollection" public="false"/>
+        <service id="fazah.api.filters" class="Doctrine\Common\Collections\ArrayCollection" public="false" />
+
+        <service id="fazah.api.filter_extension"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\Extension\FilterExtension"
+                 public="false">
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="fazah.api.filters" />
+
+            <tag name="fazah.api.extension" />
+        </service>
+
+        <service id="fazah.api.filter.project"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\Filter\ProjectFilter"
+                 public="false">
+            <tag name="api_platform.filter" id="project_filter" />
+            <tag name="fazah.api.filter" />
+        </service>
+
+        <service id="fazah.api.filter.catalogue"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\Filter\CatalogueFilter"
+                 public="false">
+            <tag name="api_platform.filter" id="catalogue_filter" />
+            <tag name="fazah.api.filter" />
+        </service>
+
+        <service id="fazah.api.filter.message"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\Filter\MessageFilter"
+                 public="false">
+            <tag name="api_platform.filter" id="message_filter" />
+            <tag name="fazah.api.filter" />
+        </service>
+
+        <service id="fazah.api.data_provider.project"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\ProjectDataProvider"
+                 public="false">
+            <argument type="service" id="fazah.repository.project" />
+            <argument type="service" id="fazah.api.extensions" />
+
+            <tag name="api_platform.collection_data_provider" priority="2"/>
+        </service>
+
+        <service id="fazah.api.data_provider.catalogue"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\CatalogueDataProvider"
+                 public="false">
+            <argument type="service" id="fazah.repository.catalogue" />
+            <argument type="service" id="fazah.api.extensions" />
+
+            <tag name="api_platform.collection_data_provider" priority="2" />
+        </service>
+
+        <service id="fazah.api.data_provider.message"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\MessageDataProvider"
+                 public="false">
+            <argument type="service" id="fazah.repository.message" />
+            <argument type="service" id="fazah.api.extensions" />
+
+            <tag name="api_platform.collection_data_provider" priority="2" />
+        </service>
     </services>
 </container>
