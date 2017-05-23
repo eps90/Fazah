@@ -183,6 +183,57 @@ trait MessageRepositoryDataProvider
                 ]
             ],
 
+            'disabled_as_string' => [
+                'criteria' => new QueryCriteria(
+                    Message::class,
+                    new FilterSet(['enabled' => 'false'])
+                ),
+                'expected' => [
+                    Message::restoreFrom(
+                        new MessageId('6ffa7d14-0b67-4420-9266-6d60228707c6'),
+                        Translation::create(
+                            'test.message.10',
+                            'Hello from message #10 in language fr!',
+                            'fr'
+                        ),
+                        new CatalogueId('8094de70-b269-4ea3-a11c-4d43a5218b23'),
+                        Metadata::restoreFrom(
+                            Carbon::parse('2015-01-01 12:00:20'),
+                            Carbon::parse('2015-01-02 12:00:20'),
+                            false
+                        )
+                    ),
+                    Message::restoreFrom(
+                        new MessageId('ec2adbdd-505d-4055-a081-124d38e8c70d'),
+                        Translation::create(
+                            'test.message.10',
+                            'Hello from message #10 in language pl!',
+                            'pl'
+                        ),
+                        new CatalogueId('8094de70-b269-4ea3-a11c-4d43a5218b23'),
+                        Metadata::restoreFrom(
+                            Carbon::parse('2015-01-01 12:00:10'),
+                            Carbon::parse('2015-01-02 12:00:10'),
+                            false
+                        )
+                    ),
+                    Message::restoreFrom(
+                        new MessageId('b5bce595-58d2-4023-89ab-df08b5c10e95'),
+                        Translation::create(
+                            'test.message.10',
+                            'Hello from message #10 in language en!',
+                            'en'
+                        ),
+                        new CatalogueId('8094de70-b269-4ea3-a11c-4d43a5218b23'),
+                        Metadata::restoreFrom(
+                            Carbon::parse('2015-01-01 12:00:00'),
+                            Carbon::parse('2015-01-02 12:00:00'),
+                            false
+                        )
+                    )
+                ]
+            ],
+
             'by_phrase_in_translation' => [
                 'criteria' => new QueryCriteria(
                     Message::class,
