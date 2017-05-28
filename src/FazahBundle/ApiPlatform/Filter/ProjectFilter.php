@@ -25,6 +25,7 @@ final class ProjectFilter implements FilterInterface
 
     /**
      * {@inheritdoc}
+     * @codeCoverageIgnore
      */
     public function getDescription(string $resourceClass): array
     {

@@ -27,6 +27,7 @@ final class CatalogueFilter implements FilterInterface
 
     /**
      * {@inheritdoc}
+     * @codeCoverageIgnore
      */
     public function getDescription(string $resourceClass): array
     {
