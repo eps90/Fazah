@@ -53,6 +53,7 @@ doctrine:
           user: '%database_user%'
           password: '%database_password%'
           charset: UTF8
+          server_version: 5.7
       types:
         carbondatetime: \DoctrineExtensions\Types\CarbonDateTimeType
         message_id: \Eps\Fazah\FazahBundle\Doctrine\Types\MessageIdType
