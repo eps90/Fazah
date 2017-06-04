@@ -40,17 +40,17 @@
         "symfony/monolog-bundle": "^3.0.2",
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
-        "symfony/symfony": "3.2.*",
+        "symfony/symfony": "3.3.*",
         "twig/twig": "^2.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^2.3",
         "liip/functional-test-bundle": "^1.7",
         "matthiasnoback/symfony-dependency-injection-test": "^2.1",
-        "phpunit/phpunit": "^6.1",
+        "phpunit/phpunit": "^6.2",
         "satooshi/php-coveralls": "^1.0",
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "dev-master"
+        "symfony/phpunit-bridge": "^3.3"
     },
     "scripts": {
         "symfony-scripts": [
@@ -83,5 +83,12 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": null
-    }
+    },
+    "authors": [
+        {
+            "name": "Jakub Turek",
+            "email": "ja@kubaturek.pl",
+            "homepage": "http://kubaturek.pl"
+        }
+    ]
 }
