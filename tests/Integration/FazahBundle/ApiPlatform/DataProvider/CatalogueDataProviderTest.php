@@ -128,7 +128,7 @@ class CatalogueDataProviderTest extends WebTestCase
 
         static::assertEquals($expectedResponse, $actualResponse);
     }
-    
+
     /**
      * @test
      */

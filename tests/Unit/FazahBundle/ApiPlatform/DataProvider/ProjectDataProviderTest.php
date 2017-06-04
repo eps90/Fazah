@@ -72,7 +72,7 @@ class ProjectDataProviderTest extends TestCase
     {
         $extensions = new ArrayCollection([$this->createFilterExtension()]);
         $this->provider = new ProjectDataProvider($this->repo, $extensions);
-        
+
         $foundProjects = [
             Project::create('aaa'),
             Project::create('bbb'),
