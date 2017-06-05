@@ -8,7 +8,7 @@ use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Repository\Exception\CatalogueRepositoryException;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 
-interface CatalogueRepository
+interface CatalogueRepository extends RepositoryInterface
 {
     /**
      * @param Catalogue[] ...$catalogues

@@ -5,6 +5,8 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="fazah.repository_manager" class="Eps\Fazah\Core\Repository\Manager\RepositoryManager" public="false" />
+
         <service id="fazah.repository.doctrine_repository" abstract="true" lazy="true">
             <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument type="service" id="fazah.query.criteria_matcher"/>
@@ -13,17 +15,19 @@
         <service id="fazah.repository.catalogue"
                  parent="fazah.repository.doctrine_repository"
                  class="Eps\Fazah\Core\Repository\Impl\DoctrineCatalogueRepository">
+            <tag name="fazah.repository" model="Eps\Fazah\Core\Model\Catalogue" />
         </service>
 
         <service id="fazah.repository.project"
                  parent="fazah.repository.doctrine_repository"
                  class="Eps\Fazah\Core\Repository\Impl\DoctrineProjectRepository">
+            <tag name="fazah.repository" model="Eps\Fazah\Core\Model\Project" />
         </service>
 
         <service id="fazah.repository.message"
                  parent="fazah.repository.doctrine_repository"
                  class="Eps\Fazah\Core\Repository\Impl\DoctrineMessageRepository">
+            <tag name="fazah.repository" model="Eps\Fazah\Core\Model\Message" />
         </service>
-
     </services>
 </container>

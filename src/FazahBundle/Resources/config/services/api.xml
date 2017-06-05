@@ -42,28 +42,10 @@
             <tag name="fazah.api.filter" />
         </service>
 
-        <service id="fazah.api.data_provider.project"
-                 class="Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\ProjectDataProvider"
+        <service id="fazah.api.data_provider.generic"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\RepositoryDataProvider"
                  public="false">
-            <argument type="service" id="fazah.repository.project" />
-            <argument type="service" id="fazah.api.extensions" />
-
-            <tag name="api_platform.collection_data_provider" priority="2"/>
-        </service>
-
-        <service id="fazah.api.data_provider.catalogue"
-                 class="Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\CatalogueDataProvider"
-                 public="false">
-            <argument type="service" id="fazah.repository.catalogue" />
-            <argument type="service" id="fazah.api.extensions" />
-
-            <tag name="api_platform.collection_data_provider" priority="2" />
-        </service>
-
-        <service id="fazah.api.data_provider.message"
-                 class="Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\MessageDataProvider"
-                 public="false">
-            <argument type="service" id="fazah.repository.message" />
+            <argument type="service" id="fazah.repository_manager" />
             <argument type="service" id="fazah.api.extensions" />
 
             <tag name="api_platform.collection_data_provider" priority="2" />
