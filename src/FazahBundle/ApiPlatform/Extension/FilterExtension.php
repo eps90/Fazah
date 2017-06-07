@@ -41,7 +41,7 @@ class FilterExtension implements ExtensionInterface
                 continue;
             }
 
-            $availableFilters = $filter->getAvailableFilters();
+            $availableFilters = array_keys($filter->getDescription($resourceClass));
             $filters = array_filter(
                 $requestedFilters,
                 function ($filterName) use ($availableFilters) {

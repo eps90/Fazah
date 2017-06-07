@@ -7,19 +7,6 @@ use Eps\Fazah\Core\Model\Catalogue;
 
 final class CatalogueFilter implements FilterInterface
 {
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAvailableFilters(): array
-    {
-        return [
-            'project_id',
-            'enabled',
-            'phrase'
-        ];
-    }
-
     public function supportsResource(string $resourceClass): bool
     {
         return $resourceClass === Catalogue::class;

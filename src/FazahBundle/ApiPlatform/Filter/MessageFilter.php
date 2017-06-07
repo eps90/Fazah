@@ -7,20 +7,6 @@ use Eps\Fazah\Core\Model\Message;
 
 final class MessageFilter implements FilterInterface
 {
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAvailableFilters(): array
-    {
-        return [
-            'enabled',
-            'phrase',
-            'catalogue_id',
-            'language'
-        ];
-    }
-
     public function supportsResource(string $resourceClass): bool
     {
         return $resourceClass === Message::class;

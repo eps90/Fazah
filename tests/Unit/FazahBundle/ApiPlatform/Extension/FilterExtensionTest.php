@@ -93,7 +93,12 @@ class FilterExtensionTest extends TestCase
 
             public function getDescription(string $resourceClass): array
             {
-                return [];
+                return [
+                    'my_property' => [
+                        'some' => 'example',
+                        'values' => 'here'
+                    ]
+                ];
             }
         };
     }

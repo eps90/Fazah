@@ -7,17 +7,6 @@ use Eps\Fazah\Core\Model\Project;
 
 final class ProjectFilter implements FilterInterface
 {
-    /**
-     * @return string[]
-     */
-    public function getAvailableFilters(): array
-    {
-        return [
-            'enabled',
-            'phrase'
-        ];
-    }
-
     public function supportsResource(string $resourceClass): bool
     {
         return Project::class === $resourceClass;
