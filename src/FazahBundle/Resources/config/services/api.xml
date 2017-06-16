@@ -9,6 +9,12 @@
                  class="Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter"
                  public="false" />
 
+        <service id="fazah.api.serializable_command_denormalizer"
+                 class="Eps\Fazah\FazahBundle\Normalizer\SerializableCommandDenormalizer"
+                 public="false">
+            <tag name="serializer.normalizer" priority="128" />
+        </service>
+
         <service id="fazah.api.extensions" class="Doctrine\Common\Collections\ArrayCollection" public="false"/>
         <service id="fazah.api.filters" class="Doctrine\Common\Collections\ArrayCollection" public="false" />
 
