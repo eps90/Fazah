@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\UseCase\Command\Catalogue;
 
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
+use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class ChangeCatalogueState
+final class ChangeCatalogueState implements SerializableCommand
 {
     /**
      * @var CatalogueId
@@ -37,5 +39,17 @@ final class ChangeCatalogueState
     public function shouldBeEnabled(): bool
     {
         return $this->shouldBeEnabled;
+    }
+
+    public static function fromArray(array $commandProps): self
+    {
+        $resolver = new OptionsResolver();
+        $resolver->setRequired(['catalogue_id', 'enabled']);
+        $props = $resolver->resolve($commandProps);
+
+        return new self(
+            new CatalogueId((string)$props['catalogue_id']),
+            (bool)$props['enabled']
+        );
     }
 }

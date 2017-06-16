@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\UseCase\Command\Message;
 
 use Eps\Fazah\Core\Model\Identity\MessageId;
+use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class EditMessage
+final class EditMessage implements SerializableCommand
 {
     /**
      * @var MessageId
@@ -21,7 +22,7 @@ final class EditMessage
     public function __construct(MessageId $messageId, array $messageData)
     {
         $this->messageId = $messageId;
-        $this->messageData = $this->resolveOptions($messageData);
+        $this->messageData = self::resolveOptions($messageData);
     }
 
     /**
@@ -40,7 +41,21 @@ final class EditMessage
         return $this->messageData;
     }
 
-    private function resolveOptions(array $properties): array
+    public static function fromArray(array $commandProps): self
+    {
+        $resolver = new OptionsResolver();
+        $resolver->setRequired(['message_id', 'message_data']);
+        $props = $resolver->resolve($commandProps);
+
+        $messageData = self::resolveOptions($props['message_data']);
+
+        return new self(
+            new MessageId((string)$props['message_id']),
+            $messageData
+        );
+    }
+
+    private static function resolveOptions(array $properties): array
     {
         $resolver = new OptionsResolver();
         $resolver->setDefined(['message_key', 'translated_message']);

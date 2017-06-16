@@ -5,8 +5,10 @@ namespace Eps\Fazah\Core\UseCase\Command\Catalogue;
 
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
+use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class CreateCatalogue
+final class CreateCatalogue implements SerializableCommand
 {
     /**
      * @var string
@@ -52,5 +54,21 @@ final class CreateCatalogue
     public function getParentCatalogueId(): ?CatalogueId
     {
         return $this->parentCatalogueId;
+    }
+
+    public static function fromArray(array $commandProps): self
+    {
+        $resolver = new OptionsResolver();
+        $resolver->setRequired(['name', 'project_id']);
+        $resolver->setDefined('parent_catalogue_id');
+        $props = $resolver->resolve($commandProps);
+
+        return new self(
+            (string)$props['name'],
+            new ProjectId((string)$props['project_id']),
+            isset($props['parent_catalogue_id'])
+                ? new CatalogueId((string)$props['parent_catalogue_id'])
+                : null
+        );
     }
 }

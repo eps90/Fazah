@@ -4,9 +4,10 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\UseCase\Command\Catalogue;
 
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
+use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class EditCatalogue
+final class EditCatalogue implements SerializableCommand
 {
     /**
      * @var CatalogueId
@@ -21,7 +22,7 @@ final class EditCatalogue
     public function __construct(CatalogueId $catalogueId, array $catalogueData)
     {
         $this->catalogueId = $catalogueId;
-        $this->catalogueData = $this->resolveOptions($catalogueData);
+        $this->catalogueData = self::resolveOptions($catalogueData);
     }
 
     /**
@@ -40,7 +41,21 @@ final class EditCatalogue
         return $this->catalogueData;
     }
 
-    private function resolveOptions(array $properties): array
+    public static function fromArray(array $commandProps): self
+    {
+        $resolver = new OptionsResolver();
+        $resolver->setRequired(['catalogue_id', 'catalogue_data']);
+        $props = $resolver->resolve($commandProps);
+
+        $catalogueData = self::resolveOptions($props['catalogue_data']);
+
+        return new self(
+            new CatalogueId((string)$props['catalogue_id']),
+            $catalogueData
+        );
+    }
+
+    private static function resolveOptions(array $properties): array
     {
         $resolver = new OptionsResolver();
         $resolver->setDefined(['name', 'alias']);

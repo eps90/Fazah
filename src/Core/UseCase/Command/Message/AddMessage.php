@@ -4,8 +4,10 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\UseCase\Command\Message;
 
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
+use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class AddMessage
+final class AddMessage implements SerializableCommand
 {
     /**
      * @var string
@@ -42,5 +44,17 @@ final class AddMessage
     public function getCatalogueId(): CatalogueId
     {
         return $this->catalogueId;
+    }
+
+    public static function fromArray(array $commandProps): self
+    {
+        $resolver = new OptionsResolver();
+        $resolver->setRequired(['message_key', 'catalogue_id']);
+        $props = $resolver->resolve($commandProps);
+
+        return new self(
+            (string)$props['message_key'],
+            new CatalogueId((string)$props['catalogue_id'])
+        );
     }
 }
