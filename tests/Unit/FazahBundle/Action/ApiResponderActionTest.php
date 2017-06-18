@@ -34,15 +34,15 @@ class ApiResponderActionTest extends TestCase
      */
     public function itShouldSendACommandToTheEventBus(): void
     {
-       $requestedCommand = new \stdClass();
-       $request = new Request();
-       $request->attributes->set('_command', $requestedCommand);
+        $requestedCommand = new \stdClass();
+        $request = new Request();
+        $request->attributes->set('_command', $requestedCommand);
 
-       $this->commandBus->expects(static::once())
+        $this->commandBus->expects(static::once())
            ->method('handle')
            ->with($requestedCommand);
 
-       call_user_func($this->action, $request);
+        call_user_func($this->action, $request);
     }
 
     /**

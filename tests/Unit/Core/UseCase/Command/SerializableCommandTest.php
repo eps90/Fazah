@@ -29,7 +29,10 @@ abstract class SerializableCommandTest extends TestCase
      * @test
      * @dataProvider invalidInputProperties
      */
-    public function itShouldThrowWhenItMissesAName(array $inputProps, string $exceptionClass = MissingOptionsException::class): void
+    public function itShouldThrowWhenItMissesAName(
+        array $inputProps,
+        string $exceptionClass = MissingOptionsException::class
+    ): void
     {
         $this->expectException($exceptionClass);
         call_user_func($this->getCommandClass() . '::fromArray', $inputProps);

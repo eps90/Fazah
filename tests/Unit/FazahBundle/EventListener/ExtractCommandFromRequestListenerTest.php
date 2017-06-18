@@ -30,7 +30,7 @@ class ExtractCommandFromRequestListenerTest extends TestCase
         );
         $this->listener = new ExtractCommandFromRequestListener($serializer);
     }
-    
+
     /**
      * @test
      */

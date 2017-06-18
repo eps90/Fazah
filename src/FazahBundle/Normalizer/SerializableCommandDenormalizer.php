@@ -11,7 +11,7 @@ class SerializableCommandDenormalizer implements DenormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function denormalize($data, $class, $format = null, array $context = array())
+    public function denormalize($data, $class, $format = null, array $context = [])
     {
         return call_user_func($class . '::fromArray', $data);
     }
