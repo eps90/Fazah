@@ -36,15 +36,7 @@ class ExtractCommandFromRequestListenerTest extends TestCase
      */
     public function itShouldConvertDeserializeRequestToCommand(): void
     {
-        $requestBody = json_encode([
-            'name' => 'My command',
-            'opts' => ['a' => 1]
-        ]);
-        $requestAttributes = [
-            '_command_class' => DummySerializableCommand::class
-        ];
-        $request = new Request([], [], $requestAttributes, [], [], [], $requestBody);
-        $request->setRequestFormat('json');
+        $request = $this->getValidRequest();
         $event = $this->createGetResponseEvent($request);
 
         $this->listener->onKernelRequest($event);
@@ -60,15 +52,7 @@ class ExtractCommandFromRequestListenerTest extends TestCase
      */
     public function itShouldSetAControllerForCommandRequest(): void
     {
-        $requestBody = json_encode([
-            'name' => 'My command',
-            'opts' => ['a' => 1]
-        ]);
-        $requestAttributes = [
-            '_command_class' => DummySerializableCommand::class
-        ];
-        $request = new Request([], [], $requestAttributes, [], [], [], $requestBody);
-        $request->setRequestFormat('json');
+        $request = $this->getValidRequest();
         $event = $this->createGetResponseEvent($request);
 
         $this->listener->onKernelRequest($event);
@@ -82,20 +66,28 @@ class ExtractCommandFromRequestListenerTest extends TestCase
     /**
      * @test
      */
-    public function itShouldDoNothingWhenCommandClassIsNotProvided(): void
+    public function itShouldCleanUpCommandClassParameter(): void
     {
-        $requestBody = json_encode([
-            'name' => 'My command',
-            'opts' => ['a' => 1]
-        ]);
-        $requestAttributes = [];
-        $request = new Request([], [], $requestAttributes, [], [], [], $requestBody);
-        $request->setRequestFormat('json');
+        $request = $this->getValidRequest();
         $event = $this->createGetResponseEvent($request);
 
         $this->listener->onKernelRequest($event);
 
-        static::assertNull($request->attributes->get('_command'));
+        static::assertFalse($request->attributes->has('_command_class'));
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldDoNothingWhenCommandClassIsNotProvided(): void
+    {
+        $request = $this->getValidRequest();
+        $request->attributes->remove('_command_class');
+        $event = $this->createGetResponseEvent($request);
+
+        $this->listener->onKernelRequest($event);
+
+        static::assertFalse($request->attributes->has('_command'));
     }
 
     private function createGetResponseEvent(Request $request): GetResponseEvent
@@ -104,5 +96,20 @@ class ExtractCommandFromRequestListenerTest extends TestCase
         $requestType = HttpKernelInterface::MASTER_REQUEST;
 
         return new GetResponseEvent($kernel, $request, $requestType);
+    }
+
+    private function getValidRequest(): Request
+    {
+        $requestBody = json_encode([
+            'name' => 'My command',
+            'opts' => ['a' => 1]
+        ]);
+        $requestAttributes = [
+            '_command_class' => DummySerializableCommand::class
+        ];
+        $request = new Request([], [], $requestAttributes, [], [], [], $requestBody);
+        $request->setRequestFormat('json');
+
+        return $request;
     }
 }
