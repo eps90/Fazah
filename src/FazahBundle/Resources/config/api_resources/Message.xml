@@ -6,5 +6,21 @@
         <attribute name="filters">
             <attribute>message_filter</attribute>
         </attribute>
+        <collectionOperation name="get">
+            <attribute name="method">GET</attribute>
+        </collectionOperation>
+        <collectionOperation name="add_message">
+            <attribute name="route_name">fazah.message.add</attribute>
+        </collectionOperation>
+
+        <itemOperation name="get">
+            <attribute name="method">GET</attribute>
+        </itemOperation>
+        <itemOperation name="edit_message">
+            <attribute name="route_name">fazah.message.edit</attribute>
+        </itemOperation>
+        <itemOperation name="change_message_state">
+            <attribute name="route_name">fazah.message.change_state</attribute>
+        </itemOperation>
     </resource>
 </resources>

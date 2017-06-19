@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing">
+    <route id="fazah.project.create" path="/projects.{_format}" methods="POST">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Project\CreateProject</default>
+        <default key="_format">null</default>
+    </route>
+
+    <route id="fazah.project.edit" path="/projects/{id}.{_format}" methods="PUT">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Project\EditProject</default>
+        <default key="_format">null</default>
+    </route>
+
+    <route id="fazah.project.change_state" path="/projects/{id}/state.{_format}" methods="PUT">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Project\ChangeProjectState</default>
+        <default key="_format">null</default>
+    </route>
+
+    <route id="fazah.catalogue.create" path="/catalogues.{_format}" methods="POST">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Catalogue\CreateCatalogue</default>
+        <default key="_format">null</default>
+    </route>
+
+    <route id="fazah.catalogue.edit" path="/catalogues/{id}.{_format}" methods="PUT">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Catalogue\EditCatalogue</default>
+        <default key="_format">null</default>
+    </route>
+
+    <route id="fazah.catalogue.change_state" path="/catalogues/{id}/state.{_format}" methods="PUT">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Catalogue\ChangeCatalogueState</default>
+        <default key="_format">null</default>
+    </route>
+
+    <route id="fazah.message.add" path="/messages.{_format}" methods="POST">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Message\AddMessage</default>
+        <default key="_format">null</default>
+    </route>
+
+    <route id="fazah.message.edit" path="/messages/{id}.{_format}" methods="PUT">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Message\EditMessage</default>
+        <default key="_format">null</default>
+    </route>
+
+    <route id="fazah.message.change_state" path="/messages/{id}/state.{_format}" methods="PUT">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Message\ChangeMessageState</default>
+        <default key="_format">null</default>
+    </route>
+</routes>

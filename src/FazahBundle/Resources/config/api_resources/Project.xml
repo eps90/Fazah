@@ -6,5 +6,21 @@
         <attribute name="filters">
             <attribute>project_filter</attribute>
         </attribute>
+        <collectionOperation name="get">
+            <attribute name="method">GET</attribute>
+        </collectionOperation>
+        <collectionOperation name="create_project">
+            <attribute name="route_name">fazah.project.create</attribute>
+        </collectionOperation>
+
+        <itemOperation name="get">
+            <attribute name="method">GET</attribute>
+        </itemOperation>
+        <itemOperation name="edit_project">
+            <attribute name="route_name">fazah.project.edit</attribute>
+        </itemOperation>
+        <itemOperation name="change_project_state">
+            <attribute name="route_name">fazah.project.change_state</attribute>
+        </itemOperation>
     </resource>
 </resources>

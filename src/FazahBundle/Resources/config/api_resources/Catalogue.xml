@@ -6,5 +6,21 @@
         <attribute name="filters">
             <attribute>catalogue_filter</attribute>
         </attribute>
+        <collectionOperation name="get">
+            <attribute name="method">GET</attribute>
+        </collectionOperation>
+        <collectionOperation name="create_catalogue">
+            <attribute name="route_name">fazah.catalogue.create</attribute>
+        </collectionOperation>
+
+        <itemOperation name="get">
+            <attribute name="method">GET</attribute>
+        </itemOperation>
+        <itemOperation name="edit_catalogue">
+            <attribute name="route_name">fazah.catalogue.edit</attribute>
+        </itemOperation>
+        <itemOperation name="change_catalogue_state">
+            <attribute name="route_name">fazah.catalogue.change_state</attribute>
+        </itemOperation>
     </resource>
 </resources>
