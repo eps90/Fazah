@@ -33,8 +33,11 @@ class ApiResponderAction
     private function getResponseStatusCode(Request $request): int
     {
         switch ($request->getMethod()) {
-            case Request::METHOD_POST:
+            case Request::METHOD_GET:
             case Request::METHOD_PUT:
+                $statusCode = Response::HTTP_OK;
+                break;
+            case Request::METHOD_POST:
                 $statusCode = Response::HTTP_CREATED;
                 break;
             case Request::METHOD_DELETE:

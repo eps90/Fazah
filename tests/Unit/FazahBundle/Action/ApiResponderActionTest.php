@@ -62,8 +62,7 @@ class ApiResponderActionTest extends TestCase
      */
     public function itShouldReturn200ResponseForGetRequests(): void
     {
-        $request = new Request([], [], ['_command' => new \stdClass()]);
-        $request->setMethod(Request::METHOD_GET);
+        $request = $this->createValidRequest(Request::METHOD_GET);
 
         $actualResponse = call_user_func($this->action, $request);
         $expectedResponse = new Response('', Response::HTTP_OK);
@@ -76,8 +75,7 @@ class ApiResponderActionTest extends TestCase
      */
     public function itShouldReturn201ForPostRequests(): void
     {
-        $request = new Request([], [], ['_command' => new \stdClass()]);
-        $request->setMethod(Request::METHOD_POST);
+        $request = $this->createValidRequest(Request::METHOD_POST);
 
         $actualResponse = call_user_func($this->action, $request);
         $expectedResponse = new Response('', Response::HTTP_CREATED);
@@ -88,13 +86,12 @@ class ApiResponderActionTest extends TestCase
     /**
      * @test
      */
-    public function itShouldReturn201ForPutRequests(): void
+    public function itShouldReturn200ForPutRequests(): void
     {
-        $request = new Request([], [], ['_command' => new \stdClass()]);
-        $request->setMethod(Request::METHOD_PUT);
+        $request = $this->createValidRequest(Request::METHOD_PUT);
 
         $actualResponse = call_user_func($this->action, $request);
-        $expectedResponse = new Response('', Response::HTTP_CREATED);
+        $expectedResponse = new Response('', Response::HTTP_OK);
 
         static::assertEquals($expectedResponse, $actualResponse);
     }
@@ -104,12 +101,19 @@ class ApiResponderActionTest extends TestCase
      */
     public function itShouldReturn204ForDeleteRequests(): void
     {
-        $request = new Request([], [], ['_command' => new \stdClass()]);
-        $request->setMethod(Request::METHOD_DELETE);
+        $request = $this->createValidRequest(Request::METHOD_DELETE);
 
         $actualResponse = call_user_func($this->action, $request);
         $expectedResponse = new Response('', Response::HTTP_NO_CONTENT);
 
         static::assertEquals($expectedResponse, $actualResponse);
+    }
+
+    private function createValidRequest(string $method): Request
+    {
+        $request = new Request([], [], ['_command' => new \stdClass()]);
+        $request->setMethod($method);
+
+        return $request;
     }
 }
