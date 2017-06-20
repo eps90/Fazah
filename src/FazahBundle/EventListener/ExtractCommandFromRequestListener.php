@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\FazahBundle\EventListener;
 
+use Eps\Fazah\FazahBundle\EventListener\CommandExtractor\CommandExtractorInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\Serializer\SerializerInterface;
 
 final class ExtractCommandFromRequestListener
 {
@@ -14,13 +14,17 @@ final class ExtractCommandFromRequestListener
     private const CONTROLLER_PARAM = '_controller';
 
     /**
-     * @var SerializerInterface
+     * @var CommandExtractorInterface
      */
-    private $serializer;
+    private $extractor;
 
-    public function __construct(SerializerInterface $serializer)
+    /**
+     * ExtractCommandFromRequestListener constructor.
+     * @param CommandExtractorInterface $extractor
+     */
+    public function __construct(CommandExtractorInterface $extractor)
     {
-        $this->serializer = $serializer;
+        $this->extractor = $extractor;
     }
 
     public function onKernelRequest(GetResponseEvent $event): void
@@ -31,7 +35,7 @@ final class ExtractCommandFromRequestListener
             return;
         }
 
-        $command = $this->serializer->deserialize($request->getContent(), $commandClass, $request->getRequestFormat());
+        $command = $this->extractor->extractFromRequest($request, $commandClass);
 
         $request->attributes->set(self::CMD_PARAM, $command);
         $request->attributes->set(self::CONTROLLER_PARAM, self::API_RESPONDER_CONTROLLER);

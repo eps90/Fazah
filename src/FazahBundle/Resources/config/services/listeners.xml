@@ -5,9 +5,17 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="fazah.command_extractor.serializer"
+                 class="Eps\Fazah\FazahBundle\EventListener\CommandExtractor\SerializerCommandExtractor"
+                 public="false">
+            <argument type="service" id="serializer"/>
+        </service>
+
+        <service id="fazah.command_extractor" alias="fazah.command_extractor.serializer" />
+
         <service id="fazah.listener.extract_command_from_request"
                  class="Eps\Fazah\FazahBundle\EventListener\ExtractCommandFromRequestListener">
-            <argument type="service" id="serializer" />
+            <argument type="service" id="fazah.command_extractor" />
             <tag name="kernel.event_listener" method="onKernelRequest" event="kernel.request" />
         </service>
     </services>
