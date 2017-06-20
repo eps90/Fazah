@@ -38,7 +38,10 @@ final class ExtractCommandFromRequestListener
         $command = $this->extractor->extractFromRequest($request, $commandClass);
 
         $request->attributes->set(self::CMD_PARAM, $command);
-        $request->attributes->set(self::CONTROLLER_PARAM, self::API_RESPONDER_CONTROLLER);
         $request->attributes->remove(self::CMD_CLASS_PARAM);
+
+        if (!$request->attributes->has(self::CONTROLLER_PARAM)) {
+            $request->attributes->set(self::CONTROLLER_PARAM, self::API_RESPONDER_CONTROLLER);
+        }
     }
 }

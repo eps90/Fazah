@@ -68,6 +68,21 @@ class ExtractCommandFromRequestListenerTest extends TestCase
     /**
      * @test
      */
+    public function itShouldNotOverwriteControllerIfThereIsConfiguredOne(): void
+    {
+        $request = $this->getValidRequest();
+        $ctrlFromParams = 'AppBundle:default';
+        $request->attributes->set('_controller', $ctrlFromParams);
+        $event = $this->createGetResponseEvent($request);
+
+        $this->listener->onKernelRequest($event);
+
+        static::assertEquals($ctrlFromParams, $request->attributes->get('_controller'));
+    }
+
+    /**
+     * @test
+     */
     public function itShouldCleanUpCommandClassParameter(): void
     {
         $request = $this->getValidRequest();
