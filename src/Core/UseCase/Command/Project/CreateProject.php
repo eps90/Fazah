@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\UseCase\Command\Project;
 
-use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Eps\Req2CmdBundle\Command\DeserializableCommandInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class CreateProject implements SerializableCommand
+final class CreateProject implements DeserializableCommandInterface
 {
     /**
      * @var string

@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\UseCase\Command\Message;
 
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
-use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Eps\Req2CmdBundle\Command\DeserializableCommandInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class AddMessage implements SerializableCommand
+final class AddMessage implements DeserializableCommandInterface
 {
     /**
      * @var string

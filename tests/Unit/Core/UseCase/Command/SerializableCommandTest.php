@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Unit\Core\UseCase\Command;
 
-use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Eps\Req2CmdBundle\Command\DeserializableCommandInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 
@@ -19,7 +19,7 @@ abstract class SerializableCommandTest extends TestCase
      * @test
      * @dataProvider validInputProperties
      */
-    public function itShouldBeAbleToCreateFromArray(array $inputProps, SerializableCommand $expectedCommand): void
+    public function itShouldBeAbleToCreateFromArray(array $inputProps, DeserializableCommandInterface $expectedCommand): void
     {
         $actualCommand =  call_user_func($this->getCommandClass() . '::fromArray', $inputProps);
         static::assertEquals($expectedCommand, $actualCommand);

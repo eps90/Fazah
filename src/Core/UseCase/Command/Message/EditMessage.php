@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\UseCase\Command\Message;
 
 use Eps\Fazah\Core\Model\Identity\MessageId;
-use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Eps\Req2CmdBundle\Command\DeserializableCommandInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class EditMessage implements SerializableCommand
+final class EditMessage implements DeserializableCommandInterface
 {
     /**
      * @var MessageId

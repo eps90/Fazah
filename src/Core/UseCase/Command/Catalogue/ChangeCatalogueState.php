@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\UseCase\Command\Catalogue;
 
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
-use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Eps\Req2CmdBundle\Command\DeserializableCommandInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class ChangeCatalogueState implements SerializableCommand
+final class ChangeCatalogueState implements DeserializableCommandInterface
 {
     /**
      * @var CatalogueId

@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Eps\Fazah\Core\UseCase\Command\Project;
 
 use Eps\Fazah\Core\Model\Identity\ProjectId;
-use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Eps\Req2CmdBundle\Command\DeserializableCommandInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class ChangeProjectState implements SerializableCommand
+final class ChangeProjectState implements DeserializableCommandInterface
 {
     /**
      * @var ProjectId
