@@ -25,7 +25,5 @@ class FazahExtension extends Extension
         $loader->load('repositories.xml');
         $loader->load('commands.xml');
         $loader->load('api.xml');
-        $loader->load('actions.xml');
-        $loader->load('listeners.xml');
     }
 }
