@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new \League\Tactician\Bundle\TacticianBundle(),
             new \ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle(),
+            new \Eps\Req2CmdBundle\Req2CmdBundle(),
             new \Eps\Fazah\FazahBundle\FazahBundle(),
         ];
 
