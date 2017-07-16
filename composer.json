@@ -42,7 +42,7 @@
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.3.*",
         "twig/twig": "^2.0",
-        "eps90/req2cmd-bundle": "dev-master"
+        "eps90/req2cmd-bundle": "1.0.0-rc4"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^2.3",
