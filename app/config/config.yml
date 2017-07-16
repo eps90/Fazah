@@ -85,3 +85,5 @@ api_platform:
     description: 'Translations API'
     version: 1.0.0
     name_converter: 'fazah.api.name_converter'
+    exception_to_status:
+      'Symfony\Component\OptionsResolver\Exception\ExceptionInterface': 'HTTP_BAD_REQUEST'
