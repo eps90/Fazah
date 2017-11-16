@@ -27,4 +27,6 @@ interface ProjectRepository extends RepositoryInterface
      * @return array|Project[]
      */
     public function findAll(QueryCriteria $criteria = null): array;
+
+    public function remove(ProjectId $projectId): void;
 }
