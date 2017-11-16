@@ -69,5 +69,12 @@
             <argument type="service" id="fazah.repository.message" />
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Message\EditMessage" />
         </service>
+
+        <service id="fazah.command.delete_project"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Project\DeleteProjectHandler"
+                 lazy="true">
+            <argument type="service" id="fazah.repository.project" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Project\DeleteProject" />
+        </service>
     </services>
 </container>
