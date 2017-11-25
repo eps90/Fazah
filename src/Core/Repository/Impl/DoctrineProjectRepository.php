@@ -35,4 +35,11 @@ class DoctrineProjectRepository extends BaseDoctrineRepository implements Projec
     {
         return Project::class;
     }
+
+    public function remove(ProjectId $projectId): void
+    {
+        $projectReference = $this->entityManager->getReference(Project::class, $projectId);
+        $this->entityManager->remove($projectReference);
+        $this->entityManager->flush();
+    }
 }

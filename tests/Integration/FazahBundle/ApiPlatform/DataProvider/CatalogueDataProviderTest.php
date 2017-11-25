@@ -182,4 +182,50 @@ class CatalogueDataProviderTest extends WebTestCase
 
         static::assertEquals($expectedCatalogue, $actualCatalogue);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldRemoveCatalogueById(): void
+    {
+        $requestUrl = '/api/catalogues/12853ef6-43a5-4e7f-8ff5-3fb47ef10a07.json';
+        $this->client->request('DELETE', $requestUrl);
+
+        $actualResponse = $this->client->getResponse();
+
+        static::assertEquals(204, $actualResponse->getStatusCode());
+        static::assertEmpty($actualResponse->getContent());
+
+        $expectedCatalogues = json_encode([
+            [
+                'id' => 'aba1afb9-8513-4657-844c-8df297e335b4',
+                'name' => 'second_catalogue',
+                'alias' => 'second_catalogue',
+                'project_id' => '584d8b6a-7eb0-4ef4-a54e-0eb16bb86138',
+                'parent_catalogue_id' => null,
+                'metadata' => [
+                    'creation_time' => '2015-01-01T12:00:00+00:00',
+                    'update_time' => '2015-01-02T13:00:00+00:00',
+                    'enabled' => false
+                ]
+            ],
+            [
+                'id' => 'cf5f781a-3f05-45cd-bbe4-f09ed61227e3',
+                'name' => 'third_catalogue',
+                'alias' => 'third_catalogue',
+                'project_id' => '0bacbf16-dfc8-4e39-9ca1-581d9158c3d5',
+                'parent_catalogue_id' => null,
+                'metadata' => [
+                    'creation_time' => '2015-01-01T12:00:00+00:00',
+                    'update_time' => '2015-01-02T13:00:00+00:00',
+                    'enabled' => true
+                ]
+            ]
+        ]);
+
+        $this->client->request('GET', '/api/catalogues.json');
+        $actualCatalogues = $this->client->getResponse()->getContent();
+
+        static::assertEquals($expectedCatalogues, $actualCatalogues);
+    }
 }

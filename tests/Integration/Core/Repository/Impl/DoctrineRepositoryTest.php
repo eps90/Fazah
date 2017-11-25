@@ -19,6 +19,7 @@ abstract class DoctrineRepositoryTest extends WebTestCase
     abstract public function findAllProvider(): array;
     abstract public function updateProvider(): array;
     abstract public function uniqueModelProvider(): array;
+    abstract public function removeProvider(): array;
 
     protected function setUp()
     {
@@ -107,5 +108,26 @@ abstract class DoctrineRepositoryTest extends WebTestCase
     {
         $this->expectException(UniqueConstraintViolationException::class);
         $this->getRepositoryInstance()->save(...$instances);
+    }
+
+    /**
+     * @test
+     * @dataProvider removeProvider
+     */
+    public function itShouldBeAbleToRemoveSingleItem(
+        Identity $id,
+        array $expectedState,
+        array $customFixtures = []
+    ): void {
+        if (!empty($customFixtures)) {
+            $this->loadFixtures($customFixtures);
+        }
+
+        $repository = $this->getRepositoryInstance();
+        $repository->remove($id);
+
+        $actualState = $repository->findAll();
+
+        static::assertEquals($expectedState, $actualState);
     }
 }

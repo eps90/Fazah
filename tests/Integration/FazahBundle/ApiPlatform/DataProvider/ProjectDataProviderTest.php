@@ -123,4 +123,50 @@ class ProjectDataProviderTest extends WebTestCase
 
         static::assertJsonStringEqualsJsonString($expectedResponse, $actualResponse);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldRemoveProjectById(): void
+    {
+        $requestUrl = '/api/projects/9b669c76-7a80-4d3f-9191-37c1eda80a05.json';
+        $this->client->request('DELETE', $requestUrl);
+
+        $actualResponse = $this->client->getResponse();
+
+        static::assertEquals(204, $actualResponse->getStatusCode());
+        static::assertEmpty($actualResponse->getContent());
+
+        $expectedElements = json_encode([
+            [
+                'id' => '4c3339d3-ad42-4614-bd83-8585cea0e54e',
+                'name' => 'yet-another-cool-project',
+                'metadata' => [
+                    'creation_time' => '2015-01-01T12:00:02+00:00',
+                    'update_time' => '2015-01-02T12:00:02+00:00',
+                    'enabled' => true
+                ],
+                'config' => [
+                    'available_languages' => ['en', 'fr', 'pl']
+                ]
+            ],
+            [
+                'id' => 'a558d385-a0b4-4f0d-861c-da6b9cd83260',
+                'name' => 'my-awesome-project',
+                'metadata' => [
+                    'creation_time' => '2015-01-01T12:00:01+00:00',
+                    'update_time' => '2015-01-02T12:00:01+00:00',
+                    'enabled' => true
+                ],
+                'config' => [
+                    'available_languages' => ['en', 'fr', 'pl']
+                ]
+            ]
+        ]);
+
+        $this->client->request('GET', '/api/projects.json');
+        $actualResponse = $this->client->getResponse()->getContent();
+
+        static::assertJsonStringEqualsJsonString($expectedElements, $actualResponse);
+    }
 }

@@ -29,6 +29,18 @@
         </default>
     </route>
 
+    <route id="fazah.project.delete" path="/projects/{id}.{_format}" methods="DELETE">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Project\DeleteProject</default>
+        <default key="_format">null</default>
+        <default key="_command_properties">
+            <map>
+                <map key="path">
+                    <string key="id">project_id</string>
+                </map>
+            </map>
+        </default>
+    </route>
+
     <route id="fazah.catalogue.create" path="/catalogues.{_format}" methods="POST">
         <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Catalogue\CreateCatalogue</default>
         <default key="_format">null</default>
@@ -58,6 +70,18 @@
         </default>
     </route>
 
+    <route id="fazah.catalogue.delete" path="/catalogues/{id}.{_format}" methods="DELETE">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Catalogue\RemoveCatalogue</default>
+        <default key="_format">null</default>
+        <default key="_command_properties">
+            <map>
+                <map key="path">
+                    <string key="id">catalogue_id</string>
+                </map>
+            </map>
+        </default>
+    </route>
+
     <route id="fazah.message.add" path="/messages.{_format}" methods="POST">
         <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Message\AddMessage</default>
         <default key="_format">null</default>
@@ -77,6 +101,18 @@
 
     <route id="fazah.message.change_state" path="/messages/{id}/state.{_format}" methods="PUT">
         <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Message\ChangeMessageState</default>
+        <default key="_format">null</default>
+        <default key="_command_properties">
+            <map>
+                <map key="path">
+                    <string key="id">message_id</string>
+                </map>
+            </map>
+        </default>
+    </route>
+
+    <route id="fazah.message.delete" path="/messages/{id}.{_format}" methods="DELETE">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Message\RemoveMessage</default>
         <default key="_format">null</default>
         <default key="_command_properties">
             <map>

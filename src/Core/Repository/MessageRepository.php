@@ -27,4 +27,6 @@ interface MessageRepository extends RepositoryInterface
      * @return array|Message[]
      */
     public function findAll(QueryCriteria $criteria = null): array;
+
+    public function remove(MessageId $messageId): void;
 }

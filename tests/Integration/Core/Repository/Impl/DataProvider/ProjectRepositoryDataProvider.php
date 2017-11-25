@@ -254,4 +254,35 @@ trait ProjectRepositoryDataProvider
             ]
         ];
     }
+
+    public function removeProvider(): array
+    {
+        return [
+            'simple' => [
+                'project_id' => new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
+                'expected' => [
+                    Project::restoreFrom(
+                        new ProjectId('9b669c76-7a80-4d3f-9191-37c1eda80a05'),
+                        'disabled-project',
+                        Metadata::restoreFrom(
+                            Carbon::parse('2015-01-01 12:00:03'),
+                            Carbon::parse('2015-01-02 12:00:03'),
+                            false
+                        ),
+                        ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
+                    ),
+                    Project::restoreFrom(
+                        new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
+                        'yet-another-cool-project',
+                        Metadata::restoreFrom(
+                            Carbon::parse('2015-01-01 12:00:02'),
+                            Carbon::parse('2015-01-02 12:00:02'),
+                            true
+                        ),
+                        ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
+                    )
+                ]
+            ]
+        ];
+    }
 }

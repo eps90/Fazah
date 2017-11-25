@@ -22,5 +22,8 @@
         <itemOperation name="change_catalogue_state">
             <attribute name="route_name">fazah.catalogue.change_state</attribute>
         </itemOperation>
+        <itemOperation name="remove_catalogue">
+            <attribute name="route_name">fazah.catalogue.delete</attribute>
+        </itemOperation>
     </resource>
 </resources>

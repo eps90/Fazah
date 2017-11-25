@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d3c5e85b1e91a3c5e6095b1e4ded141",
+    "content-hash": "13df79d67e5ec0ec86f98cb16547c69f",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1114,16 +1114,16 @@
         },
         {
             "name": "eps90/req2cmd-bundle",
-            "version": "dev-master",
+            "version": "v1.0.0-rc5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eps90/req2cmd-bundle.git",
-                "reference": "11bf7a88f024ccdc7e78e88ee69f9e6e8d93da11"
+                "reference": "f7778e08d1b4ab00fc837a1cfc0c35431c07c85d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eps90/req2cmd-bundle/zipball/11bf7a88f024ccdc7e78e88ee69f9e6e8d93da11",
-                "reference": "11bf7a88f024ccdc7e78e88ee69f9e6e8d93da11",
+                "url": "https://api.github.com/repos/eps90/req2cmd-bundle/zipball/f7778e08d1b4ab00fc837a1cfc0c35431c07c85d",
+                "reference": "f7778e08d1b4ab00fc837a1cfc0c35431c07c85d",
                 "shasum": ""
             },
             "require": {
@@ -1160,7 +1160,7 @@
                 }
             ],
             "description": "Extract command from a HTTP request and send it to the command bus like Tactician",
-            "time": "2017-07-16 16:56:37"
+            "time": "2017-11-25T16:48:24+00:00"
         },
         {
             "name": "fig/link-util",
@@ -5208,7 +5208,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "roave/security-advisories": 20,
-        "eps90/req2cmd-bundle": 20
+        "eps90/req2cmd-bundle": 5
     },
     "prefer-stable": false,
     "prefer-lowest": false,

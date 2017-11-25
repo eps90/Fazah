@@ -21,7 +21,7 @@ abstract class SerializableCommandTest extends TestCase
      */
     public function itShouldBeAbleToCreateFromArray(array $inputProps, DeserializableCommandInterface $expectedCommand): void
     {
-        $actualCommand =  call_user_func($this->getCommandClass() . '::fromArray', $inputProps);
+        $actualCommand = call_user_func($this->getCommandClass() . '::fromArray', $inputProps);
         static::assertEquals($expectedCommand, $actualCommand);
     }
 

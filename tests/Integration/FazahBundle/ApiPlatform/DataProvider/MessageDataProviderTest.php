@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Integration\FazahBundle\ApiPlatform\DataProvider;
 
-use Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\MessageDataProvider;
 use Eps\Fazah\Tests\Resources\Fixtures\AddFewMessages;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Client;
@@ -197,5 +196,54 @@ class MessageDataProviderTest extends WebTestCase
         $actualResponse = $this->client->getResponse()->getContent();
 
         static::assertJsonStringEqualsJsonString($expectedResponse, $actualResponse);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldRemoveAMessageById(): void
+    {
+        $requestUrl = '/api/messages/af797da0-0959-4207-97f5-3dabf081a37f.json';
+        $this->client->request('DELETE', $requestUrl);
+
+        $response = $this->client->getResponse();
+
+        static::assertEquals(204, $response->getStatusCode());
+        static::assertEmpty($response->getContent());
+
+        $expectedMessages = json_encode([
+            [
+                'id' => '84decc43-283f-4089-8ded-f66513d1b54d',
+                'translation' => [
+                    'message_key' => 'my.message.3',
+                    'translated_message' => 'My message #3',
+                    'language' => 'fr'
+                ],
+                'catalogue_id' => '94b1c887-f740-454a-b94e-706a0e5a0f41',
+                'metadata' => [
+                    'creation_time' => '2016-03-01T12:00:03+00:00',
+                    'update_time' => '2016-03-02T12:00:03+00:00',
+                    'enabled' => true
+                ]
+            ],
+            [
+                'id' => 'fad9c222-02c6-4466-82f8-9345a84b52da',
+                'translation' => [
+                    'message_key' => 'my.message.2',
+                    'translated_message' => 'My message #2',
+                    'language' => 'pl'
+                ],
+                'catalogue_id' => '94b1c887-f740-454a-b94e-706a0e5a0f41',
+                'metadata' => [
+                    'creation_time' => '2016-03-01T12:00:02+00:00',
+                    'update_time' => '2016-03-02T12:00:02+00:00',
+                    'enabled' => true
+                ]
+            ]
+        ]);
+        $this->client->request('GET', '/api/messages.json');
+        $actualMessages = $this->client->getResponse()->getContent();
+
+        static::assertEquals($expectedMessages, $actualMessages);
     }
 }
