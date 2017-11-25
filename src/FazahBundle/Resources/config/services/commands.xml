@@ -76,5 +76,12 @@
             <argument type="service" id="fazah.repository.project" />
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Project\DeleteProject" />
         </service>
+
+        <service id="fazah.command.remove_catalogue"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Catalogue\RemoveCatalogueHandler"
+                 lazy="true">
+            <argument type="service" id="fazah.repository.catalogue" />
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Catalogue\RemoveCatalogue" />
+        </service>
     </services>
 </container>
