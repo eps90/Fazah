@@ -22,5 +22,8 @@
         <itemOperation name="change_message_state">
             <attribute name="route_name">fazah.message.change_state</attribute>
         </itemOperation>
+        <itemOperation name="remove_message">
+            <attribute name="route_name">fazah.message.delete</attribute>
+        </itemOperation>
     </resource>
 </resources>
