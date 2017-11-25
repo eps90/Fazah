@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Integration\Core\Repository\Impl;
 
-use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Tests\Integration\Core\Repository\Impl\DataProvider\CatalogueRepositoryDataProvider;
 use Eps\Fazah\Tests\Resources\Fixtures\AddCatalogues;
 use Eps\Fazah\Tests\Resources\Fixtures\AddProjects;
@@ -23,19 +22,5 @@ class DoctrineCatalogueRepositoryTest extends DoctrineRepositoryTest
             AddProjects::class,
             AddCatalogues::class
         ];
-    }
-    
-    /**
-     * @test
-     * @dataProvider removeProvider
-     */
-    public function itShouldBeAbleToRemoveACatalogue(CatalogueId $catalogueId, array $expectedCatalogues): void
-    {
-        $repository = $this->getRepositoryInstance();
-        $repository->remove($catalogueId);
-        
-        $actualCatalogues = $repository->findAll();
-        
-        static::assertEquals($expectedCatalogues, $actualCatalogues);
     }
 }
