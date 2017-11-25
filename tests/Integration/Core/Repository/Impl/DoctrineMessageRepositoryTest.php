@@ -89,4 +89,53 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
 
         static::assertEquals($expectedResult, $actualResult);
     }
+    
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToRemoveAMessage(): void
+    {
+        $this->loadFixtures([
+            AddFewMessages::class
+        ]);
+        
+        $repository = $this->getRepositoryInstance();
+        
+        $messageId = new MessageId('84decc43-283f-4089-8ded-f66513d1b54d');
+        $repository->remove($messageId);
+        
+        $expectedMessages = [
+            Message::restoreFrom(
+                new MessageId('fad9c222-02c6-4466-82f8-9345a84b52da'),
+                Translation::create(
+                    'my.message.2',
+                    'My message #2',
+                    'pl'
+                ),
+                new CatalogueId('94b1c887-f740-454a-b94e-706a0e5a0f41'),
+                Metadata::restoreFrom(
+                    Carbon::parse('2016-03-01 12:00:02'),
+                    Carbon::parse('2016-03-02 12:00:02'),
+                    true
+                )
+            ),
+            Message::restoreFrom(
+                new MessageId('af797da0-0959-4207-97f5-3dabf081a37f'),
+                Translation::create(
+                    'my.message.1',
+                    'My message #1',
+                    'en'
+                ),
+                new CatalogueId('94b1c887-f740-454a-b94e-706a0e5a0f41'),
+                Metadata::restoreFrom(
+                    Carbon::parse('2016-03-01 12:00:01'),
+                    Carbon::parse('2016-03-02 12:00:01'),
+                    true
+                )
+            )
+        ];
+        $actualMessages = $repository->findAll();
+        
+        static::assertEquals($expectedMessages, $actualMessages);
+    }
 }
