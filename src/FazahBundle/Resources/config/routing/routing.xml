@@ -110,4 +110,16 @@
             </map>
         </default>
     </route>
+
+    <route id="fazah.message.delete" path="/messages/{id}.{_format}" methods="DELETE">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Message\RemoveMessage</default>
+        <default key="_format">null</default>
+        <default key="_command_properties">
+            <map>
+                <map key="path">
+                    <string key="id">message_id</string>
+                </map>
+            </map>
+        </default>
+    </route>
 </routes>
