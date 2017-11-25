@@ -22,5 +22,8 @@
         <itemOperation name="change_project_state">
             <attribute name="route_name">fazah.project.change_state</attribute>
         </itemOperation>
+        <itemOperation name="delete_project">
+            <attribute name="route_name">fazah.project.delete</attribute>
+        </itemOperation>
     </resource>
 </resources>
