@@ -83,7 +83,7 @@ swiftmailer:
 api_platform:
     title: 'Fazah'
     description: 'Translations API'
-    version: 1.0.0
+    version: 0.1.0
     name_converter: 'fazah.api.name_converter'
     exception_to_status:
       'Symfony\Component\OptionsResolver\Exception\ExceptionInterface': 'HTTP_BAD_REQUEST'
