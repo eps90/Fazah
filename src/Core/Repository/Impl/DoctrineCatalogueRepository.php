@@ -35,7 +35,7 @@ class DoctrineCatalogueRepository extends BaseDoctrineRepository implements Cata
     {
         return Catalogue::class;
     }
-    
+
     public function remove(CatalogueId $catalogueId): void
     {
         $catalogueReference = $this->entityManager->getReference(Catalogue::class, $catalogueId);

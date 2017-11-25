@@ -109,7 +109,7 @@ abstract class DoctrineRepositoryTest extends WebTestCase
         $this->expectException(UniqueConstraintViolationException::class);
         $this->getRepositoryInstance()->save(...$instances);
     }
-    
+
     /**
      * @test
      * @dataProvider removeProvider
@@ -122,12 +122,12 @@ abstract class DoctrineRepositoryTest extends WebTestCase
         if (!empty($customFixtures)) {
             $this->loadFixtures($customFixtures);
         }
-        
+
         $repository = $this->getRepositoryInstance();
         $repository->remove($id);
-        
+
         $actualState = $repository->findAll();
-        
+
         static::assertEquals($expectedState, $actualState);
     }
 }

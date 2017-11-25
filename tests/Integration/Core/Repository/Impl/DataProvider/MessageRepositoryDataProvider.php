@@ -409,7 +409,7 @@ trait MessageRepositoryDataProvider
             ]
         ];
     }
-    
+
     public function removeProvider(): array
     {
         return [

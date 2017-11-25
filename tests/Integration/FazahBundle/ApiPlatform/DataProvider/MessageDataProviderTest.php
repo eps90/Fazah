@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Integration\FazahBundle\ApiPlatform\DataProvider;
 
-use Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\MessageDataProvider;
 use Eps\Fazah\Tests\Resources\Fixtures\AddFewMessages;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Client;
@@ -198,7 +197,7 @@ class MessageDataProviderTest extends WebTestCase
 
         static::assertJsonStringEqualsJsonString($expectedResponse, $actualResponse);
     }
-    
+
     /**
      * @test
      */
@@ -206,12 +205,12 @@ class MessageDataProviderTest extends WebTestCase
     {
         $requestUrl = '/api/messages/af797da0-0959-4207-97f5-3dabf081a37f.json';
         $this->client->request('DELETE', $requestUrl);
-        
+
         $response = $this->client->getResponse();
-        
+
         static::assertEquals(204, $response->getStatusCode());
         static::assertEmpty($response->getContent());
-        
+
         $expectedMessages = json_encode([
             [
                 'id' => '84decc43-283f-4089-8ded-f66513d1b54d',
@@ -244,7 +243,7 @@ class MessageDataProviderTest extends WebTestCase
         ]);
         $this->client->request('GET', '/api/messages.json');
         $actualMessages = $this->client->getResponse()->getContent();
-        
+
         static::assertEquals($expectedMessages, $actualMessages);
     }
 }

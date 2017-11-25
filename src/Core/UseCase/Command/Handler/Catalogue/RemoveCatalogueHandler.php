@@ -12,12 +12,12 @@ class RemoveCatalogueHandler
      * @var CatalogueRepository
      */
     private $catalogueRepo;
-    
+
     public function __construct(CatalogueRepository $catalogueRepo)
     {
         $this->catalogueRepo = $catalogueRepo;
     }
-    
+
     public function handle(RemoveCatalogue $command): void
     {
         $this->catalogueRepo->remove($command->getCatalogueId());

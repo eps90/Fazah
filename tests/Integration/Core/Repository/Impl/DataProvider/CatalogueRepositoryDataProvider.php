@@ -391,7 +391,7 @@ trait CatalogueRepositoryDataProvider
             ]
         ];
     }
-    
+
     public function removeProvider(): array
     {
         return [
@@ -444,7 +444,7 @@ trait CatalogueRepositoryDataProvider
                     )
                 ]
             ],
-            
+
         ];
     }
 }

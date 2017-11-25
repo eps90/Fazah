@@ -35,7 +35,7 @@ class DoctrineMessageRepository extends BaseDoctrineRepository implements Messag
     {
         return Message::class;
     }
-    
+
     public function remove(MessageId $messageId): void
     {
         $messageReference = $this->entityManager->getReference(Message::class, $messageId);

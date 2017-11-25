@@ -27,6 +27,6 @@ interface CatalogueRepository extends RepositoryInterface
      * @return Catalogue[]
      */
     public function findAll(QueryCriteria $criteria = null): array;
-    
+
     public function remove(CatalogueId $catalogueId): void;
 }

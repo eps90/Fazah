@@ -20,7 +20,7 @@ class RemoveMessageTest extends SerializableCommandTest
             ]
         ];
     }
-    
+
     public function invalidInputProperties(): array
     {
         return [
@@ -29,7 +29,7 @@ class RemoveMessageTest extends SerializableCommandTest
             ]
         ];
     }
-    
+
     public function getCommandClass(): string
     {
         return RemoveMessage::class;

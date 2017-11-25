@@ -23,7 +23,7 @@ class RemoveCatalogueTest extends SerializableCommandTest
             ]
         ];
     }
-    
+
     public function invalidInputProperties(): array
     {
         return [
@@ -32,7 +32,7 @@ class RemoveCatalogueTest extends SerializableCommandTest
             ]
         ];
     }
-    
+
     public function getCommandClass(): string
     {
         return RemoveCatalogue::class;

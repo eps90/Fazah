@@ -17,25 +17,25 @@ class RemoveCatalogueHandlerTest extends WebTestCase
      * @var CommandBus
      */
     private $commandBus;
-    
+
     /**
      * @var CatalogueRepository
      */
     private $catalogueRepo;
-    
+
     protected function setUp()
     {
         parent::setUp();
-        
+
         $container = $this->getContainer();
         $this->commandBus = $container->get('tactician.commandbus');
         $this->catalogueRepo = $container->get('fazah.repository.catalogue');
-        
+
         $this->loadFixtures([
             AddFewCatalogues::class
         ]);
     }
-    
+
     /**
      * @test
      */
@@ -43,9 +43,9 @@ class RemoveCatalogueHandlerTest extends WebTestCase
     {
         $catalogueId = new CatalogueId('12853ef6-43a5-4e7f-8ff5-3fb47ef10a07');
         $command = new RemoveCatalogue($catalogueId);
-        
+
         $this->commandBus->handle($command);
-        
+
         $this->expectException(CatalogueRepositoryException::class);
         $this->catalogueRepo->find($catalogueId);
     }

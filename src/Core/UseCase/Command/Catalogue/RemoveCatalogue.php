@@ -13,23 +13,23 @@ final class RemoveCatalogue implements DeserializableCommandInterface
      * @var CatalogueId
      */
     private $catalogueId;
-    
+
     public function __construct(CatalogueId $catalogueId)
     {
         $this->catalogueId = $catalogueId;
     }
-    
+
     public function getCatalogueId(): CatalogueId
     {
         return $this->catalogueId;
     }
-    
+
     public static function fromArray(array $commandProps): self
     {
         $resolver = new OptionsResolver();
         $resolver->setRequired('catalogue_id');
         $resolver->resolve($commandProps);
-        
+
         return new self(new CatalogueId($commandProps['catalogue_id']));
     }
 }

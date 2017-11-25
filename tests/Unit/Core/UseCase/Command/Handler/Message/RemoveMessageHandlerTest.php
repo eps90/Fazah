@@ -15,20 +15,20 @@ class RemoveMessageHandlerTest extends TestCase
      * @var MessageRepository|\PHPUnit_Framework_MockObject_MockObject
      */
     private $messageRepo;
-    
+
     /**
      * @var RemoveMessageHandler
      */
     private $handler;
-    
+
     protected function setUp()
     {
         parent::setUp();
-        
+
         $this->messageRepo = $this->createMock(MessageRepository::class);
         $this->handler = new RemoveMessageHandler($this->messageRepo);
     }
-    
+
     /**
      * @test
      */
@@ -36,11 +36,11 @@ class RemoveMessageHandlerTest extends TestCase
     {
         $messageId = new MessageId('af797da0-0959-4207-97f5-3dabf081a37f');
         $command = new RemoveMessage($messageId);
-        
+
         $this->messageRepo->expects(static::once())
             ->method('remove')
             ->with($messageId);
-        
+
         $this->handler->handle($command);
     }
 }

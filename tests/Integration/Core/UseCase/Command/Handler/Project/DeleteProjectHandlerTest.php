@@ -26,7 +26,7 @@ class DeleteProjectHandlerTest extends WebTestCase
             AddProjects::class
         ]);
     }
-    
+
     /**
      * @test
      */

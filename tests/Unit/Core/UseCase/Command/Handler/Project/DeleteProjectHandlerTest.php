@@ -28,7 +28,7 @@ class DeleteProjectHandlerTest extends TestCase
         $this->projectRepo = $this->createMock(ProjectRepository::class);
         $this->handler = new DeleteProjectHandler($this->projectRepo);
     }
-    
+
     /**
      * @test
      */
@@ -40,7 +40,6 @@ class DeleteProjectHandlerTest extends TestCase
         $this->projectRepo->expects(static::once())
             ->method('remove')
             ->with($projectId);
-
 
         $this->handler->handle($command);
     }

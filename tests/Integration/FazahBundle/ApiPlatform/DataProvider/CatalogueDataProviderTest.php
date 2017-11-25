@@ -182,7 +182,7 @@ class CatalogueDataProviderTest extends WebTestCase
 
         static::assertEquals($expectedCatalogue, $actualCatalogue);
     }
-    
+
     /**
      * @test
      */
@@ -190,12 +190,12 @@ class CatalogueDataProviderTest extends WebTestCase
     {
         $requestUrl = '/api/catalogues/12853ef6-43a5-4e7f-8ff5-3fb47ef10a07.json';
         $this->client->request('DELETE', $requestUrl);
-        
+
         $actualResponse = $this->client->getResponse();
-        
+
         static::assertEquals(204, $actualResponse->getStatusCode());
         static::assertEmpty($actualResponse->getContent());
-        
+
         $expectedCatalogues = json_encode([
             [
                 'id' => 'aba1afb9-8513-4657-844c-8df297e335b4',
@@ -222,10 +222,10 @@ class CatalogueDataProviderTest extends WebTestCase
                 ]
             ]
         ]);
-        
+
         $this->client->request('GET', '/api/catalogues.json');
         $actualCatalogues = $this->client->getResponse()->getContent();
-        
+
         static::assertEquals($expectedCatalogues, $actualCatalogues);
     }
 }

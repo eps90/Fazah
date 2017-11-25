@@ -17,16 +17,16 @@ class RemoveMessageHandlerTest extends WebTestCase
      * @var CommandBus
      */
     private $commandBus;
-    
+
     /**
      * @var MessageRepository
      */
     private $messagesRepo;
-    
+
     protected function setUp()
     {
         parent::setUp();
-        
+
         $container = $this->getContainer();
         $this->commandBus = $container->get('tactician.commandbus');
         $this->messagesRepo = $container->get('fazah.repository.message');
@@ -34,7 +34,7 @@ class RemoveMessageHandlerTest extends WebTestCase
             AddFewMessages::class
         ]);
     }
-    
+
     /**
      * @test
      */
@@ -42,9 +42,9 @@ class RemoveMessageHandlerTest extends WebTestCase
     {
         $messageId = new MessageId('af797da0-0959-4207-97f5-3dabf081a37f');
         $command = new RemoveMessage($messageId);
-        
+
         $this->commandBus->handle($command);
-        
+
         $this->expectException(MessageRepositoryException::class);
         $this->messagesRepo->find($messageId);
     }

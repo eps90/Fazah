@@ -12,12 +12,12 @@ class RemoveMessageHandler
      * @var MessageRepository
      */
     private $messageRepo;
-    
+
     public function __construct(MessageRepository $messageRepo)
     {
         $this->messageRepo = $messageRepo;
     }
-    
+
     public function handle(RemoveMessage $command): void
     {
         $this->messageRepo->remove($command->getMessageId());

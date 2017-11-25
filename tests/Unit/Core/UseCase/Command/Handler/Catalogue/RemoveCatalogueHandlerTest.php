@@ -15,20 +15,20 @@ class RemoveCatalogueHandlerTest extends TestCase
      * @var CatalogueRepository|\PHPUnit_Framework_MockObject_MockObject
      */
     private $catalogueRepo;
-    
+
     /**
      * @var RemoveCatalogueHandler
      */
     private $handler;
-    
+
     protected function setUp()
     {
         parent::setUp();
-        
+
         $this->catalogueRepo = $this->createMock(CatalogueRepository::class);
         $this->handler = new RemoveCatalogueHandler($this->catalogueRepo);
     }
-    
+
     /**
      * @test
      */
@@ -36,11 +36,11 @@ class RemoveCatalogueHandlerTest extends TestCase
     {
         $catalogueId = new CatalogueId('12853ef6-43a5-4e7f-8ff5-3fb47ef10a07');
         $command = new RemoveCatalogue($catalogueId);
-        
+
         $this->catalogueRepo->expects(static::once())
             ->method('remove')
             ->with($catalogueId);
-        
+
         $this->handler->handle($command);
     }
 }
