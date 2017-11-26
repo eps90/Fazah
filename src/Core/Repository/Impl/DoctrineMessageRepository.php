@@ -42,4 +42,20 @@ class DoctrineMessageRepository extends BaseDoctrineRepository implements Messag
         $this->entityManager->remove($messageReference);
         $this->entityManager->flush();
     }
+
+    public function removeMultiple(MessageId ...$messageIds): void
+    {
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $query = $queryBuilder->delete()
+            ->from(Message::class, 'm')
+            ->where(
+                $queryBuilder->expr()->in(
+                    'm.id', ':messageIds'
+                )
+            )
+            ->setParameter('messageIds', $messageIds)
+            ->getQuery();
+
+        $query->execute();
+    }
 }
