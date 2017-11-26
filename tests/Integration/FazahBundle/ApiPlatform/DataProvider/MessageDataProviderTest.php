@@ -246,4 +246,45 @@ class MessageDataProviderTest extends WebTestCase
 
         static::assertEquals($expectedMessages, $actualMessages);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldRemoveMultipleMessages(): void
+    {
+        $requestUrl = '/api/messages.json';
+        $requestBody = json_encode([
+            'message_ids' => [
+                'af797da0-0959-4207-97f5-3dabf081a37f',
+                'fad9c222-02c6-4466-82f8-9345a84b52da'
+            ]
+        ]);
+        $this->client->request('DELETE', $requestUrl, [], [], [], $requestBody);
+
+        $response = $this->client->getResponse();
+
+        static::assertEquals(204, $response->getStatusCode());
+        static::assertEmpty($response->getContent());
+
+        $expectedMessages = json_encode([
+            [
+                'id' => '84decc43-283f-4089-8ded-f66513d1b54d',
+                'translation' => [
+                    'message_key' => 'my.message.3',
+                    'translated_message' => 'My message #3',
+                    'language' => 'fr'
+                ],
+                'catalogue_id' => '94b1c887-f740-454a-b94e-706a0e5a0f41',
+                'metadata' => [
+                    'creation_time' => '2016-03-01T12:00:03+00:00',
+                    'update_time' => '2016-03-02T12:00:03+00:00',
+                    'enabled' => true
+                ]
+            ]
+        ]);
+        $this->client->request('GET', '/api/messages.json');
+        $actualMessages = $this->client->getResponse()->getContent();
+
+        static::assertEquals($expectedMessages, $actualMessages);
+    }
 }

@@ -13,6 +13,9 @@
             <collectionOperation name="add_message">
                 <attribute name="route_name">fazah.message.add</attribute>
             </collectionOperation>
+            <collectionOperation name="remove_multiple">
+                <attribute name="route_name">fazah.message.delete_multiple</attribute>
+            </collectionOperation>
         </collectionOperations>
 
         <itemOperations>

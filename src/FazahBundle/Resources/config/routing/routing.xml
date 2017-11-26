@@ -122,4 +122,9 @@
             </map>
         </default>
     </route>
+
+    <route id="fazah.message.delete_multiple" path="/messages.{_format}" methods="DELETE">
+        <default key="_command_class">\Eps\Fazah\Core\UseCase\Command\Message\RemoveMultipleMessages</default>
+        <default key="_format">null</default>
+    </route>
 </routes>
