@@ -72,18 +72,10 @@ doctrine:
             alias: Fazah
             is_bundle: false
 
-# Swiftmailer Configuration
-swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
-    spool: { type: memory }
-
 api_platform:
     title: 'Fazah'
     description: 'Translations API'
-    version: 1.0.0
+    version: 0.1.0
     name_converter: 'fazah.api.name_converter'
     exception_to_status:
       'Symfony\Component\OptionsResolver\Exception\ExceptionInterface': 'HTTP_BAD_REQUEST'
