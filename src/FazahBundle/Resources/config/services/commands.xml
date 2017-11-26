@@ -90,5 +90,12 @@
             <argument type="service" id="fazah.repository.message" />
             <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Message\RemoveMessage" />
         </service>
+
+        <service id="fazah.command.remove_multiple_messages"
+                 class="Eps\Fazah\Core\UseCase\Command\Handler\Message\RemoveMultipleMessagesHandler"
+                 lazy="true">
+            <argument type="service" id="fazah.repository.message"/>
+            <tag name="tactician.handler" command="Eps\Fazah\Core\UseCase\Command\Message\RemoveMultipleMessages" />
+        </service>
     </services>
 </container>
