@@ -89,4 +89,42 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
 
         static::assertEquals($expectedResult, $actualResult);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldRemoveMultipleMessages(): void
+    {
+        $this->loadFixtures([
+            AddFewMessages::class
+        ]);
+
+        $messageIds = [
+            new MessageId('fad9c222-02c6-4466-82f8-9345a84b52da'),
+            new MessageId('af797da0-0959-4207-97f5-3dabf081a37f')
+        ];
+
+        $repository = $this->getRepositoryInstance();
+        $repository->removeMultiple(...$messageIds);
+
+        $expectedMessages = [
+            Message::restoreFrom(
+                new MessageId('84decc43-283f-4089-8ded-f66513d1b54d'),
+                Translation::create(
+                    'my.message.3',
+                    'My message #3',
+                    'fr'
+                ),
+                new CatalogueId('94b1c887-f740-454a-b94e-706a0e5a0f41'),
+                Metadata::restoreFrom(
+                    Carbon::parse('2016-03-01 12:00:03'),
+                    Carbon::parse('2016-03-02 12:00:03'),
+                    true
+                )
+            )
+        ];
+        $actualMessages = $repository->findAll();
+
+        static::assertEquals($expectedMessages, $actualMessages);
+    }
 }
