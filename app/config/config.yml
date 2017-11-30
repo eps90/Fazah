@@ -79,3 +79,12 @@ api_platform:
     name_converter: 'fazah.api.name_converter'
     exception_to_status:
       'Symfony\Component\OptionsResolver\Exception\ExceptionInterface': !php/const:Symfony\Component\HttpFoundation\Response::HTTP_BAD_REQUEST
+
+nelmio_cors:
+  paths:
+    '^/api/':
+        origin_regex: true
+        allow_origin: ['^http://localhost:[0-9]+']
+        allow_headers: ['X-Custom-Auth']
+        allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+        max_age: 3600
