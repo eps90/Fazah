@@ -14,14 +14,19 @@ doctrine:
 
         # With Symfony 3.3, remove the `resolve:` prefix
         url: '%env(resolve:DATABASE_URL)%'
+        types:
+            carbondatetime: \DoctrineExtensions\Types\CarbonDateTimeType
+            message_id: \Eps\Fazah\FazahBundle\Doctrine\Types\MessageIdType
+            catalogue_id: \Eps\Fazah\FazahBundle\Doctrine\Types\CatalogueIdType
+            project_id: \Eps\Fazah\FazahBundle\Doctrine\Types\ProjectIdType
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        auto_mapping: false
         mappings:
-            App:
+            Fazah:
+                type: xml
+                dir: '%kernel.root_dir%/../src/FazahBundle/Resources/config/doctrine'
+                prefix: Eps\Fazah\Core\Model
+                alias: Fazah
                 is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
