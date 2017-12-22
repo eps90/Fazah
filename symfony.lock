@@ -305,6 +305,9 @@
             "ref": "c24944bd87dacf0bb8fa218dc21e4a70fff56882"
         }
     },
+    "symfony/options-resolver": {
+        "version": "v4.0.2"
+    },
     "symfony/phpunit-bridge": {
         "version": "3.3",
         "recipe": {
