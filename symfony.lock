@@ -68,6 +68,9 @@
     "doctrine/orm": {
         "version": "v2.6.0"
     },
+    "eps90/req2cmd-bundle": {
+        "version": "v1.0.0-rc7"
+    },
     "guzzle/guzzle": {
         "version": "v3.8.1"
     },
