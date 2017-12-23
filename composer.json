@@ -17,6 +17,7 @@
         "nesbot/carbon": "^1.22",
         "ocramius/proxy-manager": "^2.1",
         "ramsey/uuid": "^3.6",
+        "symfony/asset": "^4.0",
         "symfony/console": "^4.0",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^4.0",
