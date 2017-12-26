@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cfc917ef71277ce852a7d62e0960d65f",
+    "content-hash": "90c0fceabb5540582b8cfc46b9171e79",
     "packages": [
         {
             "name": "api-platform/core",
@@ -1088,16 +1088,16 @@
         },
         {
             "name": "eps90/req2cmd-bundle",
-            "version": "v1.0.0-rc7",
+            "version": "v1.0.0-rc8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eps90/req2cmd-bundle.git",
-                "reference": "2a49128ae3eb0f83a94e67ba30530cfd36bdac31"
+                "reference": "d6069926a9ab2ddf9b51d23ea146e9eb2d8aabe9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eps90/req2cmd-bundle/zipball/2a49128ae3eb0f83a94e67ba30530cfd36bdac31",
-                "reference": "2a49128ae3eb0f83a94e67ba30530cfd36bdac31",
+                "url": "https://api.github.com/repos/eps90/req2cmd-bundle/zipball/d6069926a9ab2ddf9b51d23ea146e9eb2d8aabe9",
+                "reference": "d6069926a9ab2ddf9b51d23ea146e9eb2d8aabe9",
                 "shasum": ""
             },
             "require": {
@@ -1134,7 +1134,7 @@
                 }
             ],
             "description": "Extract command from a HTTP request and send it to the command bus like Tactician",
-            "time": "2017-12-22T17:48:42+00:00"
+            "time": "2017-12-26T15:54:07+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
