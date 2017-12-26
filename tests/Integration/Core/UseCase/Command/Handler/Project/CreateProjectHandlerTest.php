@@ -21,7 +21,7 @@ class CreateProjectHandlerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->commandBus = $this->getContainer()->get('tactician.commandbus');
+        $this->commandBus = $this->getContainer()->get('test.tactician.commandbus');
         $this->loadFixtures([]);
     }
 
@@ -33,7 +33,7 @@ class CreateProjectHandlerTest extends WebTestCase
         $command = new CreateProject('project name');
         $this->commandBus->handle($command);
 
-        $projectRepo = $this->getContainer()->get('fazah.repository.project');
+        $projectRepo = $this->getContainer()->get('test.fazah.repository.project');
         $filter = ['phrase' => 'project name'];
         $queryCriteria = new QueryCriteria(Project::class, new FilterSet($filter));
         $projects = $projectRepo->findAll($queryCriteria);

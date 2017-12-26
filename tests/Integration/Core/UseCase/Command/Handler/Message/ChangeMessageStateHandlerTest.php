@@ -20,7 +20,7 @@ class ChangeMessageStateHandlerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->commandBus = $this->getContainer()->get('tactician.commandbus');
+        $this->commandBus = $this->getContainer()->get('test.tactician.commandbus');
         $this->loadFixtures([
             AddFewMessages::class
         ]);
@@ -37,7 +37,7 @@ class ChangeMessageStateHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $messageRepo = $this->getContainer()->get('fazah.repository.message');
+        $messageRepo = $this->getContainer()->get('test.fazah.repository.message');
         $modifiedMessage = $messageRepo->find($messageId);
 
         static::assertFalse($modifiedMessage->getMetadata()->isEnabled());

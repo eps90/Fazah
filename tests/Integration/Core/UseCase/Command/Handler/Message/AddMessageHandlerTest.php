@@ -30,7 +30,7 @@ class AddMessageHandlerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->commandBus = $this->getContainer()->get('tactician.commandbus');
+        $this->commandBus = $this->getContainer()->get('test.tactician.commandbus');
         $this->loadFixtures([
             AddProjects::class,
             AddCatalogues::class
@@ -57,7 +57,7 @@ class AddMessageHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $messagesRepo = $this->getContainer()->get('fazah.repository.message');
+        $messagesRepo = $this->getContainer()->get('test.fazah.repository.message');
         $criteria = new QueryCriteria(Message::class, new FilterSet(['phrase' => $messageKey]));
         $messages = $messagesRepo->findAll($criteria);
 
@@ -80,7 +80,7 @@ class AddMessageHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $messagesRepo = $this->getContainer()->get('fazah.repository.message');
+        $messagesRepo = $this->getContainer()->get('test.fazah.repository.message');
         $criteria = new QueryCriteria(Message::class, new FilterSet(['phrase' => $messageKey]));
         $messages = $messagesRepo->findAll($criteria);
         $expectedLanguages = ['en', 'fr', 'pl'];

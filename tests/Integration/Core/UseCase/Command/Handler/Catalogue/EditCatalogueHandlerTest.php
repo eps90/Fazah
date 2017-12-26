@@ -21,7 +21,7 @@ class EditCatalogueHandlerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->commandBus = $this->getContainer()->get('tactician.commandbus');
+        $this->commandBus = $this->getContainer()->get('test.tactician.commandbus');
         $this->loadFixtures([
             AddProjects::class,
             AddCatalogues::class
@@ -44,7 +44,7 @@ class EditCatalogueHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $catalogueRepo = $this->getContainer()->get('fazah.repository.catalogue');
+        $catalogueRepo = $this->getContainer()->get('test.fazah.repository.catalogue');
         $catalogue = $catalogueRepo->find($catalogueId);
 
         static::assertEquals($newName, $catalogue->getName());

@@ -32,8 +32,8 @@ class RemoveMultipleMessagesHandlerTest extends WebTestCase
         parent::setUp();
 
         $container = $this->getContainer();
-        $this->commandBus = $container->get('tactician.commandbus');
-        $this->messageRepo = $container->get('fazah.repository.message');
+        $this->commandBus = $container->get('test.tactician.commandbus');
+        $this->messageRepo = $container->get('test.fazah.repository.message');
         $this->loadFixtures([
             AddFewMessages::class
         ]);

@@ -21,7 +21,7 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
 
     public function getRepositoryInstance()
     {
-        return $this->getContainer()->get('fazah.repository.message');
+        return $this->getContainer()->get('test.fazah.repository.message');
     }
 
     public function getRepositoryFixtures(): array

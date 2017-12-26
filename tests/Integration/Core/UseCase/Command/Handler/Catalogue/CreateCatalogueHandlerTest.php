@@ -23,7 +23,7 @@ class CreateCatalogueHandlerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->commandBus = $this->getContainer()->get('tactician.commandbus');
+        $this->commandBus = $this->getContainer()->get('test.tactician.commandbus');
         $this->loadFixtures([]);
     }
 
@@ -38,7 +38,7 @@ class CreateCatalogueHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $catalogueRepo = $this->getContainer()->get('fazah.repository.catalogue');
+        $catalogueRepo = $this->getContainer()->get('test.fazah.repository.catalogue');
         $filters = ['project_id' => $projectId];
         $criteria = new QueryCriteria(Catalogue::class, new FilterSet($filters));
         $foundCatalogues = $catalogueRepo->findAll($criteria);
@@ -58,7 +58,7 @@ class CreateCatalogueHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $catalogueRepo = $this->getContainer()->get('fazah.repository.catalogue');
+        $catalogueRepo = $this->getContainer()->get('test.fazah.repository.catalogue');
         $filters = ['project_id' => $projectId];
         $criteria = new QueryCriteria(Catalogue::class, new FilterSet($filters));
         /** @var Catalogue[] $foundCatalogues */
