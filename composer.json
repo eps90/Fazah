@@ -1,6 +1,15 @@
 {
+    "name": "eps90/fazah",
     "type": "project",
     "license": "proprietary",
+    "description": "Web UI for translation management",
+    "authors": [
+        {
+            "name": "Jakub Turek",
+            "email": "ja@kubaturek.pl",
+            "homepage": "http://kubaturek.pl"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "ext-iconv": "*",
