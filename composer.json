@@ -14,7 +14,6 @@
         "eps90/req2cmd-bundle": "v1.0.0-rc8",
         "league/tactician-bundle": "^1.0",
         "nelmio/cors-bundle": "^1.5",
-        "nesbot/carbon": "^1.22",
         "ocramius/proxy-manager": "^2.1",
         "ramsey/uuid": "^3.6",
         "symfony/asset": "^4.0",

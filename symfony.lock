@@ -116,9 +116,6 @@
             "ref": "7b6cbc842f8cd3d550815247d12294f6f304a8c4"
         }
     },
-    "nesbot/carbon": {
-        "version": "1.22.1"
-    },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
     },
@@ -352,15 +349,6 @@
     },
     "symfony/thanks": {
         "version": "v1.0.0"
-    },
-    "symfony/translation": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "6bcd6c570c017ea6ae5a7a6a027c929fd3542cd8"
-        }
     },
     "symfony/twig-bridge": {
         "version": "v4.0.2"
