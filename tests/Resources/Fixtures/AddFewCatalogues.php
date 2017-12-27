@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Resources\Fixtures;
 
-use Carbon\Carbon;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Eps\Fazah\Core\Model\Catalogue;
@@ -24,8 +23,8 @@ final class AddFewCatalogues implements FixtureInterface
             new ProjectId('584d8b6a-7eb0-4ef4-a54e-0eb16bb86138'),
             'first_project',
             Metadata::restoreFrom(
-                Carbon::parse('2015-01-01 12:00:00'),
-                Carbon::parse('2015-01-01 13:00:00'),
+                new \DateTimeImmutable('2015-01-01 12:00:00'),
+                new \DateTimeImmutable('2015-01-01 13:00:00'),
                 true
             ),
             ProjectConfiguration::restoreFrom(
@@ -36,8 +35,8 @@ final class AddFewCatalogues implements FixtureInterface
             new ProjectId('0bacbf16-dfc8-4e39-9ca1-581d9158c3d5'),
             'second_project',
             Metadata::restoreFrom(
-                Carbon::parse('2016-01-01 12:00:00'),
-                Carbon::parse('2016-01-01 13:00:00'),
+                new \DateTimeImmutable('2016-01-01 12:00:00'),
+                new \DateTimeImmutable('2016-01-01 13:00:00'),
                 true
             ),
             ProjectConfiguration::restoreFrom(
@@ -51,8 +50,8 @@ final class AddFewCatalogues implements FixtureInterface
             $firstProject->getId(),
             null,
             Metadata::restoreFrom(
-                Carbon::parse('2015-01-01 12:00:00'),
-                Carbon::parse('2015-01-02 13:00:00'),
+                new \DateTimeImmutable('2015-01-01 12:00:00'),
+                new \DateTimeImmutable('2015-01-02 13:00:00'),
                 true
             ),
             'first_catalogue'
@@ -63,8 +62,8 @@ final class AddFewCatalogues implements FixtureInterface
             $firstProject->getId(),
             null,
             Metadata::restoreFrom(
-                Carbon::parse('2015-01-01 12:00:00'),
-                Carbon::parse('2015-01-02 13:00:00'),
+                new \DateTimeImmutable('2015-01-01 12:00:00'),
+                new \DateTimeImmutable('2015-01-02 13:00:00'),
                 false
             ),
             'second_catalogue'
@@ -75,8 +74,8 @@ final class AddFewCatalogues implements FixtureInterface
             $secondProject->getId(),
             null,
             Metadata::restoreFrom(
-                Carbon::parse('2015-01-01 12:00:00'),
-                Carbon::parse('2015-01-02 13:00:00'),
+                new \DateTimeImmutable('2015-01-01 12:00:00'),
+                new \DateTimeImmutable('2015-01-02 13:00:00'),
                 true
             ),
             'third_catalogue'

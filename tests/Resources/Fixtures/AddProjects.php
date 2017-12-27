@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Resources\Fixtures;
 
-use Carbon\Carbon;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -20,8 +19,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
     public function load(ObjectManager $manager)
     {
         $firstProjectMeta = Metadata::restoreFrom(
-            Carbon::parse('2015-01-01 12:00:01'),
-            Carbon::parse('2015-01-02 12:00:01'),
+            new \DateTimeImmutable('2015-01-01 12:00:01'),
+            new \DateTimeImmutable('2015-01-02 12:00:01'),
             true
         );
         $firstProject = Project::restoreFrom(
@@ -33,8 +32,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
         $manager->persist($firstProject);
 
         $secondProjectMeta = Metadata::restoreFrom(
-            Carbon::parse('2015-01-01 12:00:02'),
-            Carbon::parse('2015-01-02 12:00:02'),
+            new \DateTimeImmutable('2015-01-01 12:00:02'),
+            new \DateTimeImmutable('2015-01-02 12:00:02'),
             true
         );
         $secondProject = Project::restoreFrom(
@@ -46,8 +45,8 @@ final class AddProjects extends AbstractFixture implements OrderedFixtureInterfa
         $manager->persist($secondProject);
 
         $disabledProjectMeta = Metadata::restoreFrom(
-            Carbon::parse('2015-01-01 12:00:03'),
-            Carbon::parse('2015-01-02 12:00:03'),
+            new \DateTimeImmutable('2015-01-01 12:00:03'),
+            new \DateTimeImmutable('2015-01-02 12:00:03'),
             false
         );
         $disabledProject = Project::restoreFrom(

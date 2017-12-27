@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Unit\Core\UseCase\Command\Handler\Catalogue;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
@@ -11,6 +10,7 @@ use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use Eps\Fazah\Core\Repository\CatalogueRepository;
 use Eps\Fazah\Core\UseCase\Command\Catalogue\ChangeCatalogueState;
 use Eps\Fazah\Core\UseCase\Command\Handler\Catalogue\ChangeCatalogueStateHandler;
+use Eps\Fazah\Core\Utils\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
 class ChangeCatalogueStateHandlerTest extends TestCase
@@ -31,7 +31,16 @@ class ChangeCatalogueStateHandlerTest extends TestCase
 
         $this->catalogueRepo = $this->createMock(CatalogueRepository::class);
         $this->handler = new ChangeCatalogueStateHandler($this->catalogueRepo);
+        DateTimeFactory::freezeDate(new \DateTimeImmutable('2015-01-01 12:00:00'));
     }
+
+    protected function tearDown()
+    {
+        parent::tearDown();
+
+        DateTimeFactory::unfreezeDate();
+    }
+
 
     /**
      * @test
@@ -48,8 +57,8 @@ class ChangeCatalogueStateHandlerTest extends TestCase
             ProjectId::generate(),
             null,
             Metadata::restoreFrom(
-                Carbon::now(),
-                Carbon::now(),
+                DateTimeFactory::now(),
+                DateTimeFactory::now(),
                 true
             )
         );
@@ -86,8 +95,8 @@ class ChangeCatalogueStateHandlerTest extends TestCase
             ProjectId::generate(),
             null,
             Metadata::restoreFrom(
-                Carbon::now(),
-                Carbon::now(),
+                DateTimeFactory::now(),
+                DateTimeFactory::now(),
                 false
             )
         );

@@ -4,17 +4,17 @@ declare(strict_types=1);
 namespace Eps\Fazah\Tests\Unit\Core\Model;
 
 use Assert\AssertionFailedException;
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use Eps\Fazah\Core\Model\ValueObject\ProjectConfiguration;
+use Eps\Fazah\Core\Utils\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
 class ProjectTest extends TestCase
 {
     /**
-     * @var Carbon
+     * @var \DateTimeImmutable
      */
     private $now;
 
@@ -27,16 +27,8 @@ class ProjectTest extends TestCase
     {
         parent::setUp();
 
-        $this->now = Carbon::create(
-            2017,
-            1,
-            5,
-            12,
-            15,
-            10,
-            new \DateTimeZone('UTC')
-        );
-        Carbon::setTestNow($this->now);
+        $this->now = new \DateTimeImmutable('2017-01-05 12:15:10');
+        DateTimeFactory::freezeDate($this->now);
         $this->project = $this->createNewProject();
     }
 
@@ -44,7 +36,7 @@ class ProjectTest extends TestCase
     {
         parent::tearDown();
 
-        Carbon::setTestNow();
+        DateTimeFactory::unfreezeDate();
     }
 
     /**
@@ -107,8 +99,8 @@ class ProjectTest extends TestCase
         $name = 'My project';
         $projectId = ProjectId::generate();
         $metadata = Metadata::restoreFrom(
-            Carbon::parse('2014-01-15 11:14:00'),
-            Carbon::parse('2014-01-16 01:00:00'),
+            new \DateTimeImmutable('2014-01-15 11:14:00'),
+            new \DateTimeImmutable('2014-01-16 01:00:00'),
             true
         );
         $configuration = ProjectConfiguration::restoreFrom(['fr', 'en']);
@@ -157,8 +149,8 @@ class ProjectTest extends TestCase
             ProjectId::generate(),
             'my project',
             Metadata::restoreFrom(
-                Carbon::now(),
-                Carbon::now(),
+                DateTimeFactory::now(),
+                DateTimeFactory::now(),
                 false
             ),
             ProjectConfiguration::restoreFrom(['fr', 'en', 'pl'])

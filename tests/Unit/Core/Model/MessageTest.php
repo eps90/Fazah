@@ -3,18 +3,18 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Unit\Core\Model;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
 use Eps\Fazah\Core\Model\ValueObject\Translation;
+use Eps\Fazah\Core\Utils\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
 class MessageTest extends TestCase
 {
     /**
-     * @var Carbon
+     * @var \DateTimeImmutable
      */
     private $now;
 
@@ -27,16 +27,8 @@ class MessageTest extends TestCase
     {
         parent::setUp();
 
-        $this->now = Carbon::create(
-            2017,
-            05,
-            01,
-            16,
-            14,
-            02,
-            new \DateTimeZone('UTC')
-        );
-        Carbon::setTestNow($this->now);
+        $this->now = new \DateTimeImmutable('2017-05-01 16:14:02');
+        DateTimeFactory::freezeDate($this->now);
         $this->newMessage = $this->createNewMessage();
     }
 
@@ -44,7 +36,7 @@ class MessageTest extends TestCase
     {
         parent::tearDown();
 
-        Carbon::setTestNow();
+        DateTimeFactory::unfreezeDate();
     }
 
     /**
@@ -117,8 +109,8 @@ class MessageTest extends TestCase
         );
         $catalogueId = CatalogueId::generate();
         $metadata = Metadata::restoreFrom(
-            Carbon::parse('2015-01-01 12:00:00'),
-            Carbon::now(),
+            new \DateTimeImmutable('2015-01-01 12:00:00'),
+            DateTimeFactory::now(),
             true
         );
 
@@ -167,8 +159,8 @@ class MessageTest extends TestCase
             ),
             CatalogueId::generate(),
             Metadata::restoreFrom(
-                Carbon::now(),
-                Carbon::now(),
+                DateTimeFactory::now(),
+                DateTimeFactory::now(),
                 false
             )
         );

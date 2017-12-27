@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Integration\Core\Repository\Impl;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
@@ -51,8 +50,8 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
                 ),
                 new CatalogueId('94b1c887-f740-454a-b94e-706a0e5a0f41'),
                 Metadata::restoreFrom(
-                    Carbon::parse('2016-03-01 12:00:03'),
-                    Carbon::parse('2016-03-02 12:00:03'),
+                    new \DateTimeImmutable('2016-03-01 12:00:03'),
+                    new \DateTimeImmutable('2016-03-02 12:00:03'),
                     true
                 )
             ),
@@ -65,8 +64,8 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
                 ),
                 new CatalogueId('94b1c887-f740-454a-b94e-706a0e5a0f41'),
                 Metadata::restoreFrom(
-                    Carbon::parse('2016-03-01 12:00:02'),
-                    Carbon::parse('2016-03-02 12:00:02'),
+                    new \DateTimeImmutable('2016-03-01 12:00:02'),
+                    new \DateTimeImmutable('2016-03-02 12:00:02'),
                     true
                 )
             ),
@@ -79,8 +78,8 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
                 ),
                 new CatalogueId('94b1c887-f740-454a-b94e-706a0e5a0f41'),
                 Metadata::restoreFrom(
-                    Carbon::parse('2016-03-01 12:00:01'),
-                    Carbon::parse('2016-03-02 12:00:01'),
+                    new \DateTimeImmutable('2016-03-01 12:00:01'),
+                    new \DateTimeImmutable('2016-03-02 12:00:01'),
                     true
                 )
             )
@@ -117,8 +116,8 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
                 ),
                 new CatalogueId('94b1c887-f740-454a-b94e-706a0e5a0f41'),
                 Metadata::restoreFrom(
-                    Carbon::parse('2016-03-01 12:00:03'),
-                    Carbon::parse('2016-03-02 12:00:03'),
+                    new \DateTimeImmutable('2016-03-01 12:00:03'),
+                    new \DateTimeImmutable('2016-03-02 12:00:03'),
                     true
                 )
             )

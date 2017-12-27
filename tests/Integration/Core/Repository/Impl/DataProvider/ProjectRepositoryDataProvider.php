@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Integration\Core\Repository\Impl\DataProvider;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
@@ -25,8 +24,8 @@ trait ProjectRepositoryDataProvider
                     new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                     'my-awesome-project',
                     Metadata::restoreFrom(
-                        Carbon::parse('2015-01-01 12:00:01'),
-                        Carbon::parse('2015-01-02 12:00:01'),
+                        new \DateTimeImmutable('2015-01-01 12:00:01'),
+                        new \DateTimeImmutable('2015-01-02 12:00:01'),
                         true
                     ),
                     ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -70,8 +69,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('9b669c76-7a80-4d3f-9191-37c1eda80a05'),
                         'disabled-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             false
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -80,8 +79,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         'yet-another-cool-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:02'),
-                            Carbon::parse('2015-01-02 12:00:02'),
+                            new \DateTimeImmutable('2015-01-01 12:00:02'),
+                            new \DateTimeImmutable('2015-01-02 12:00:02'),
                             true
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -90,8 +89,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         'my-awesome-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:01'),
-                            Carbon::parse('2015-01-02 12:00:01'),
+                            new \DateTimeImmutable('2015-01-01 12:00:01'),
+                            new \DateTimeImmutable('2015-01-02 12:00:01'),
                             true
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -109,8 +108,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('9b669c76-7a80-4d3f-9191-37c1eda80a05'),
                         'disabled-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             false
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -128,8 +127,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('9b669c76-7a80-4d3f-9191-37c1eda80a05'),
                         'disabled-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             false
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -147,8 +146,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         'my-awesome-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:01'),
-                            Carbon::parse('2015-01-02 12:00:01'),
+                            new \DateTimeImmutable('2015-01-01 12:00:01'),
+                            new \DateTimeImmutable('2015-01-02 12:00:01'),
                             true
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -167,8 +166,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         'my-awesome-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:01'),
-                            Carbon::parse('2015-01-02 12:00:01'),
+                            new \DateTimeImmutable('2015-01-01 12:00:01'),
+                            new \DateTimeImmutable('2015-01-02 12:00:01'),
                             true
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -177,8 +176,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         'yet-another-cool-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:02'),
-                            Carbon::parse('2015-01-02 12:00:02'),
+                            new \DateTimeImmutable('2015-01-01 12:00:02'),
+                            new \DateTimeImmutable('2015-01-02 12:00:02'),
                             true
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -187,8 +186,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('9b669c76-7a80-4d3f-9191-37c1eda80a05'),
                         'disabled-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             false
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -206,8 +205,8 @@ trait ProjectRepositoryDataProvider
                             new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                             'my-awesome-project',
                             Metadata::restoreFrom(
-                                Carbon::parse('2015-01-01 12:00:01'),
-                                Carbon::parse('2015-01-02 12:00:01'),
+                                new \DateTimeImmutable('2015-01-01 12:00:01'),
+                                new \DateTimeImmutable('2015-01-02 12:00:01'),
                                 true
                             ),
                             ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -216,8 +215,8 @@ trait ProjectRepositoryDataProvider
                             new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                             'yet-another-cool-project',
                             Metadata::restoreFrom(
-                                Carbon::parse('2015-01-01 12:00:02'),
-                                Carbon::parse('2015-01-02 12:00:02'),
+                                new \DateTimeImmutable('2015-01-01 12:00:02'),
+                                new \DateTimeImmutable('2015-01-02 12:00:02'),
                                 true
                             ),
                             ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -265,8 +264,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('9b669c76-7a80-4d3f-9191-37c1eda80a05'),
                         'disabled-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             false
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
@@ -275,8 +274,8 @@ trait ProjectRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         'yet-another-cool-project',
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:02'),
-                            Carbon::parse('2015-01-02 12:00:02'),
+                            new \DateTimeImmutable('2015-01-01 12:00:02'),
+                            new \DateTimeImmutable('2015-01-02 12:00:02'),
                             true
                         ),
                         ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])

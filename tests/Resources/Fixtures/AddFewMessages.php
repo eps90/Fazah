@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Resources\Fixtures;
 
-use Carbon\Carbon;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Eps\Fazah\Core\Model\Catalogue;
@@ -28,8 +27,8 @@ final class AddFewMessages extends AbstractFixture
             new ProjectId('ff054881-6ddb-4f78-bdfb-681068b610ee'),
             null,
             Metadata::restoreFrom(
-                Carbon::parse('2016-03-01 12:00:00'),
-                Carbon::parse('2016-03-02 12:00:00'),
+                new \DateTimeImmutable('2016-03-01 12:00:00'),
+                new \DateTimeImmutable('2016-03-02 12:00:00'),
                 true
             )
         );
@@ -46,8 +45,8 @@ final class AddFewMessages extends AbstractFixture
                 ),
                 $catalogueId,
                 Metadata::restoreFrom(
-                    Carbon::parse('2016-03-01 12:00:01'),
-                    Carbon::parse('2016-03-02 12:00:01'),
+                    new \DateTimeImmutable('2016-03-01 12:00:01'),
+                    new \DateTimeImmutable('2016-03-02 12:00:01'),
                     true
                 )
             ),
@@ -60,8 +59,8 @@ final class AddFewMessages extends AbstractFixture
                 ),
                 $catalogueId,
                 Metadata::restoreFrom(
-                    Carbon::parse('2016-03-01 12:00:02'),
-                    Carbon::parse('2016-03-02 12:00:02'),
+                    new \DateTimeImmutable('2016-03-01 12:00:02'),
+                    new \DateTimeImmutable('2016-03-02 12:00:02'),
                     true
                 )
             ),
@@ -74,8 +73,8 @@ final class AddFewMessages extends AbstractFixture
                 ),
                 $catalogueId,
                 Metadata::restoreFrom(
-                    Carbon::parse('2016-03-01 12:00:03'),
-                    Carbon::parse('2016-03-02 12:00:03'),
+                    new \DateTimeImmutable('2016-03-01 12:00:03'),
+                    new \DateTimeImmutable('2016-03-02 12:00:03'),
                     true
                 )
             )

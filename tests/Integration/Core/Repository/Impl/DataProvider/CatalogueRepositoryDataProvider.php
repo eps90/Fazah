@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Integration\Core\Repository\Impl\DataProvider;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
@@ -27,8 +26,8 @@ trait CatalogueRepositoryDataProvider
                     new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                     null,
                     Metadata::restoreFrom(
-                        Carbon::parse('2015-01-01 12:00:01'),
-                        Carbon::parse('2015-01-02 12:00:01'),
+                        new \DateTimeImmutable('2015-01-01 12:00:01'),
+                        new \DateTimeImmutable('2015-01-02 12:00:01'),
                         true
                     )
                 )
@@ -57,8 +56,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2017-01-01 12:00:01'),
-                            Carbon::parse('2017-01-02 12:00:01'),
+                            new \DateTimeImmutable('2017-01-01 12:00:01'),
+                            new \DateTimeImmutable('2017-01-02 12:00:01'),
                             true
                         )
                     )
@@ -85,8 +84,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:04'),
-                            Carbon::parse('2015-01-02 12:00:04'),
+                            new \DateTimeImmutable('2015-01-01 12:00:04'),
+                            new \DateTimeImmutable('2015-01-02 12:00:04'),
                             false
                         )
                     ),
@@ -96,8 +95,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             true
                         )
                     ),
@@ -107,8 +106,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:02'),
-                            Carbon::parse('2015-01-02 12:00:02'),
+                            new \DateTimeImmutable('2015-01-01 12:00:02'),
+                            new \DateTimeImmutable('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -118,8 +117,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:01'),
-                            Carbon::parse('2015-01-02 12:00:01'),
+                            new \DateTimeImmutable('2015-01-01 12:00:01'),
+                            new \DateTimeImmutable('2015-01-02 12:00:01'),
                             true
                         )
                     ),
@@ -129,8 +128,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:00'),
-                            Carbon::parse('2015-01-02 12:00:00'),
+                            new \DateTimeImmutable('2015-01-01 12:00:00'),
+                            new \DateTimeImmutable('2015-01-02 12:00:00'),
                             true
                         )
                     )
@@ -151,8 +150,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:02'),
-                            Carbon::parse('2015-01-02 12:00:02'),
+                            new \DateTimeImmutable('2015-01-01 12:00:02'),
+                            new \DateTimeImmutable('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -162,8 +161,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:01'),
-                            Carbon::parse('2015-01-02 12:00:01'),
+                            new \DateTimeImmutable('2015-01-01 12:00:01'),
+                            new \DateTimeImmutable('2015-01-02 12:00:01'),
                             true
                         )
                     ),
@@ -173,8 +172,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:00'),
-                            Carbon::parse('2015-01-02 12:00:00'),
+                            new \DateTimeImmutable('2015-01-01 12:00:00'),
+                            new \DateTimeImmutable('2015-01-02 12:00:00'),
                             true
                         )
                     )
@@ -193,8 +192,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:04'),
-                            Carbon::parse('2015-01-02 12:00:04'),
+                            new \DateTimeImmutable('2015-01-01 12:00:04'),
+                            new \DateTimeImmutable('2015-01-02 12:00:04'),
                             false
                         )
                     )
@@ -213,8 +212,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:04'),
-                            Carbon::parse('2015-01-02 12:00:04'),
+                            new \DateTimeImmutable('2015-01-01 12:00:04'),
+                            new \DateTimeImmutable('2015-01-02 12:00:04'),
                             false
                         )
                     )
@@ -233,8 +232,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             true
                         )
                     )
@@ -254,8 +253,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:00'),
-                            Carbon::parse('2015-01-02 12:00:00'),
+                            new \DateTimeImmutable('2015-01-01 12:00:00'),
+                            new \DateTimeImmutable('2015-01-02 12:00:00'),
                             true
                         )
                     ),
@@ -265,8 +264,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:01'),
-                            Carbon::parse('2015-01-02 12:00:01'),
+                            new \DateTimeImmutable('2015-01-01 12:00:01'),
+                            new \DateTimeImmutable('2015-01-02 12:00:01'),
                             true
                         )
                     ),
@@ -276,8 +275,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:02'),
-                            Carbon::parse('2015-01-02 12:00:02'),
+                            new \DateTimeImmutable('2015-01-01 12:00:02'),
+                            new \DateTimeImmutable('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -287,8 +286,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             true
                         )
                     ),
@@ -298,8 +297,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:04'),
-                            Carbon::parse('2015-01-02 12:00:04'),
+                            new \DateTimeImmutable('2015-01-01 12:00:04'),
+                            new \DateTimeImmutable('2015-01-02 12:00:04'),
                             false
                         )
                     )
@@ -319,8 +318,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:00'),
-                            Carbon::parse('2015-01-02 12:00:00'),
+                            new \DateTimeImmutable('2015-01-01 12:00:00'),
+                            new \DateTimeImmutable('2015-01-02 12:00:00'),
                             true
                         )
                     ),
@@ -330,8 +329,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:01'),
-                            Carbon::parse('2015-01-02 12:00:01'),
+                            new \DateTimeImmutable('2015-01-01 12:00:01'),
+                            new \DateTimeImmutable('2015-01-02 12:00:01'),
                             true
                         )
                     ),
@@ -341,8 +340,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:02'),
-                            Carbon::parse('2015-01-02 12:00:02'),
+                            new \DateTimeImmutable('2015-01-01 12:00:02'),
+                            new \DateTimeImmutable('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -352,8 +351,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             true
                         )
                     )
@@ -404,8 +403,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:04'),
-                            Carbon::parse('2015-01-02 12:00:04'),
+                            new \DateTimeImmutable('2015-01-01 12:00:04'),
+                            new \DateTimeImmutable('2015-01-02 12:00:04'),
                             false
                         )
                     ),
@@ -415,8 +414,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:03'),
-                            Carbon::parse('2015-01-02 12:00:03'),
+                            new \DateTimeImmutable('2015-01-01 12:00:03'),
+                            new \DateTimeImmutable('2015-01-02 12:00:03'),
                             true
                         )
                     ),
@@ -426,8 +425,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:02'),
-                            Carbon::parse('2015-01-02 12:00:02'),
+                            new \DateTimeImmutable('2015-01-01 12:00:02'),
+                            new \DateTimeImmutable('2015-01-02 12:00:02'),
                             true
                         )
                     ),
@@ -437,8 +436,8 @@ trait CatalogueRepositoryDataProvider
                         new ProjectId('a558d385-a0b4-4f0d-861c-da6b9cd83260'),
                         null,
                         Metadata::restoreFrom(
-                            Carbon::parse('2015-01-01 12:00:01'),
-                            Carbon::parse('2015-01-02 12:00:01'),
+                            new \DateTimeImmutable('2015-01-01 12:00:01'),
+                            new \DateTimeImmutable('2015-01-02 12:00:01'),
                             true
                         )
                     )

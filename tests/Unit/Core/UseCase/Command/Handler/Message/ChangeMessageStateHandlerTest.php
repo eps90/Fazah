@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Unit\Core\UseCase\Command\Handler\Message;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
@@ -12,6 +11,7 @@ use Eps\Fazah\Core\Model\ValueObject\Translation;
 use Eps\Fazah\Core\Repository\MessageRepository;
 use Eps\Fazah\Core\UseCase\Command\Message\ChangeMessageState;
 use Eps\Fazah\Core\UseCase\Command\Handler\Message\ChangeMessageStateHandler;
+use Eps\Fazah\Core\Utils\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
 class ChangeMessageStateHandlerTest extends TestCase
@@ -32,7 +32,15 @@ class ChangeMessageStateHandlerTest extends TestCase
 
         $this->messageRepo = $this->createMock(MessageRepository::class);
         $this->handler = new ChangeMessageStateHandler($this->messageRepo);
+        DateTimeFactory::freezeDate(new \DateTimeImmutable('2016-04-14 15:06:12'));
     }
+
+    protected function tearDown()
+    {
+        parent::tearDown();
+        DateTimeFactory::unfreezeDate();
+    }
+
 
     /**
      * @test
@@ -52,8 +60,8 @@ class ChangeMessageStateHandlerTest extends TestCase
             ),
             CatalogueId::generate(),
             Metadata::restoreFrom(
-                Carbon::now(),
-                Carbon::now(),
+                DateTimeFactory::now(),
+                DateTimeFactory::now(),
                 true
             )
         );
@@ -93,8 +101,8 @@ class ChangeMessageStateHandlerTest extends TestCase
             ),
             CatalogueId::generate(),
             Metadata::restoreFrom(
-                Carbon::now(),
-                Carbon::now(),
+                DateTimeFactory::now(),
+                DateTimeFactory::now(),
                 false
             )
         );
