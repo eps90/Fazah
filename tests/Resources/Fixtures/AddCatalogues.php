@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Resources\Fixtures;
 
-use Carbon\Carbon;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -51,8 +50,8 @@ final class AddCatalogues extends AbstractFixture implements OrderedFixtureInter
 
         foreach ($catalogueNames as $idx => $catalogueName) {
             $metadata = Metadata::restoreFrom(
-                Carbon::parse('2015-01-01 12:00:0' . $idx),
-                Carbon::parse('2015-01-02 12:00:0' . $idx),
+                new \DateTimeImmutable('2015-01-01 12:00:0' . $idx),
+                new \DateTimeImmutable('2015-01-02 12:00:0' . $idx),
                 $enabled[$idx]
             );
             $catalogue = Catalogue::restoreFrom(

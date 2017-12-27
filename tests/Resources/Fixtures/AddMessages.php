@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Resources\Fixtures;
 
-use Carbon\Carbon;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -80,24 +79,10 @@ final class AddMessages extends AbstractFixture implements OrderedFixtureInterfa
 
                 $timeSeconds = str_pad((string)count($messageUuids), 2, '0');
                 $metadata = Metadata::restoreFrom(
-                    Carbon::create(
-                        2015,
-                        01,
-                        01,
-                        12,
-                        00,
-                        $timeSeconds,
-                        new \DateTimeZone('UTC')
-                    ),
-                    Carbon::create(
-                        2015,
-                        01,
-                        02,
-                        12,
-                        00,
-                        $timeSeconds,
-                        new \DateTimeZone('UTC')
-                    ),
+                    (new \DateTimeImmutable('2015-01-01 12:00:00'))
+                        ->add(new \DateInterval("PT{$timeSeconds}S")),
+                    (new \DateTimeImmutable('2015-01-02 12:00:00'))
+                        ->add(new \DateInterval("PT{$timeSeconds}S")),
                     array_pop($enabled)
                 );
                 $message = Message::restoreFrom(

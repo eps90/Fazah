@@ -4,17 +4,17 @@ declare(strict_types=1);
 namespace Eps\Fazah\Tests\Unit\Core\Model;
 
 use Assert\AssertionFailedException;
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Catalogue;
 use Eps\Fazah\Core\Model\Identity\CatalogueId;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
+use Eps\Fazah\Core\Utils\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
 class CatalogueTest extends TestCase
 {
     /**
-     * @var Carbon
+     * @var \DateTimeImmutable
      */
     private $now;
 
@@ -27,16 +27,8 @@ class CatalogueTest extends TestCase
     {
         parent::setUp();
 
-        $this->now = Carbon::create(
-            2016,
-            01,
-            02,
-            15,
-            00,
-            15,
-            new \DateTimeZone('UTC')
-        );
-        Carbon::setTestNow($this->now);
+        $this->now = new \DateTimeImmutable('2016-01-02 15:00:15', new \DateTimeZone('UTC'));
+        DateTimeFactory::freezeDate($this->now);
         $this->newCatalogue = $this->createNewCatalogue();
     }
 
@@ -44,7 +36,7 @@ class CatalogueTest extends TestCase
     {
         parent::tearDown();
 
-        Carbon::setTestNow();
+        DateTimeFactory::unfreezeDate();
     }
 
     /**
@@ -155,8 +147,8 @@ class CatalogueTest extends TestCase
         $projectId = ProjectId::generate();
         $parentCatalogueId = CatalogueId::generate();
         $metadata = Metadata::restoreFrom(
-            Carbon::parse('2016-01-01 15:00:00'),
-            Carbon::parse('2016-01-02 12:00:00'),
+            new \DateTimeImmutable('2016-01-01 15:00:00'),
+            new \DateTimeImmutable('2016-01-02 12:00:00'),
             true
         );
         $alias = 'my-custom-alias';
@@ -249,8 +241,8 @@ class CatalogueTest extends TestCase
             ProjectId::generate(),
             null,
             Metadata::restoreFrom(
-                Carbon::now(),
-                Carbon::now(),
+                DateTimeFactory::now(),
+                DateTimeFactory::now(),
                 false
             )
         );

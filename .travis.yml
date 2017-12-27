@@ -1,7 +1,12 @@
 language: php
 php:
   - '7.1'
+  - '7.2'
   - nightly
+
+cache:
+  directories:
+    - $HOME/.composer/cache
 
 before_script:
   - composer install --no-progress --optimize-autoloader --prefer-dist

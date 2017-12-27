@@ -28,8 +28,8 @@ class RemoveCatalogueHandlerTest extends WebTestCase
         parent::setUp();
 
         $container = $this->getContainer();
-        $this->commandBus = $container->get('tactician.commandbus');
-        $this->catalogueRepo = $container->get('fazah.repository.catalogue');
+        $this->commandBus = $container->get('test.tactician.commandbus');
+        $this->catalogueRepo = $container->get('test.fazah.repository.catalogue');
 
         $this->loadFixtures([
             AddFewCatalogues::class

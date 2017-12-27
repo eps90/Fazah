@@ -20,7 +20,7 @@ class EditMessageHandlerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->commandBus = $this->getContainer()->get('tactician.commandbus');
+        $this->commandBus = $this->getContainer()->get('test.tactician.commandbus');
         $this->loadFixtures([
             AddFewMessages::class
         ]);
@@ -42,7 +42,7 @@ class EditMessageHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $messageRepo = $this->getContainer()->get('fazah.repository.message');
+        $messageRepo = $this->getContainer()->get('test.fazah.repository.message');
         $message = $messageRepo->find($messageId);
 
         static::assertEquals($newMessageKey, $message->getTranslation()->getMessageKey());

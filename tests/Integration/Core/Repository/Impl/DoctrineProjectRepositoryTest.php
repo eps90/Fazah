@@ -12,7 +12,7 @@ class DoctrineProjectRepositoryTest extends DoctrineRepositoryTest
 
     public function getRepositoryInstance()
     {
-        return $this->getContainer()->get('fazah.repository.project');
+        return $this->getContainer()->get('test.fazah.repository.project');
     }
 
     public function getRepositoryFixtures(): array

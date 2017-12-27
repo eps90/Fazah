@@ -3,14 +3,14 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Unit\Core\Model\ValueObject;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
+use Eps\Fazah\Core\Utils\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
 class MetadataTest extends TestCase
 {
     /**
-     * @var Carbon
+     * @var \DateTimeImmutable
      */
     private $now;
 
@@ -18,15 +18,15 @@ class MetadataTest extends TestCase
     {
         parent::setUp();
 
-        $this->now = Carbon::parse('2015-01-01 12:00:00');
-        Carbon::setTestNow($this->now);
+        $this->now = new \DateTimeImmutable('2015-01-01 12:00:00');
+        DateTimeFactory::freezeDate($this->now);
     }
 
     protected function tearDown()
     {
         parent::tearDown();
 
-        Carbon::setTestNow();
+        DateTimeFactory::unfreezeDate();
     }
 
     /**
@@ -46,7 +46,7 @@ class MetadataTest extends TestCase
     public function itShouldChangeUpdateTimeOnStateChangeToDisabled(): void
     {
         $metadata = Metadata::restoreFrom(
-            Carbon::now(),
+            DateTimeFactory::now(),
             null,
             false
         );
@@ -61,8 +61,8 @@ class MetadataTest extends TestCase
     public function itShouldBeAbleToSetEnabledState(): void
     {
         $metadata = Metadata::restoreFrom(
-            Carbon::now(),
-            Carbon::now(),
+            DateTimeFactory::now(),
+            DateTimeFactory::now(),
             false
         );
         $newMetadata = $metadata->markAsEnabled();
@@ -76,7 +76,7 @@ class MetadataTest extends TestCase
     public function itShouldChangeUpdateTimeOnStateChangeToEnabled(): void
     {
         $metadata = Metadata::restoreFrom(
-            Carbon::now(),
+            DateTimeFactory::now(),
             null,
             false
         );
@@ -91,8 +91,8 @@ class MetadataTest extends TestCase
     public function itShouldBeAbleToMarkAsUpdated(): void
     {
         $metadata = Metadata::restoreFrom(
-            Carbon::parse('2011-11-12 12:00:00'),
-            Carbon::parse('2011-11-12 12:00:00'),
+            new \DateTimeImmutable('2011-11-12 12:00:00'),
+            new \DateTimeImmutable('2011-11-12 12:00:00'),
             true
         );
         $newMetadata = $metadata->markAsUpdated();

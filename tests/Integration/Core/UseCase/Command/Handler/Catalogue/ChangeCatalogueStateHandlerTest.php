@@ -21,7 +21,7 @@ class ChangeCatalogueStateHandlerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->commandBus = $this->getContainer()->get('tactician.commandbus');
+        $this->commandBus = $this->getContainer()->get('test.tactician.commandbus');
         $this->loadFixtures([
             AddProjects::class,
             AddCatalogues::class
@@ -39,7 +39,7 @@ class ChangeCatalogueStateHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $catalogueRepo = $this->getContainer()->get('fazah.repository.catalogue');
+        $catalogueRepo = $this->getContainer()->get('test.fazah.repository.catalogue');
         $modifiedCatalogue = $catalogueRepo->find($catalogueId);
         static::assertFalse($modifiedCatalogue->getMetadata()->isEnabled());
     }

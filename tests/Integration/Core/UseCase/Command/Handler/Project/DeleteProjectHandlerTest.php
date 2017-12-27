@@ -21,7 +21,7 @@ class DeleteProjectHandlerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->commandBus = $this->getContainer()->get('tactician.commandbus');
+        $this->commandBus = $this->getContainer()->get('test.tactician.commandbus');
         $this->loadFixtures([
             AddProjects::class
         ]);
@@ -39,7 +39,7 @@ class DeleteProjectHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $projectsRepo = $this->getContainer()->get('fazah.repository.project');
+        $projectsRepo = $this->getContainer()->get('test.fazah.repository.project');
         $projectsRepo->find($projectId);
     }
 }

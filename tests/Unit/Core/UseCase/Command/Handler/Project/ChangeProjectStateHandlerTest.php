@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Unit\Core\UseCase\Command\Handler\Project;
 
-use Carbon\Carbon;
 use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Model\ValueObject\Metadata;
@@ -11,6 +10,7 @@ use Eps\Fazah\Core\Model\ValueObject\ProjectConfiguration;
 use Eps\Fazah\Core\Repository\ProjectRepository;
 use Eps\Fazah\Core\UseCase\Command\Project\ChangeProjectState;
 use Eps\Fazah\Core\UseCase\Command\Handler\Project\ChangeProjectStateHandler;
+use Eps\Fazah\Core\Utils\DateTimeFactory;
 use PHPUnit\Framework\TestCase;
 
 class ChangeProjectStateHandlerTest extends TestCase
@@ -31,6 +31,7 @@ class ChangeProjectStateHandlerTest extends TestCase
 
         $this->projectRepo = $this->createMock(ProjectRepository::class);
         $this->handler = new ChangeProjectStateHandler($this->projectRepo);
+        DateTimeFactory::freezeDate(new \DateTimeImmutable('2017-01-01 14:05:16'));
     }
 
     /**
@@ -74,8 +75,8 @@ class ChangeProjectStateHandlerTest extends TestCase
             $projectId,
             'My project',
             Metadata::restoreFrom(
-                Carbon::now(),
-                Carbon::now(),
+                DateTimeFactory::now(),
+                DateTimeFactory::now(),
                 false
             ),
             ProjectConfiguration::restoreFrom(['en'])

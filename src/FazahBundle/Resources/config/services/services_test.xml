@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter" />
+        <service id="test.fazah.repository.project" alias="fazah.repository.project" public="true" />
+        <service id="test.fazah.repository.catalogue" alias="fazah.repository.catalogue" public="true" />
+        <service id="test.fazah.repository.message" alias="fazah.repository.message" public="true" />
+
+        <service id="test.tactician.commandbus" alias="tactician.commandbus" public="true" />
+    </services>
+</container>

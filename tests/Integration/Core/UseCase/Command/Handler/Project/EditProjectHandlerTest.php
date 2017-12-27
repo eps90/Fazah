@@ -20,7 +20,7 @@ class EditProjectHandlerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->commandBus = $this->getContainer()->get('tactician.commandbus');
+        $this->commandBus = $this->getContainer()->get('test.tactician.commandbus');
         $this->loadFixtures([
             AddProjects::class
         ]);
@@ -42,7 +42,7 @@ class EditProjectHandlerTest extends WebTestCase
 
         $this->commandBus->handle($command);
 
-        $projectRepo = $this->getContainer()->get('fazah.repository.project');
+        $projectRepo = $this->getContainer()->get('test.fazah.repository.project');
         $project = $projectRepo->find($projectId);
 
         static::assertEquals($newName, $project->getName());

@@ -1,8 +1,0 @@
-api:
-  resource: '.'
-  type: 'api_platform'
-  prefix: '/api'
-
-fazah_bundle:
-  resource: '@FazahBundle/Resources/config/routing/routing.xml'
-  prefix: '/api'

@@ -3,17 +3,17 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Core\Model\ValueObject;
 
-use Carbon\Carbon;
+use Eps\Fazah\Core\Utils\DateTimeFactory;
 
 final class Metadata
 {
     /**
-     * @var Carbon
+     * @var \DateTimeImmutable
      */
     private $createdAt;
 
     /**
-     * @var Carbon|null
+     * @var \DateTimeImmutable|null
      */
     private $updatedAt;
 
@@ -29,14 +29,17 @@ final class Metadata
     public static function initialize(): Metadata
     {
         $metadata = new self();
-        $metadata->createdAt = Carbon::now();
+        $metadata->createdAt = DateTimeFactory::now();
         $metadata->enabled = true;
 
         return $metadata;
     }
 
-    public static function restoreFrom(Carbon $creationTime, ?Carbon $updateTime, bool $enabled): Metadata
-    {
+    public static function restoreFrom(
+        \DateTimeImmutable $creationTime,
+        ?\DateTimeImmutable $updateTime,
+        bool $enabled
+    ): Metadata {
         $metadata = new self();
 
         $metadata->createdAt = $creationTime;
@@ -46,18 +49,12 @@ final class Metadata
         return $metadata;
     }
 
-    /**
-     * @return Carbon
-     */
-    public function getCreationTime(): Carbon
+    public function getCreationTime(): \DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return Carbon|null
-     */
-    public function getUpdateTime(): ?Carbon
+    public function getUpdateTime(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
@@ -91,7 +88,7 @@ final class Metadata
     public function markAsUpdated(): Metadata
     {
         $newMetadata = clone $this;
-        $newMetadata->updatedAt = Carbon::now();
+        $newMetadata->updatedAt = DateTimeFactory::now();
 
         return $newMetadata;
     }

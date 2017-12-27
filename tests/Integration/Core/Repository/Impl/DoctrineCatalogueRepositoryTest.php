@@ -13,7 +13,7 @@ class DoctrineCatalogueRepositoryTest extends DoctrineRepositoryTest
 
     public function getRepositoryInstance()
     {
-        return $this->getContainer()->get('fazah.repository.catalogue');
+        return $this->getContainer()->get('test.fazah.repository.catalogue');
     }
 
     public function getRepositoryFixtures(): array
