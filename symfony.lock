@@ -11,9 +11,6 @@
     "beberlei/assert": {
         "version": "v2.8.1"
     },
-    "beberlei/doctrineextensions": {
-        "version": "v1.0.20"
-    },
     "cocur/slugify": {
         "version": "v2.5"
     },

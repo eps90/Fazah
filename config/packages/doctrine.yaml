@@ -17,7 +17,6 @@ doctrine:
           # With Symfony 3.3, remove the `resolve:` prefix
           url: '%env(resolve:DATABASE_URL)%'
       types:
-          carbondatetime: \DoctrineExtensions\Types\CarbonDateTimeType
           message_id: \Eps\Fazah\FazahBundle\Doctrine\Types\MessageIdType
           catalogue_id: \Eps\Fazah\FazahBundle\Doctrine\Types\CatalogueIdType
           project_id: \Eps\Fazah\FazahBundle\Doctrine\Types\ProjectIdType
