@@ -26,7 +26,10 @@ class FazahExtension extends Extension
         $loader->load('commands.xml');
         $loader->load('api.xml');
 
-        if ($container->getParameter('kernel.environment') === 'test') {
+        $symfonyEnv = $container->getParameter('kernel.environment');
+        if ($symfonyEnv === 'dev') {
+            $loader->load('services_dev.xml');
+        } elseif ($symfonyEnv === 'test') {
             $loader->load('services_test.xml');
         }
     }
