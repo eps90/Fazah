@@ -34,7 +34,7 @@ class FilterExtension implements ExtensionInterface
      */
     public function __construct(
         RequestStack $requestStack,
-        ArrayCollection $modelFilters = null,
+        ArrayCollection $modelFilters,
         ArrayCollection $filterProcessors
     ) {
         $this->requestStack = $requestStack;
@@ -53,11 +53,11 @@ class FilterExtension implements ExtensionInterface
             }
 
             $availableFilters = $filter->getDescription($resourceClass);
-            $availableFiltersNames = array_keys($availableFilters);
+            $availableFilterNames = array_keys($availableFilters);
             $filters = array_filter(
                 $requestedFilters,
-                function ($filterName) use ($availableFiltersNames) {
-                    return \in_array($filterName, $availableFiltersNames, true);
+                function ($filterName) use ($availableFilterNames) {
+                    return \in_array($filterName, $availableFilterNames, true);
                 },
                 ARRAY_FILTER_USE_KEY
             );
@@ -69,7 +69,8 @@ class FilterExtension implements ExtensionInterface
 
     private function processFilters(array $filters, array $filterDescription): array
     {
-        foreach ($filters as $filterName => $filterValue) {
+        $filterNames = array_keys($filters);
+        foreach ($filterNames as $filterName) {
             $filterType = $filterDescription[$filterName]['type'];
             foreach ($this->filterProcessors as $processor) {
                 if ($processor->supportsType($filterType)) {
