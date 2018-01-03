@@ -5,6 +5,7 @@ namespace Eps\Fazah\FazahBundle;
 
 use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\AddQueryCriteriaPass;
 use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\CollectExtensionsPass;
+use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\CollectFilterProcessorsPass;
 use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\CollectModelFiltersPass;
 use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\RepositoryPass;
 use Eps\Fazah\FazahBundle\DependencyInjection\FazahExtension;
@@ -21,6 +22,7 @@ class FazahBundle extends Bundle
         $container->addCompilerPass(new CollectModelFiltersPass());
         $container->addCompilerPass(new CollectExtensionsPass());
         $container->addCompilerPass(new RepositoryPass());
+        $container->addCompilerPass(new CollectFilterProcessorsPass());
     }
 
     public function getContainerExtension()
