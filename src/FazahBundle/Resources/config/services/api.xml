@@ -44,6 +44,16 @@
             <tag name="fazah.api.model_filter" />
         </service>
 
+        <service id="fazah.api.filter_processor.default"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\Filter\FilterProcessor\DefaultFilterProcessor">
+            <tag name="fazah.api.filter_processor" priority="-255" />
+        </service>
+
+        <service id="fazah.api.filter_processor.boolean"
+                 class="Eps\Fazah\FazahBundle\ApiPlatform\Filter\FilterProcessor\BooleanFilterProcessor">
+            <tag name="fazah.api.filter_processor" />
+        </service>
+
         <service id="fazah.api.data_provider.generic"
                  class="Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\RepositoryDataProvider"
                  public="false">
