@@ -40,6 +40,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^2.1",
         "phpunit/phpunit": "^6.2",
         "satooshi/php-coveralls": "^2.0",
+        "symfony/debug-bundle": "^4.0",
         "symfony/dotenv": "^4.0",
         "symfony/phpunit-bridge": "^4.0",
         "symfony/profiler-pack": "^1.0",

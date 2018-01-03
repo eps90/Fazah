@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
@@ -14,5 +13,6 @@ return [
     Symfony\Bundle\TwigBundle\TwigBundle::class => ['all' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     Eps\Req2CmdBundle\Req2CmdBundle::class => ['all' => true],
-    \Eps\Fazah\FazahBundle\FazahBundle::class => ['all' => true]
+    Eps\Fazah\FazahBundle\FazahBundle::class => ['all' => true],
+    Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
 ];
