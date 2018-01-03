@@ -11,12 +11,14 @@
 
         <service id="fazah.api.extensions" class="Doctrine\Common\Collections\ArrayCollection" public="false"/>
         <service id="fazah.api.model_filters" class="Doctrine\Common\Collections\ArrayCollection" public="false" />
+        <service id="fazah.api.filter_processors" class="Doctrine\Common\Collections\ArrayCollection" />
 
         <service id="fazah.api.filter_extension"
                  class="Eps\Fazah\FazahBundle\ApiPlatform\Extension\FilterExtension"
                  public="false">
             <argument type="service" id="request_stack"/>
             <argument type="service" id="fazah.api.model_filters" />
+            <argument type="service" id="fazah.api.filter_processors" />
 
             <tag name="fazah.api.extension" />
         </service>
