@@ -9,6 +9,8 @@ use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 use Eps\Fazah\FazahBundle\ApiPlatform\Extension\FilterExtension;
 use Eps\Fazah\FazahBundle\ApiPlatform\Filter\FilterInterface;
+use Eps\Fazah\FazahBundle\ApiPlatform\Filter\FilterProcessor\BooleanFilterProcessor;
+use Eps\Fazah\FazahBundle\ApiPlatform\Filter\FilterProcessor\DefaultFilterProcessor;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -30,7 +32,11 @@ class FilterExtensionTest extends TestCase
         parent::setUp();
 
         $this->requestStack = $this->createMock(RequestStack::class);
-        $this->extension = new FilterExtension($this->requestStack, new ArrayCollection([$this->createFakeFilter()]));
+        $this->extension = new FilterExtension(
+            $this->requestStack,
+            new ArrayCollection([$this->createFakeFilter()]),
+            new ArrayCollection($this->getFilterProcessors())
+        );
     }
 
     /**
@@ -78,6 +84,29 @@ class FilterExtensionTest extends TestCase
         static::assertEquals($expectedCriteria, $queryCriteria);
     }
 
+    /**
+     * @test
+     */
+    public function itShouldProcessFiltersWithFilterProcessors(): void
+    {
+        $resourceClass = Message::class;
+        $queryCriteria = new QueryCriteria($resourceClass);
+
+        $requestQuery = ['my_boolean_property' => 'true', 'missing_property' => 'invalid_value'];
+        $currentRequest = new Request($requestQuery);
+
+        $this->requestStack->expects(static::once())
+            ->method('getCurrentRequest')
+            ->willReturn($currentRequest);
+
+        $expectedFilters = ['my_boolean_property' => true];
+        $expectedCriteria = new QueryCriteria($resourceClass, new FilterSet($expectedFilters));
+
+        $this->extension->applyFilters($resourceClass, $queryCriteria);
+
+        static::assertEquals($expectedCriteria, $queryCriteria);
+    }
+
     private function createFakeFilter(): FilterInterface
     {
         return new class implements FilterInterface {
@@ -96,11 +125,25 @@ class FilterExtensionTest extends TestCase
                 return [
                     'my_property' => [
                         'some' => 'example',
-                        'values' => 'here'
+                        'values' => 'here',
+                        'type' => 'string'
+                    ],
+                    'my_boolean_property' => [
+                        'some' => 'example',
+                        'value' => 'here',
+                        'type' => 'bool'
                     ]
                 ];
             }
         };
+    }
+
+    private function getFilterProcessors(): array
+    {
+        return [
+            new BooleanFilterProcessor(),
+            new DefaultFilterProcessor()
+        ];
     }
 
 }

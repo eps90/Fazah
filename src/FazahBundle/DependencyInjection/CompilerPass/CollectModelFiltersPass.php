@@ -7,10 +7,10 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-final class CollectFiltersPass implements CompilerPassInterface
+final class CollectModelFiltersPass implements CompilerPassInterface
 {
-    public const FILTERS_SERVICE = 'fazah.api.filters';
-    public const FILTER_TAG = 'fazah.api.filter';
+    public const FILTERS_SERVICE = 'fazah.api.model_filters';
+    public const FILTER_TAG = 'fazah.api.model_filter';
 
     /**
      * {@inheritdoc}
