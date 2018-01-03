@@ -10,13 +10,13 @@
                  public="false" />
 
         <service id="fazah.api.extensions" class="Doctrine\Common\Collections\ArrayCollection" public="false"/>
-        <service id="fazah.api.filters" class="Doctrine\Common\Collections\ArrayCollection" public="false" />
+        <service id="fazah.api.model_filters" class="Doctrine\Common\Collections\ArrayCollection" public="false" />
 
         <service id="fazah.api.filter_extension"
                  class="Eps\Fazah\FazahBundle\ApiPlatform\Extension\FilterExtension"
                  public="false">
             <argument type="service" id="request_stack"/>
-            <argument type="service" id="fazah.api.filters" />
+            <argument type="service" id="fazah.api.model_filters" />
 
             <tag name="fazah.api.extension" />
         </service>
@@ -25,21 +25,21 @@
                  class="Eps\Fazah\FazahBundle\ApiPlatform\Filter\ProjectFilter"
                  public="false">
             <tag name="api_platform.filter" id="project_filter" />
-            <tag name="fazah.api.filter" />
+            <tag name="fazah.api.model_filter" />
         </service>
 
         <service id="fazah.api.filter.catalogue"
                  class="Eps\Fazah\FazahBundle\ApiPlatform\Filter\CatalogueFilter"
                  public="false">
             <tag name="api_platform.filter" id="catalogue_filter" />
-            <tag name="fazah.api.filter" />
+            <tag name="fazah.api.model_filter" />
         </service>
 
         <service id="fazah.api.filter.message"
                  class="Eps\Fazah\FazahBundle\ApiPlatform\Filter\MessageFilter"
                  public="false">
             <tag name="api_platform.filter" id="message_filter" />
-            <tag name="fazah.api.filter" />
+            <tag name="fazah.api.model_filter" />
         </service>
 
         <service id="fazah.api.data_provider.generic"

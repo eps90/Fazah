@@ -13,7 +13,7 @@ class FilterExtension implements ExtensionInterface
     /**
      * @var ArrayCollection|FilterInterface[]
      */
-    private $filters;
+    private $modelFilters;
 
     /**
      * @var RequestStack
@@ -23,12 +23,12 @@ class FilterExtension implements ExtensionInterface
     /**
      * FiltersExtension constructor.
      * @param RequestStack $requestStack
-     * @param ArrayCollection|null $filters
+     * @param ArrayCollection|null $modelFilters
      */
-    public function __construct(RequestStack $requestStack, ArrayCollection $filters = null)
+    public function __construct(RequestStack $requestStack, ArrayCollection $modelFilters = null)
     {
         $this->requestStack = $requestStack;
-        $this->filters = $filters ?? new ArrayCollection();
+        $this->modelFilters = $modelFilters ?? new ArrayCollection();
     }
 
     public function applyFilters(string $resourceClass, QueryCriteria $criteria): void
@@ -36,7 +36,7 @@ class FilterExtension implements ExtensionInterface
         $currentRequest = $this->requestStack->getCurrentRequest();
         $requestedFilters = $currentRequest->query->all();
 
-        foreach ($this->filters as $filter) {
+        foreach ($this->modelFilters as $filter) {
             if (!$filter->supportsResource($resourceClass)) {
                 continue;
             }

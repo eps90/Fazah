@@ -5,7 +5,7 @@ namespace Eps\Fazah\FazahBundle;
 
 use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\AddQueryCriteriaPass;
 use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\CollectExtensionsPass;
-use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\CollectFiltersPass;
+use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\CollectModelFiltersPass;
 use Eps\Fazah\FazahBundle\DependencyInjection\CompilerPass\RepositoryPass;
 use Eps\Fazah\FazahBundle\DependencyInjection\FazahExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -18,7 +18,7 @@ class FazahBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new AddQueryCriteriaPass());
-        $container->addCompilerPass(new CollectFiltersPass());
+        $container->addCompilerPass(new CollectModelFiltersPass());
         $container->addCompilerPass(new CollectExtensionsPass());
         $container->addCompilerPass(new RepositoryPass());
     }
