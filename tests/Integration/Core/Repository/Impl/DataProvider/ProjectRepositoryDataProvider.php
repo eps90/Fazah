@@ -117,25 +117,6 @@ trait ProjectRepositoryDataProvider
                 ]
             ],
 
-            'disabled_as_string' => [
-                'criteria' => new QueryCriteria(
-                    Project::class,
-                    new FilterSet(['enabled' => 'false'])
-                ),
-                'expected' => [
-                    Project::restoreFrom(
-                        new ProjectId('9b669c76-7a80-4d3f-9191-37c1eda80a05'),
-                        'disabled-project',
-                        Metadata::restoreFrom(
-                            new \DateTimeImmutable('2015-01-01 12:00:03'),
-                            new \DateTimeImmutable('2015-01-02 12:00:03'),
-                            false
-                        ),
-                        ProjectConfiguration::restoreFrom(['en', 'fr', 'pl'])
-                    )
-                ]
-            ],
-
             'by_phrase' => [
                 'criteria' => new QueryCriteria(
                     Project::class,

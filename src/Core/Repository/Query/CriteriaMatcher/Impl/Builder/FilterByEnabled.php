@@ -17,9 +17,6 @@ final class FilterByEnabled implements DoctrineConditionBuilder
     public function build(QueryCriteria $criteria, QueryBuilder $queryBuilder): void
     {
         $isEnabled = $criteria->getFilters()->getFilter('enabled');
-        if (is_string($isEnabled)) {
-            $isEnabled = !$isEnabled === 'false';
-        }
 
         $queryBuilder->andWhere($queryBuilder->expr()->eq('p.metadata.enabled', ':enabled'))
             ->setParameter(':enabled', $isEnabled);

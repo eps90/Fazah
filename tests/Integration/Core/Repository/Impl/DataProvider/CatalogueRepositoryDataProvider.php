@@ -200,26 +200,6 @@ trait CatalogueRepositoryDataProvider
                 ]
             ],
 
-            'by_enabled_as_string' => [
-                'criteria' => new QueryCriteria(
-                    Catalogue::class,
-                    new FilterSet(['enabled' => 'false'])
-                ),
-                'expected' => [
-                    Catalogue::restoreFrom(
-                        new CatalogueId('5a53c071-f518-41af-9b94-71044b1d5a1f'),
-                        'fifth-catalogue',
-                        new ProjectId('4c3339d3-ad42-4614-bd83-8585cea0e54e'),
-                        null,
-                        Metadata::restoreFrom(
-                            new \DateTimeImmutable('2015-01-01 12:00:04'),
-                            new \DateTimeImmutable('2015-01-02 12:00:04'),
-                            false
-                        )
-                    )
-                ]
-            ],
-
             'by_phrase' => [
                 'criteria' => new QueryCriteria(
                     Catalogue::class,
