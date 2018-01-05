@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Eps\Fazah\Tests\Resources\Fixtures\SerializableCommand;
 
-use Eps\Fazah\Core\UseCase\Command\SerializableCommand;
+use Eps\Req2CmdBundle\Command\DeserializableCommandInterface;
 
-final class DummySerializableCommand implements SerializableCommand
+final class DummySerializableCommand implements DeserializableCommandInterface
 {
     private $name;
 
