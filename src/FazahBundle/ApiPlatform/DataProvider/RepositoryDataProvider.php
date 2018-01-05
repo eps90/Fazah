@@ -43,7 +43,10 @@ class RepositoryDataProvider implements CollectionDataProviderInterface
                 $extension->applyFilters($resourceClass, $criteria);
             }
 
-            return $repository->findAll($criteria);
+            return $repository->findAll($criteria)->take(
+                $criteria->getPagination()->getPage() - 1,
+                $criteria->getPagination()->getElementsPerPage()
+            );
         } catch (RepositoryManagerException $exception) {
             throw new ResourceClassNotSupportedException();
         }
