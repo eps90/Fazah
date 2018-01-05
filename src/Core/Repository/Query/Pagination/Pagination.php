@@ -5,8 +5,8 @@ namespace Eps\Fazah\Core\Repository\Query\Pagination;
 
 final class Pagination
 {
-    private const DEFAULT_PAGE = 1;
-    private const DEFAULT_SIZE = 0;
+    public const DEFAULT_PAGE = 1;
+    public const DEFAULT_SIZE = 0;
 
     /**
      * @var int
