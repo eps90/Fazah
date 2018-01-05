@@ -7,6 +7,7 @@ use Eps\Fazah\Core\Model\Identity\ProjectId;
 use Eps\Fazah\Core\Model\Project;
 use Eps\Fazah\Core\Repository\Exception\ProjectRepositoryException;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
+use Porpaginas\Result;
 
 interface ProjectRepository extends RepositoryInterface
 {
@@ -24,9 +25,9 @@ interface ProjectRepository extends RepositoryInterface
 
     /**
      * @param QueryCriteria|null $criteria
-     * @return array|Project[]
+     * @return Result|Project[]
      */
-    public function findAll(QueryCriteria $criteria = null): array;
+    public function findAll(QueryCriteria $criteria = null): Result;
 
     public function remove(ProjectId $projectId): void;
 }

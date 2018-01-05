@@ -7,6 +7,7 @@ use Eps\Fazah\Core\Model\Identity\MessageId;
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Exception\MessageRepositoryException;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
+use Porpaginas\Result;
 
 interface MessageRepository extends RepositoryInterface
 {
@@ -24,9 +25,9 @@ interface MessageRepository extends RepositoryInterface
 
     /**
      * @param QueryCriteria|null $criteria
-     * @return array|Message[]
+     * @return Result|Message[]
      */
-    public function findAll(QueryCriteria $criteria = null): array;
+    public function findAll(QueryCriteria $criteria = null): Result;
 
     public function remove(MessageId $messageId): void;
 
