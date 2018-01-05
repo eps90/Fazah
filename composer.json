@@ -15,6 +15,7 @@
         "ext-iconv": "*",
         "api-platform/core": "^2.1",
         "beberlei/assert": "^2.7",
+        "beberlei/porpaginas": "^1.2",
         "cocur/slugify": "^3.0",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
