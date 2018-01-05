@@ -84,7 +84,7 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
                 )
             )
         ];
-        $actualResult = $this->getRepositoryInstance()->findAll();
+        $actualResult = iterator_to_array($this->getRepositoryInstance()->findAll());
 
         static::assertEquals($expectedResult, $actualResult);
     }
@@ -122,7 +122,7 @@ class DoctrineMessageRepositoryTest extends DoctrineRepositoryTest
                 )
             )
         ];
-        $actualMessages = $repository->findAll();
+        $actualMessages = iterator_to_array($repository->findAll());
 
         static::assertEquals($expectedMessages, $actualMessages);
     }
