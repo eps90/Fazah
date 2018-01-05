@@ -59,7 +59,7 @@ class AddMessageHandlerTest extends WebTestCase
 
         $messagesRepo = $this->getContainer()->get('test.fazah.repository.message');
         $criteria = new QueryCriteria(Message::class, new FilterSet(['phrase' => $messageKey]));
-        $messages = $messagesRepo->findAll($criteria);
+        $messages = iterator_to_array($messagesRepo->findAll($criteria));
 
         $expectedResult = [null, null, null];
         $actualResult = array_map(function (Message $message) {
@@ -82,7 +82,7 @@ class AddMessageHandlerTest extends WebTestCase
 
         $messagesRepo = $this->getContainer()->get('test.fazah.repository.message');
         $criteria = new QueryCriteria(Message::class, new FilterSet(['phrase' => $messageKey]));
-        $messages = $messagesRepo->findAll($criteria);
+        $messages = iterator_to_array($messagesRepo->findAll($criteria));
         $expectedLanguages = ['en', 'fr', 'pl'];
         $actualLanguages = array_map(function (Message $message) {
             return $message->getTranslation()->getLanguage();

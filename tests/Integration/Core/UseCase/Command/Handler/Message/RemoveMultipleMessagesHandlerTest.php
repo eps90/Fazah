@@ -67,7 +67,7 @@ class RemoveMultipleMessagesHandlerTest extends WebTestCase
                 )
             )
         ];
-        $actualMessages = $this->messageRepo->findAll();
+        $actualMessages = iterator_to_array($this->messageRepo->findAll());
 
         static::assertEquals($expectedMessages, $actualMessages);
     }

@@ -41,7 +41,7 @@ class CreateCatalogueHandlerTest extends WebTestCase
         $catalogueRepo = $this->getContainer()->get('test.fazah.repository.catalogue');
         $filters = ['project_id' => $projectId];
         $criteria = new QueryCriteria(Catalogue::class, new FilterSet($filters));
-        $foundCatalogues = $catalogueRepo->findAll($criteria);
+        $foundCatalogues = iterator_to_array($catalogueRepo->findAll($criteria));
 
         static::assertCount(1, $foundCatalogues);
     }
@@ -62,7 +62,7 @@ class CreateCatalogueHandlerTest extends WebTestCase
         $filters = ['project_id' => $projectId];
         $criteria = new QueryCriteria(Catalogue::class, new FilterSet($filters));
         /** @var Catalogue[] $foundCatalogues */
-        $foundCatalogues = $catalogueRepo->findAll($criteria);
+        $foundCatalogues = iterator_to_array($catalogueRepo->findAll($criteria));
 
         static::assertCount(1, $foundCatalogues);
         static::assertEquals($parentCatalogueId, $foundCatalogues[0]->getParentCatalogueId());
