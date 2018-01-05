@@ -50,6 +50,14 @@ final class MessageFilter implements FilterInterface
                 'swagger' => [
                     'description' => 'Filter by message\'s language'
                 ]
+            ],
+            'limit' => [
+                'property' => 'limit',
+                'type' => 'integer',
+                'required' => false,
+                'swagger' => [
+                    'description' => 'Limit response by given size'
+                ]
             ]
         ];
     }
