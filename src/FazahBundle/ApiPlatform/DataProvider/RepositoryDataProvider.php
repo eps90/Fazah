@@ -32,7 +32,7 @@ class RepositoryDataProvider implements CollectionDataProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getCollection(string $resourceClass, string $operationName = null): array
+    public function getCollection(string $resourceClass, string $operationName = null)
     {
         try {
             $repository = $this->repositoryManager->getRepository($resourceClass);
@@ -43,7 +43,10 @@ class RepositoryDataProvider implements CollectionDataProviderInterface
                 $extension->applyFilters($resourceClass, $criteria);
             }
 
-            return $repository->findAll($criteria);
+            return $repository->findAll($criteria)->take(
+                $criteria->getPagination()->getPage() - 1,
+                $criteria->getPagination()->getElementsPerPage()
+            );
         } catch (RepositoryManagerException $exception) {
             throw new ResourceClassNotSupportedException();
         }

@@ -23,6 +23,11 @@
             <tag name="fazah.api.extension" />
         </service>
 
+        <service id="fazah.api.pager_extension" class="Eps\Fazah\FazahBundle\ApiPlatform\Extension\PagerExtension">
+            <argument type="service" id="request_stack"/>
+            <tag name="fazah.api.extension" />
+        </service>
+
         <service id="fazah.api.filter.project"
                  class="Eps\Fazah\FazahBundle\ApiPlatform\Filter\ProjectFilter"
                  public="false">

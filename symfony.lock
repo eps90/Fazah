@@ -11,6 +11,9 @@
     "beberlei/assert": {
         "version": "v2.8.1"
     },
+    "beberlei/porpaginas": {
+        "version": "v1.2"
+    },
     "cocur/slugify": {
         "version": "v2.5"
     },

@@ -6,6 +6,7 @@ namespace Eps\Fazah\Core\Repository\Impl;
 use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Repository\Query\CriteriaMatcher\CriteriaMatcher;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
+use Porpaginas\Result;
 
 abstract class BaseDoctrineRepository
 {
@@ -27,7 +28,7 @@ abstract class BaseDoctrineRepository
 
     abstract protected function getModelClass(): string;
 
-    public function findAll(QueryCriteria $criteria = null): array
+    public function findAll(QueryCriteria $criteria = null): Result
     {
         if ($criteria === null) {
             $criteria = new QueryCriteria($this->getModelClass());

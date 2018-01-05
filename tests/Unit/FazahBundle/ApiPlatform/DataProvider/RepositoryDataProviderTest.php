@@ -13,6 +13,8 @@ use Eps\Fazah\Core\Repository\RepositoryInterface;
 use Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\RepositoryDataProvider;
 use Eps\Fazah\FazahBundle\ApiPlatform\Extension\ExtensionInterface;
 use PHPUnit\Framework\TestCase;
+use Porpaginas\Arrays\ArrayPage;
+use Porpaginas\Arrays\ArrayResult;
 
 class RepositoryDataProviderTest extends TestCase
 {
@@ -69,13 +71,13 @@ class RepositoryDataProviderTest extends TestCase
             ->with($resourceClass)
             ->willReturn($foundRepo);
 
-        $foundResults = ['o1', 'o2'];
+        $foundResults = new ArrayResult(['o1', 'o2']);
         $foundRepo->expects(static::once())
             ->method('findAll')
             ->with(new QueryCriteria($resourceClass))
             ->willReturn($foundResults);
 
-        $expectedResults = $foundResults;
+        $expectedResults = new ArrayPage(iterator_to_array($foundResults), 0, null, 2);
         $actualResults = $this->dataProvider->getCollection($resourceClass);
 
         static::assertEquals($expectedResults, $actualResults);
@@ -97,13 +99,13 @@ class RepositoryDataProviderTest extends TestCase
             ->willReturn($foundRepo);
 
         $expectedCriteria = new QueryCriteria($resourceClass, new FilterSet(['my_filter' => 'filter_value']));
-        $foundResults = ['o1', 'o2'];
+        $foundResults = new ArrayResult(['o1', 'o2']);
         $foundRepo->expects(static::once())
             ->method('findAll')
             ->with($expectedCriteria)
             ->willReturn($foundResults);
 
-        $expectedResult = $foundResults;
+        $expectedResult = new ArrayPage(iterator_to_array($foundResults), 0, null, 2);
         $actualResult = $this->dataProvider->getCollection($resourceClass);
 
         static::assertEquals($expectedResult, $actualResult);

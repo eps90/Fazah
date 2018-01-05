@@ -6,6 +6,7 @@ namespace Eps\Fazah\Tests\Integration\Core\Repository\Impl;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Eps\Fazah\Core\Model\Identity\Identity;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
+use Eps\Fazah\Core\Repository\RepositoryInterface;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 abstract class DoctrineRepositoryTest extends WebTestCase
@@ -74,7 +75,7 @@ abstract class DoctrineRepositoryTest extends WebTestCase
     public function itShouldReturnAllModels(QueryCriteria $criteria = null, array $expected = []): void
     {
         $repository = $this->getRepositoryInstance();
-        $actualModels = $repository->findAll($criteria);
+        $actualModels = iterator_to_array($repository->findAll($criteria));
         static::assertEquals($expected, $actualModels);
     }
 
@@ -126,7 +127,7 @@ abstract class DoctrineRepositoryTest extends WebTestCase
         $repository = $this->getRepositoryInstance();
         $repository->remove($id);
 
-        $actualState = $repository->findAll();
+        $actualState = iterator_to_array($repository->findAll());
 
         static::assertEquals($expectedState, $actualState);
     }

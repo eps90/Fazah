@@ -6,6 +6,8 @@ namespace Eps\Fazah\Core\Repository\Query\CriteriaMatcher\Impl;
 use Doctrine\ORM\EntityManagerInterface;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 use Eps\Fazah\Core\Repository\Query\CriteriaMatcher\CriteriaMatcher;
+use Porpaginas\Doctrine\ORM\ORMQueryResult;
+use Porpaginas\Result;
 
 class DoctrineCriteriaMatcher implements CriteriaMatcher
 {
@@ -30,7 +32,7 @@ class DoctrineCriteriaMatcher implements CriteriaMatcher
         $this->builders[] = $builder;
     }
 
-    public function match(QueryCriteria $criteria): array
+    public function match(QueryCriteria $criteria): Result
     {
         $queryBuilder = $this->entityManager->createQueryBuilder();
         foreach ($this->builders as $builder) {
@@ -39,6 +41,6 @@ class DoctrineCriteriaMatcher implements CriteriaMatcher
             }
         }
 
-        return $queryBuilder->getQuery()->getResult();
+        return new ORMQueryResult($queryBuilder->getQuery());
     }
 }

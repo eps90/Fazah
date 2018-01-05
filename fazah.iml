@@ -9,6 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/api-platform/core" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/beberlei/DoctrineExtensions" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/beberlei/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/beberlei/porpaginas" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cocur/slugify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
@@ -122,6 +123,7 @@
         <CLASSES>
           <root url="file://$MODULE_DIR$/vendor/api-platform/core" />
           <root url="file://$MODULE_DIR$/vendor/beberlei/assert" />
+          <root url="file://$MODULE_DIR$/vendor/beberlei/porpaginas" />
           <root url="file://$MODULE_DIR$/vendor/cocur/slugify" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
@@ -232,6 +234,7 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/api-platform/core" />
           <root url="file://$MODULE_DIR$/vendor/beberlei/assert" />
+          <root url="file://$MODULE_DIR$/vendor/beberlei/porpaginas" />
           <root url="file://$MODULE_DIR$/vendor/cocur/slugify" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />

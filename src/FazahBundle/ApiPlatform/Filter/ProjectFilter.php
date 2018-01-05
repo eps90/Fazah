@@ -34,6 +34,14 @@ final class ProjectFilter implements FilterInterface
                 'swagger' => [
                     'description' => 'Filter by containing phrase'
                 ]
+            ],
+            'limit' => [
+                'property' => 'limit',
+                'type' => 'integer',
+                'required' => false,
+                'swagger' => [
+                    'description' => 'Limit response by given size'
+                ]
             ]
         ];
     }
