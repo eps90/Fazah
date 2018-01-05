@@ -32,7 +32,7 @@ class RepositoryDataProvider implements CollectionDataProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getCollection(string $resourceClass, string $operationName = null): array
+    public function getCollection(string $resourceClass, string $operationName = null)
     {
         try {
             $repository = $this->repositoryManager->getRepository($resourceClass);

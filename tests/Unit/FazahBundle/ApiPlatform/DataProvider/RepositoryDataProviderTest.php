@@ -13,6 +13,7 @@ use Eps\Fazah\Core\Repository\RepositoryInterface;
 use Eps\Fazah\FazahBundle\ApiPlatform\DataProvider\RepositoryDataProvider;
 use Eps\Fazah\FazahBundle\ApiPlatform\Extension\ExtensionInterface;
 use PHPUnit\Framework\TestCase;
+use Porpaginas\Arrays\ArrayResult;
 
 class RepositoryDataProviderTest extends TestCase
 {
@@ -69,7 +70,7 @@ class RepositoryDataProviderTest extends TestCase
             ->with($resourceClass)
             ->willReturn($foundRepo);
 
-        $foundResults = ['o1', 'o2'];
+        $foundResults = new ArrayResult(['o1', 'o2']);
         $foundRepo->expects(static::once())
             ->method('findAll')
             ->with(new QueryCriteria($resourceClass))
@@ -97,7 +98,7 @@ class RepositoryDataProviderTest extends TestCase
             ->willReturn($foundRepo);
 
         $expectedCriteria = new QueryCriteria($resourceClass, new FilterSet(['my_filter' => 'filter_value']));
-        $foundResults = ['o1', 'o2'];
+        $foundResults = new ArrayResult(['o1', 'o2']);
         $foundRepo->expects(static::once())
             ->method('findAll')
             ->with($expectedCriteria)
