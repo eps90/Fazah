@@ -6,7 +6,7 @@ namespace Eps\Fazah\Core\Repository\Query\Pagination;
 final class Pagination
 {
     public const DEFAULT_PAGE = 1;
-    public const DEFAULT_SIZE = 0;
+    public const DEFAULT_SIZE = null;
 
     /**
      * @var int
@@ -18,7 +18,7 @@ final class Pagination
      */
     private $elementsPerPage;
 
-    public function __construct($page, $elementsPerPage)
+    public function __construct(int $page, ?int $elementsPerPage)
     {
         $this->page = $page;
         $this->elementsPerPage = $elementsPerPage;
@@ -34,7 +34,7 @@ final class Pagination
         return $this->page;
     }
 
-    public function getElementsPerPage(): int
+    public function getElementsPerPage(): ?int
     {
         return $this->elementsPerPage;
     }
