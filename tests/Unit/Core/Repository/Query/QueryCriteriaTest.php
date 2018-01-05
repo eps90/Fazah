@@ -5,6 +5,7 @@ namespace Eps\Fazah\Tests\Unit\Core\Repository\Query;
 
 use Eps\Fazah\Core\Model\Message;
 use Eps\Fazah\Core\Repository\Query\Filtering\FilterSet;
+use Eps\Fazah\Core\Repository\Query\Pagination\Pagination;
 use Eps\Fazah\Core\Repository\Query\QueryCriteria;
 use Eps\Fazah\Core\Repository\Query\Sorting\Sorting;
 use Eps\Fazah\Core\Repository\Query\Sorting\SortSet;
@@ -50,6 +51,35 @@ class QueryCriteriaTest extends TestCase
     /**
      * @test
      */
+    public function itShouldCreateDefaultPaginationWhenNullIsPassed(): void
+    {
+        $filters = [
+            'my_property' => 'aaa'
+        ];
+        $sorting = [
+            Sorting::asc('my_field'),
+            Sorting::asc('other_field')
+        ];
+
+        $expectedCriteria = new QueryCriteria(
+            Message::class,
+            new FilterSet($filters),
+            new SortSet(...$sorting),
+            new Pagination(1, 0)
+        );
+        $actualCriteria = new QueryCriteria(
+            Message::class,
+            new FilterSet($filters),
+            new SortSet(...$sorting),
+            null
+        );
+
+        static::assertEquals($expectedCriteria, $actualCriteria);
+    }
+
+    /**
+     * @test
+     */
     public function itShouldBeAbleToCreateEmptyCriteria(): void
     {
         $expectedCriteria = new QueryCriteria(Message::class, new FilterSet(), new SortSet());
@@ -84,5 +114,17 @@ class QueryCriteriaTest extends TestCase
         $expectedCriteria = new QueryCriteria(Message::class, null, new SortSet($sortingToAdd));
 
         static::assertEquals($expectedCriteria, $initialCriteria);
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldBeAbleToAddPagination(): void
+    {
+        $queryCriteria = new QueryCriteria(Message::class);
+        $pagination = new Pagination(12, 15);
+        $queryCriteria->setPagination($pagination);
+
+        static::assertEquals($pagination, $queryCriteria->getPagination());
     }
 }
