@@ -49,4 +49,27 @@ class CreateProjectHandlerTest extends TestCase
 
         $this->handler->handle($command);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldAddProjectWithAvailableLanguages(): void
+    {
+        $projectName = 'my awesome project';
+        $availableLanguages = ['pl', 'en'];
+        $command = new CreateProject($projectName, $availableLanguages);
+
+        $this->projectRepo->expects($this->once())
+            ->method('save')
+            ->with(
+                $this->callback(
+                    function (Project $project) use ($projectName, $availableLanguages) {
+                        return $project->getName() === $projectName
+                            && $project->getConfig()->getAvailableLanguages() === $availableLanguages;
+                    }
+                )
+            );
+
+        $this->handler->handle($command);
+    }
 }

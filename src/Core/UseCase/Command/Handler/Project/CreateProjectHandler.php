@@ -26,6 +26,7 @@ class CreateProjectHandler
     public function handle(CreateProject $command): void
     {
         $project = Project::create($command->getName());
+        $project->changeAvailableLanguages($command->getAvailableLanguages());
         $this->projectRepo->save($project);
     }
 }
