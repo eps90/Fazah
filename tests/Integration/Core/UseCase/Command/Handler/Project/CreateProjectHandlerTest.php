@@ -40,4 +40,22 @@ class CreateProjectHandlerTest extends WebTestCase
 
         static::assertCount(1, $projects);
     }
+
+    /**
+     * @test
+     */
+    public function itShouldOptionallyAddNewLanguageToAProject(): void
+    {
+        $availableLanguages = ['pl', 'gb'];
+        $command = new CreateProject('some project', $availableLanguages);
+        $this->commandBus->handle($command);
+
+        $projectRepo = $this->getContainer()->get('test.fazah.repository.project');
+        $filter = ['phrase' => 'some project'];
+        $queryCriteria = new QueryCriteria(Project::class, new FilterSet($filter));
+        /** @var Project[] $projects */
+        $projects = iterator_to_array($projectRepo->findAll($queryCriteria));
+
+        static::assertEquals($availableLanguages, $projects[0]->getConfig()->getAvailableLanguages());
+    }
 }
